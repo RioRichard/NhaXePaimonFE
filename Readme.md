@@ -1,4 +1,4 @@
-# Đây là đồ án môn học.
+# Đây là đồ án môn học của nhóm PAIMON.
 
 Link backend:
 
