@@ -1,5 +1,7 @@
-# Đây là đồ án môn học của nhóm PAIMON.
+# Đây là đồ án Quản lí bán vé - phần Frontend với ngôn ngữ JS - framework ReactJs của nhóm PAIMON
 
 Link backend:
 
 [Nodejs](https://github.com/RioRichard/NhaXePaimonBENodeJs)
+
+[JAVA](https://github.com/RioRichard/NhaXePaimonBE_JAVA)
