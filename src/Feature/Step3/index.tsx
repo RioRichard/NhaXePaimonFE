@@ -1,9 +1,9 @@
 import Main from "./pages/Main";
 import { Route, Routes,Navigate } from 'react-router-dom';
-export default function Step2() {
+export default function Step3() {
     return (
         <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/test3" element={<Main />} />
         </Routes>
     );
 }
