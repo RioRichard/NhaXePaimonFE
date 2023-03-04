@@ -24,7 +24,7 @@ export function SelectSearchField(props: SelectSearchFielddProps) {
                     value={value}
                     onChange={(event, selectedOptions) => onChange(selectedOptions)}
                     options={options}
-                    getOptionLabel={(option) => (option.name ? option.id + ' - ' + option.name : option.id)}
+                    getOptionLabel={(option) => (option)}
                     isOptionEqualToValue={(option, value) => option.id === value.id}
                     noOptionsText="Không có lựa chọn nào được tìm thấy"
                     disabled={disabled}

@@ -12,7 +12,7 @@ import { SelectField } from '../../../custom-fields/SelectField';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 
-export default function Main() {
+export default function Step3() {
     const methods = useForm<any>({
         // defaultValues: initialValues,
         // resolver: yupResolver(validationSchema)
