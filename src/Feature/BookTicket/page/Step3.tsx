@@ -2,15 +2,14 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { FormProvider, useForm } from 'react-hook-form';
-import { CheckboxField } from '../../../custom-fields/CheckboxField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { Button, Box, FormControlLabel, Radio } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-import { SelectField } from '../../../custom-fields/SelectField';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
+import { Link } from 'react-router-dom';
 
 export default function Step3() {
     const methods = useForm<any>({
@@ -80,12 +79,17 @@ export default function Step3() {
                                 </Grid>
                             </Grid>
                             <Stack direction="row-reverse" spacing={2}>
-                                <Button variant="contained" color="secondary" startIcon={<BackspaceIcon />} sx={{ ml: 1 }}>
-                                    Trở về
-                                </Button>
-                                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} sx={{ ml: 1 }}>
-                                    Hoàn tất chọn vé
-                                </Button>
+                                <Link to="/thanh-toan" style={{ textDecoration: 'none' }} >
+                                    <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} sx={{ ml: 1 }}>
+                                        Hoàn tất chọn vé
+                                    </Button>
+                                </Link>
+                                <Link to="/" style={{ textDecoration: 'none' }} >
+                                    <Button variant="contained" color="secondary" startIcon={<BackspaceIcon />} sx={{ ml: 1 }}>
+                                        Trở về
+                                    </Button>
+                                </Link>
+
                             </Stack>
 
                         </Box>
