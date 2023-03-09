@@ -8,12 +8,13 @@ import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
+import { Link } from 'react-router-dom';
 
 
 
 
 
-export function Step1() {
+export default function Step1() {
     const methods = useForm<any>({
     });
     const {
@@ -39,7 +40,7 @@ export function Step1() {
         }
 
     }, [departure, destination, dateStart]);
-    
+
     const Test = ['Test1', 'Test2', 'Test3', 'Test4'];
     return (
         <FormProvider {...methods}>
@@ -80,7 +81,7 @@ export function Step1() {
                                         <Grid item md={6}>
                                             <TableContainer>
                                                 <Table style={{ height: "auto" }} >
-                                                    <TableRow sx={{ height: "50px", bgcolor: "#0e9694", alignItems:"center" }} >
+                                                    <TableRow sx={{ height: "50px", bgcolor: "#0e9694", alignItems: "center" }} >
                                                         <TableCell colSpan={3} sx={{ textAlign: "center", color: "white", fontSize: "21px" }}>
                                                             Điện thoại hợp đồng \ Đặt vé:</TableCell>
                                                     </TableRow>
@@ -88,7 +89,7 @@ export function Step1() {
                                                         <TableCell sx={{ textAlign: "center" }}>
                                                             <Typography sx={{ color: "black", fontSize: "18px" }}>
                                                                 SÀI GÒN  </Typography>
-                                                            <Typography sx={{ color: "red",  fontSize: "18px" }}>
+                                                            <Typography sx={{ color: "red", fontSize: "18px" }}>
                                                                 1900 XXXX
                                                             </Typography>
                                                         </TableCell>
@@ -102,7 +103,7 @@ export function Step1() {
                                                         <TableCell sx={{ textAlign: "center" }}>
                                                             <Typography sx={{ color: "black", fontSize: "18px" }}>
                                                                 VŨNG TÀU  </Typography>
-                                                            <Typography sx={{ color: "red",  fontSize: "18px" }}>
+                                                            <Typography sx={{ color: "red", fontSize: "18px" }}>
                                                                 1900 XXXX
                                                             </Typography>
                                                         </TableCell>
@@ -139,11 +140,13 @@ export function Step1() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Stack direction="row-reverse" spacing={2}>
-                                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
-                                    Tiếp tục
-                                </Button>
-                            </Stack>
+                            <Link to="/chon-ghe" style={{ textDecoration: 'none' }} >
+                                <Stack direction="row-reverse" spacing={2} sx={{marginTop:"15px"}}>
+                                    <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
+                                        Tiếp tục
+                                    </Button>
+                                </Stack>
+                            </Link>
                         </form>
                     </Container>
                 </Box>
