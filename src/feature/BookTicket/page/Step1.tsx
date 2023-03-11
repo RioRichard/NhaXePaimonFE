@@ -9,11 +9,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
-
-
-
-
-
 export default function Step1() {
     const methods = useForm<any>({
     });
