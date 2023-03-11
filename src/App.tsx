@@ -1,24 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
+import LoginPage from './Feature/auth/pages/LoginPage';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { UserLayout } from './layout/User';
+import RegisterPage from './Feature/auth/pages/RegisterPage';
+import { AdminLayout } from 'layout/Admin/Admin';
+import { Sidebar } from 'layout/Admin/Sidebar';
+import { Header } from 'layout/Admin/Header';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Navigate to="trang-chu" />} />
+        <Route path="*" element={<UserLayout/>} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="admin/*" element={<AdminLayout/>}/>
+      </Routes>
     </div>
   );
 }

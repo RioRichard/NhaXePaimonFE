@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="250" height="166" viewBox="0 0 250 166">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e8f5f7"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="Rectangle_19198" x="64" y="24" width="122" height="142" filterUnits="userSpaceOnUse">
+      <feOffset dy="8" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feFlood flood-opacity="0.078"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="bg_Empty_List_Other" transform="translate(-586 -310)">
+    <rect id="Rectangle_18491" data-name="Rectangle 18491" width="250" height="150" transform="translate(586 310)" fill="#fff"/>
+    <ellipse id="Ellipse_2428" data-name="Ellipse 2428" cx="80" cy="10" rx="80" ry="10" transform="translate(631 440)" fill="url(#linear-gradient)"/>
+    <g id="Group_44438" data-name="Group 44438" transform="translate(23 92)">
+      <g transform="matrix(1, 0, 0, 1, 563, 218)" filter="url(#Rectangle_19198)">
+        <rect id="Rectangle_19198-2" data-name="Rectangle 19198" width="80" height="100" rx="4" transform="translate(85 37)" fill="#fff"/>
+      </g>
+      <rect id="Rectangle_19199" data-name="Rectangle 19199" width="28" height="6" rx="3" transform="translate(659 266)" fill="#14aa8a"/>
+      <rect id="Rectangle_19200" data-name="Rectangle 19200" width="40" height="4" rx="2" transform="translate(659 277)" fill="#e8f5f7"/>
+      <rect id="Rectangle_19201" data-name="Rectangle 19201" width="16" height="4" rx="2" transform="translate(659 287)" fill="#cbe4e8"/>
+      <rect id="Rectangle_19206" data-name="Rectangle 19206" width="16" height="4" rx="2" transform="translate(659 309)" fill="#cbe4e8"/>
+      <rect id="Rectangle_19208" data-name="Rectangle 19208" width="16" height="4" rx="2" transform="translate(659 329)" fill="#cbe4e8"/>
+      <rect id="Rectangle_19202" data-name="Rectangle 19202" width="58" height="8" rx="4" transform="translate(659 295)" fill="#e8f5f7"/>
+      <rect id="Rectangle_19207" data-name="Rectangle 19207" width="58" height="8" rx="4" transform="translate(659 317)" fill="#e8f5f7"/>
+    </g>
+  </g>
+</svg>
