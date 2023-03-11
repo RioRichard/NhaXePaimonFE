@@ -6,7 +6,6 @@ import Step3 from '../feature/BookTicket/page/Step3';
 import Step4 from '../feature/BookTicket/page/Step4';
 import User from '../feature/User';
 
-
 export function UserLayout() {
     return (
         <Box sx={{
@@ -30,7 +29,7 @@ export function UserLayout() {
                     <Route path="trang-chu" element={<Step1 />} />
                     <Route path="/chon-ghe" element={<Step3 />} />
                     <Route path="/thanh-toan" element={<Step4 />} />
-                    <Route path="/tai-khoan/*" element={<User />} />
+                    <Route path="/nguoi-dung/*" element={<User />} />
                 </Routes>
             </Box>
         </Box>
