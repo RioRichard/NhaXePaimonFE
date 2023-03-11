@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Header } from './Header';
 import { Box } from '@mui/material';
-import Step1 from '../feature/BookTicket/page/Step1';
-import Step3 from '../feature/BookTicket/page/Step3';
-import Step4 from '../feature/BookTicket/page/Step4';
-import User from '../feature/User';
+import Step1 from 'Feature/BookTicket/page/Step1';
+import Step3 from 'Feature/BookTicket/page/Step3';
+import Step4 from 'Feature/BookTicket/page/Step4';
+import User from 'Feature/User';
 
 export function UserLayout() {
     return (
