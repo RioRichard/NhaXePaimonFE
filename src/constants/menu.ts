@@ -12,28 +12,28 @@ export const MENU_SIDEBAR = [
         icon: HomeIcon
     },
     {
-        name: 'Hồ sơ',
-        url: '/admin/ho-so',
+        name: 'Quản lí xe',
+        url: '/admin/bus',
         icon: FileCopyIcon
     },
     {
-        name: 'Tài sản',
-        url: '/admin/tai-san',
+        name: 'Quản lí đơn đặt vé',
+        url: '/admin/ticket',
         icon: ViewInArIcon
     },
     {
-        name: 'Sửa chữa',
-        url: '/admin/sua-chua',
+        name: 'Quản lí khuyến mãi',
+        url: '/admin/discount',
         icon: HandymanIcon
     },
     {
-        name: 'Điều chuyển',
-        url: '/admin/dieu-chuyen',
+        name: 'Quản lí base',
+        url: '/admin/base',
         icon: TransferWithinAStationIcon
     },
     {
-        name: 'Tài chính',
-        url: '/admin/tai-chinh',
+        name: 'Nhân viên',
+        url: '/admin/staff',
         icon: CurrencyExchangeIcon
     }
 ];
@@ -41,32 +41,8 @@ export const MENU_SIDEBAR = [
 export const MENU_SETTING_SIDEBAR = [
     {
         name: 'Nhóm hồ sơ',
-        url: '/admin/nhom-ho-so'
+        url: '/admin/staff'
     },
-    {
-        name: 'Loại hồ sơ',
-        url: '/admin/loai-ho-so'
-    },
-    {
-        name: 'Nhóm tài sản',
-        url: '/admin/nhom-tai-san'
-    },
-    {
-        name: 'Loại tài sản',
-        url: '/admin/loai-tai-san'
-    },
-    {
-        name: 'Cơ sở',
-        url: '/admin/co-so'
-    },
-    {
-        name: 'Đơn vị',
-        url: '/admin/don-vi'
-    },
-    {
-        name: 'Nhân viên',
-        url: '/admin/nhan-vien'
-    }
 ];
 
 export const MENU_SYSTEM_SIDEBAR = [
