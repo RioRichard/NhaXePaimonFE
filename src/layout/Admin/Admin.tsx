@@ -6,7 +6,7 @@ import { Theme } from '@mui/material/styles';
 import { NotFound } from '../../components/Common';
 import { makeStyles } from '@mui/styles';
 import Account from '../../Feature/Account';
-/* import HomePage from '../../Feature/Dashboard/page/HomePage'; */
+import HomePage from '../../Feature/Dashboard/page/HomePage';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -52,7 +52,7 @@ export function AdminLayout() {
                     <Route path="/" element={<Navigate to="/admin/trang-chu" />} />
                     <Route path="*" element={<NotFound />} />
                     <Route path="tai-khoan/*" element={<Account />} />
-                   {/*  <Route path="trang-chu" element={<HomePage />} /> */}
+                    <Route path="trang-chu" element={<HomePage />} />
                 </Routes>
             </Box>
         </Box>
