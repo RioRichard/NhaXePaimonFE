@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Theme } from '@mui/material/styles';
-import { NotFound } from 'components/Common';
-import { lazy } from 'react';
-
+import { NotFound } from '../../components/Common';
+import { makeStyles } from '@mui/styles';
+import Account from '../../Feature/Account';
+import HomePage from '../../Feature/Dashboard/page/HomePage';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -33,17 +33,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 
     main: {
         gridArea: 'main',
-        /*         padding: theme.spacing(2, 3), */
         backgroundColor: '#eeeeee'
     }
 }));
 
 export function AdminLayout() {
     const classes = useStyles();
-    // const loading = useAppSelector(selectDashboardLoading);
     return (
         <Box className={classes.root}>
-            {/* {loading && <Loading overlay={true} />} */}
             <Box className={classes.header}>
                 <Header />
             </Box>
@@ -53,29 +50,9 @@ export function AdminLayout() {
             <Box className={classes.main}>
                 <Routes>
                     <Route path="/" element={<Navigate to="/admin/trang-chu" />} />
-                    {/*<Route path="ho-so/*" element={
-                        <CommmonUserRoute module="briefs">
-                            <Briefs />
-                        </CommmonUserRoute>
-                    } /> */}
-
                     <Route path="*" element={<NotFound />} />
-                    {/* <Route path="ho-so/:id/minh-chung/them-moi" element={<Proofs />} />
-                    <Route path="/trang-chu" element={<Dashboard />} />
-                    <Route path="tai-san/*" element={<Assets />} />
-
-                    <Route
-                        path="nguoi-dung/*"
-                        element={
-                            <PrivateAdminRoute>
-                                <Users />
-                            </PrivateAdminRoute>
-                        }
-                    /> */}
-
-
-
-
+                    <Route path="tai-khoan/*" element={<Account />} />
+                    <Route path="trang-chu" element={<HomePage />} />
                 </Routes>
             </Box>
         </Box>

@@ -8,11 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
+import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
 function UserList() {
     return (
-        <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop:"20px" }}>
+        <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">
                 <TableHead>
                     <TableRow>
@@ -28,13 +29,14 @@ function UserList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                        <TableRow>
-                            <TableCell colSpan={9} align="center" sx={{ p: 4 }}>
-                                <Typography variant="h6" color="secondary" sx={{ mt: 1 }}>
-                                    Không tìm thấy người dùng nào phù hợp
-                                </Typography>
-                            </TableCell>
-                        </TableRow>
+                    <TableRow>
+                        <TableCell colSpan={9} align="center" sx={{ p: 4 }}>
+                            <EmptySvg></EmptySvg>
+                            <Typography variant="h6" color="secondary" sx={{ mt: 1 }}>
+                                Không tìm thấy người dùng nào phù hợp
+                            </Typography>
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </TableContainer>
