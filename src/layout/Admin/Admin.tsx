@@ -7,6 +7,7 @@ import { NotFound } from '../../components/Common';
 import { makeStyles } from '@mui/styles';
 import Account from '../../Feature/Account';
 import HomePage from '../../Feature/Dashboard/page/HomePage';
+import Discount from '../../Feature/Discount';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -53,6 +54,7 @@ export function AdminLayout() {
                     <Route path="*" element={<NotFound />} />
                     <Route path="tai-khoan/*" element={<Account />} />
                     <Route path="trang-chu" element={<HomePage />} />
+                    <Route path="khuyen-mai/*" element={<Discount />} />
                 </Routes>
             </Box>
         </Box>
