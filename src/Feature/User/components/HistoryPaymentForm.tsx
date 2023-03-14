@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
-import { FormProvider, useForm } from 'react-hook-form';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Box, Typography, Checkbox, Container, Stack, Button } from '@mui/material';
+
+import { useForm } from 'react-hook-form';
+
+import {  Typography, Container } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';

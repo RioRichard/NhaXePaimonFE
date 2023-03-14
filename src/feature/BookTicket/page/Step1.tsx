@@ -15,8 +15,6 @@ export default function Step1() {
     const {
         watch,
     } = methods;
-
-    const [checked, setChecked] = React.useState(false);
     //use watch to check the value in SelectField
     const departure = watch('departure');
     const destination = watch('destination');
@@ -25,16 +23,7 @@ export default function Step1() {
     for (var i = 0; i < 5; i++) {
         indents.push(moment().add(i, 'days').format("DD-MM-YYYY"));
     }
-    React.useEffect(() => {
-
-        if (departure && destination && dateStart) {
-            setChecked((prev) => !prev)
-        }
-        else {
-            setChecked(false)
-        }
-
-    }, [departure, destination, dateStart]);
+  
 
     const Test = ['Test1', 'Test2', 'Test3', 'Test4'];
     return (
