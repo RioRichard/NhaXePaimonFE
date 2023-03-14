@@ -4,9 +4,8 @@ import LoginPage from './Feature/auth/pages/LoginPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { UserLayout } from './layout/User';
 import RegisterPage from './Feature/auth/pages/RegisterPage';
-import { AdminLayout } from 'layout/Admin/Admin';
-import { Sidebar } from 'layout/Admin/Sidebar';
-import { Header } from 'layout/Admin/Header';
+import { AdminLayout } from './layout/Admin/Admin';
+
 import './App.css';
 
 function App() {
