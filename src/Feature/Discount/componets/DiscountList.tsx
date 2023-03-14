@@ -7,24 +7,21 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import * as React from 'react';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
-function AccountList() {
+export default function DiscountList() {
+
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">
                 <TableHead>
                     <TableRow>
                         <TableCell>#</TableCell>
-                        <TableCell>Mã tài khoản</TableCell>
-                        <TableCell>Username</TableCell>
-                        <TableCell>Họ và tên</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Số điện thoại</TableCell>
-                        <TableCell>Vai trò</TableCell>
+                        <TableCell>Mã khuyến mãi</TableCell>
+                        <TableCell>Phần chăm khuyến mãi</TableCell>
                         <TableCell>Trạng thái</TableCell>
+                        <TableCell>Hạn sử dụng</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
                     </TableRow>
                 </TableHead>
@@ -33,7 +30,7 @@ function AccountList() {
                         <TableCell colSpan={9} align="center" sx={{ p: 4 }}>
                             <EmptySvg></EmptySvg>
                             <Typography variant="h6" color="secondary" sx={{ mt: 1 }}>
-                                Không tìm thấy người dùng nào phù hợp
+                                Không tìm thấy mã khuyến mãi phù hợp
                             </Typography>
                         </TableCell>
                     </TableRow>
@@ -43,4 +40,4 @@ function AccountList() {
     );
 }
 
-export default React.memo(AccountList);
+

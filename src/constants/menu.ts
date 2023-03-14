@@ -12,8 +12,8 @@ export const MENU_SIDEBAR = [
         icon: HomeIcon
     },
     {
-        name: 'Quản lí xe',
-        url: '/admin/bus',
+        name: 'Quản lí tài khoản',
+        url: '/admin/tai-khoan',
         icon: FileCopyIcon
     },
     {
@@ -23,7 +23,7 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí khuyến mãi',
-        url: '/admin/discount',
+        url: '/admin/khuyen-mai',
         icon: HandymanIcon
     },
     {
