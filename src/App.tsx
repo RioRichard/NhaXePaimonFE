@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import LoginPage from './Feature/auth/pages/LoginPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { UserLayout } from './layout/User';
