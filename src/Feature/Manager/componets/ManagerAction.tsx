@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 
 //Các nút 
-export default function AccountAction() {
+export default function ManagerAction() {
     const location = useLocation();
     return (
         <Grid container alignItems="center" justifyContent="space-between" sx={{marginTop:"50px"}}>

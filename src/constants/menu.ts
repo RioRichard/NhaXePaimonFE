@@ -28,28 +28,23 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí base',
-        url: '/admin/base',
+        url: '/admin/vi-tri',
         icon: TransferWithinAStationIcon
-    },
-    {
-        name: 'Nhân viên',
-        url: '/admin/staff',
-        icon: CurrencyExchangeIcon
     }
 ];
 
 export const MENU_SETTING_SIDEBAR = [
     {
-        name: 'Nhóm hồ sơ',
-        url: '/admin/staff'
+        name: 'Cao cấp',
+        url: '/admin/manager'
+    },
+    {
+        name: 'Người dùng',
+        url: '/admin/tai-khoan'
     },
 ];
 
 export const MENU_SYSTEM_SIDEBAR = [
-    {
-        name: 'Người dùng',
-        url: '/admin/nguoi-dung'
-    },
     {
         name: 'Nhóm quyền',
         url: '/admin/nhom-quyen'
