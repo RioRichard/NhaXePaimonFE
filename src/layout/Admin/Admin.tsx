@@ -5,11 +5,13 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Theme } from '@mui/material/styles';
 import { NotFound } from '../../components/Common';
 import { makeStyles } from '@mui/styles';
+import Container from '@mui/material/Container';
 import Account from '../../Feature/Account';
 import HomePage from '../../Feature/Dashboard/page/HomePage';
 import Discount from '../../Feature/Discount';
 import Manager from '../../Feature/Manager';
 import Order from '../../Feature/Order';
+import Base from '../../Feature/Base';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -50,7 +52,8 @@ export function AdminLayout() {
             <Box className={classes.sidebar}>
                 <Sidebar />
             </Box>
-            <Box className={classes.main}>
+            
+            <Box sx={{}} className={classes.main}>
                 <Routes>
                     <Route path="/" element={<Navigate to="/admin/trang-chu" />} />
                     <Route path="*" element={<NotFound />} />
@@ -59,6 +62,7 @@ export function AdminLayout() {
                     <Route path="khuyen-mai/*" element={<Discount />} />
                     <Route path="manager/*" element={<Manager />} />
                     <Route path="order/*" element={<Order />} />
+                    <Route path="base/*" element={<Base />} />
                 </Routes>
             </Box>
         </Box>
