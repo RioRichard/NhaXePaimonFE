@@ -18,10 +18,9 @@ export default function BaseList() {
                 <TableHead>
                     <TableRow>
                         <TableCell>#</TableCell>
-                        <TableCell>Mã khuyến mãi</TableCell>
-                        <TableCell>Phần chăm khuyến mãi</TableCell>
-                        <TableCell>Trạng thái</TableCell>
-                        <TableCell>Hạn sử dụng</TableCell>
+                        <TableCell>Mã cơ sở</TableCell>
+                        <TableCell>Tên cơ sở</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
                     </TableRow>
                 </TableHead>
@@ -30,7 +29,7 @@ export default function BaseList() {
                         <TableCell colSpan={9} align="center" sx={{ p: 4 }}>
                             <EmptySvg></EmptySvg>
                             <Typography variant="h6" color="secondary" sx={{ mt: 1 }}>
-                                Không tìm thấy mã khuyến mãi phù hợp
+                                Không tìm thấy cơ sở phù hợp
                             </Typography>
                         </TableCell>
                     </TableRow>

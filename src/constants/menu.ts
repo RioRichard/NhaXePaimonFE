@@ -28,7 +28,7 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí base',
-        url: '/admin/vi-tri',
+        url: '/admin/base',
         icon: TransferWithinAStationIcon
     }
 ];

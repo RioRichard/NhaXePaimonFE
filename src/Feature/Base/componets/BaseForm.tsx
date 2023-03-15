@@ -17,8 +17,9 @@ export default function BaseForm() {
             <form autoComplete="off" >
                 <Grid container spacing={8} >
                     <Grid item xs={12} >
-                        <Typography variant="h2">Thông tin khuyến mãi</Typography>
-                        <br />
+                        <Typography variant="h2">Thêm cơ sở</Typography>
+                        <br />  
+                        <InputField name="id" label="Mã cơ sở *" />
                         <InputField name="name" label="Tên cơ sở *" />
                         <InputField name="address" label="Địa chỉ cơ sở *" />
                     </Grid>
