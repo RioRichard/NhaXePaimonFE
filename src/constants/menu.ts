@@ -30,6 +30,11 @@ export const MENU_SIDEBAR = [
         name: 'Quản lí base',
         url: '/admin/base',
         icon: TransferWithinAStationIcon
+    },
+    {
+        name: 'Quản lí route',
+        url: '/admin/route',
+        icon: TransferWithinAStationIcon
     }
 ];
 
