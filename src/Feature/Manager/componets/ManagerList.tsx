@@ -11,7 +11,7 @@ import * as React from 'react';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
-function AccountList() {
+export default function ManagerList() {
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">
@@ -19,11 +19,10 @@ function AccountList() {
                     <TableRow>
                         <TableCell>#</TableCell>
                         <TableCell>Mã tài khoản</TableCell>
-                        <TableCell>Username</TableCell>
                         <TableCell>Họ và tên</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Số điện thoại</TableCell>
-                        <TableCell>Trạng thái</TableCell>
+                        <TableCell>Vai trò</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
                     </TableRow>
                 </TableHead>
@@ -42,4 +41,4 @@ function AccountList() {
     );
 }
 
-export default React.memo(AccountList);
+
