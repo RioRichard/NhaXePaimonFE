@@ -9,6 +9,7 @@ import Account from '../../Feature/Account';
 import HomePage from '../../Feature/Dashboard/page/HomePage';
 import Discount from '../../Feature/Discount';
 import Manager from '../../Feature/Manager';
+import Order from '../../Feature/Order';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -57,6 +58,7 @@ export function AdminLayout() {
                     <Route path="trang-chu" element={<HomePage />} />
                     <Route path="khuyen-mai/*" element={<Discount />} />
                     <Route path="manager/*" element={<Manager />} />
+                    <Route path="order/*" element={<Order />} />
                 </Routes>
             </Box>
         </Box>
