@@ -5,7 +5,7 @@ import Step1 from 'Feature/BookTicket/page/Step1';
 import Step3 from 'Feature/BookTicket/page/Step3';
 import Step4 from 'Feature/BookTicket/page/Step4';
 import User from 'Feature/User';
-
+import Footer from './Footer';
 
 export function UserLayout() {
     return (
@@ -32,6 +32,9 @@ export function UserLayout() {
                     <Route path="/thanh-toan" element={<Step4 />} />
                     <Route path="/tai-khoan/*" element={<User />} />
                 </Routes>
+            </Box>
+            <Box sx={{ gridArea: 'footer' }}>
+                <Footer />
             </Box>
         </Box>
     )

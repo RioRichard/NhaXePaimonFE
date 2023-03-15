@@ -22,7 +22,7 @@ export default function Step4() {
             <form autoComplete="off">
               <Grid container spacing={4}>
                 <Grid item md={12}>
-                  <Typography variant="h5" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
+                  <Typography variant="h1" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
                     THANH TOÁN
                   </Typography>
                 </Grid>
