@@ -12,9 +12,9 @@ export default function OrderAction() {
             </Grid>
             <Grid item xs={6} md={6} textAlign="end">
                 <Link to={`${location.pathname}/them-moi`} style={{textDecoration:"none"}}>
-                    <Button variant="contained" color="success" startIcon={<AddIcon />} sx={{ ml: 1 }}>
+                    {/* <Button variant="contained" color="success" startIcon={<AddIcon />} sx={{ ml: 1 }}>
                         Thêm mới
-                    </Button>
+                    </Button> */}
                 </Link>
             </Grid>
         </Grid>
