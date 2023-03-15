@@ -18,7 +18,7 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí đơn đặt vé',
-        url: '/admin/ticket',
+        url: '/admin/order',
         icon: ViewInArIcon
     },
     {
