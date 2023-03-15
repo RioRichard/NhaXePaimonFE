@@ -73,7 +73,7 @@ export function Sidebar() {
                                 <ListItemIcon>
                                     <WidgetsIcon fontSize="small" />
                                 </ListItemIcon>
-                                <ListItemText primary="Danh mục" />
+                                <ListItemText primary="Tài khoản" />
                                 {openSystem ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                             </ListItem>
                             <Collapse in={openSetting} timeout="auto" unmountOnExit>
