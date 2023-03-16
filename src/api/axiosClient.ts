@@ -12,5 +12,15 @@ const axiosClient = axios.create({
     },
 });
 
+axiosClient.interceptors.response.use(
+    function (response: AxiosResponse) {
+        if (response && response.data) {
+            return response.data;
+        }
+
+        return response;
+    }
+
+);
 
 export default axiosClient;

@@ -15,7 +15,7 @@ export default function Main() {
     
 
     // connect store
-    const listManagers = useAppSelector(selectManagersList);
+    const listManagers : any = useAppSelector(selectManagersList);
     const error = useAppSelector(selectManagerError);
     const success = useAppSelector(selectManagersuccess);
     const status = useAppSelector(selectManagerStatus);
@@ -30,15 +30,14 @@ export default function Main() {
     }, [queryParams]);
     React.useEffect(() => {
         setManagers(
-            listManagers.map((item : any) => {
+            listManagers?.managers?.map((item : any) => {
                 return {
                     ...item,
-                    select: false
                 };
             })
         );
-    }, [listManagers]);
-    console.log("listManagers",listManagers)
+    }, [listManagers?.managers]);
+    console.log("listManagers",listManagers?.managers) 
 
     // show message
     React.useEffect(() => {

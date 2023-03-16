@@ -48,7 +48,6 @@ export const selectManagersList = (state: RootState) => state.manager.listManage
 export const selectManagerError = (state: RootState) => state.manager.error;
 export const selectManagerStatus = (state: RootState) => state.manager.status;
 export const selectManagersuccess = (state: RootState) => state.manager.success;
-export const selectUnitPagination = (state: RootState) => state.manager.pagination;
 
 const managerReducer = managerSlice.reducer;
 export default managerReducer;
