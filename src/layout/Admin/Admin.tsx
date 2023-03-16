@@ -53,7 +53,7 @@ export function AdminLayout() {
                 <Routes>
                     <Route path="/" element={<Navigate to="/admin/trang-chu" />} />
                     <Route path="*" element={<NotFound />} />
-                    <Route path="tai-khoan/*" element={<Account />} />
+                    <Route path="user/*" element={<Account />} />
                     <Route path="trang-chu" element={<HomePage />} />
                     <Route path="khuyen-mai/*" element={<Discount />} />
                     <Route path="manager/*" element={<Manager />} />

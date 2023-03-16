@@ -9,9 +9,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
+import { Manager, ManagerListProps } from '../types';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
-export default function ManagerList() {
+export default function ManagerList(props: ManagerListProps) {
+    const { rows } = props;
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">
