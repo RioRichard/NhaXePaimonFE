@@ -6,16 +6,19 @@ import { Manager } from '../types';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useQueryParams } from '../../Hooks';
 import { managerActions, selectManagersList, selectManagerError, selectManagersuccess, selectManagerStatus } from '../managerSlice';
-import { IParams, MessageProps} from '../../../model';
+import { IParams, MessageProps } from '../../../model';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Main() {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
     const [managers, setManagers] = React.useState<Manager[]>([]);
     const { queryParams, updateParams } = useQueryParams<IParams>();
-    
+
 
     // connect store
-    const listManagers : any = useAppSelector(selectManagersList);
+    const listManagers: any = useAppSelector(selectManagersList);
     const error = useAppSelector(selectManagerError);
     const success = useAppSelector(selectManagersuccess);
     const status = useAppSelector(selectManagerStatus);
@@ -30,14 +33,14 @@ export default function Main() {
     }, [queryParams]);
     React.useEffect(() => {
         setManagers(
-            listManagers?.managers?.map((item : any) => {
+            listManagers?.managers?.map((item: any) => {
                 return {
                     ...item,
                 };
             })
         );
     }, [listManagers?.managers]);
-    console.log("listManagers",listManagers?.managers) 
+    console.log("listManagers", listManagers?.managers)
 
     // show message
     React.useEffect(() => {
@@ -59,11 +62,20 @@ export default function Main() {
             });
         }
     }, [status, success]);
+    // handle edit, delete
+    const handleManagerEditClick = (managers: Manager) => {
+        navigate(`${location.pathname}/${managers.id}`);
+    };
+
     return (
         <Stack >
-            <ManagerAction></ManagerAction>
+            <ManagerAction
+                count={managers?.length}
+            ></ManagerAction>
             <ManagerList
-                rows={managers}></ManagerList>
+                rows={managers}
+                onManagerEditClick={handleManagerEditClick}
+            ></ManagerList>
         </Stack>
     )
 }

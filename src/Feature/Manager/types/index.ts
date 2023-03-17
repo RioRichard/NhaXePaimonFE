@@ -1,7 +1,7 @@
 import { PaginationParams } from "../../../model";
 
 export type Manager = {
-    _id?: string;
+    id?: string;
     username?: string;
     password?: string;
     name?: string;
@@ -17,8 +17,15 @@ export type ManagerState = {
     success?: string;
 };
 
+export type ManagerFormProps = {
+    onSubmit: (values: Manager) => void;
+    initialValues: Manager;
+    isEditMode?: boolean;
+};
+
 export type ManagerListProps = {
     rows: Manager[];
+    onManagerEditClick?: (Manager: Manager) => void;
 };
 
 export type DialogData = {
@@ -26,4 +33,7 @@ export type DialogData = {
     title: string;
 };
 
+export type ManagerActionProps = {
+    count: number;
+};
 
