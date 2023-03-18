@@ -13,6 +13,7 @@ import Manager from '../../Feature/Manager';
 import Order from '../../Feature/Order';
 import Base from '../../Feature/Base';
 import Routee from '../../Feature/Routes';
+import Staff from '../../Feature/Staff';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -65,6 +66,7 @@ export function AdminLayout() {
                     <Route path="order/*" element={<Order />} />
                     <Route path="base/*" element={<Base />} />
                     <Route path="route/*" element={<Routee />} />
+                    <Route path="staff/*" element={<Staff />} />
                 </Routes>
             </Box>
         </Box>

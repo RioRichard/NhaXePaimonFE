@@ -13,7 +13,7 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí tài khoản',
-        url: '/admin/tai-khoan',
+        url: '/admin/staff',
         icon: FileCopyIcon
     },
     {
