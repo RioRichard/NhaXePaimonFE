@@ -1,10 +1,12 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import managerReducer from '../Feature/Manager/managerSlice';
+import basesReducer from '../Feature/Base/BaseSlice';
 import rootSaga from './rootSaga';
 import createSagaMiddleware from 'redux-saga';
 
 const rootReducer = combineReducers({
-   manager: managerReducer,
+    manager: managerReducer,
+    bases: basesReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
