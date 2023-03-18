@@ -38,6 +38,38 @@ const managerSlice = createSlice({
             state.error = action.payload;
             state.success = undefined;
         },
+        // upload list
+        updateManager: (state, action: PayloadAction<Manager>) => {
+            state.status = 'loading';
+            state.error = undefined;
+            state.success = undefined;
+        },
+        updateManagerSuccess: (state, action: PayloadAction<Response<Manager>>) => {
+            state.status = 'success';
+            state.error = undefined;
+            state.success = action.payload.message;
+        },
+        updateManagerFailed: (state, action: PayloadAction<string>) => {
+            state.status = 'error';
+            state.error = action.payload;
+            state.success = undefined;
+        },
+        // create list
+        createManager: (state, action: PayloadAction<Manager>) => {
+            state.status = 'loading';
+            state.error = undefined;
+            state.success = undefined;
+        },
+        createManagerSuccess: (state, action: PayloadAction<Response<Manager>>) => {
+            state.status = 'success';
+            state.error = undefined;
+            state.success = action.payload.message;
+        },
+        createManagerFailed: (state, action: PayloadAction<string>) => {
+            state.status = 'error';
+            state.error = action.payload;
+            state.success = undefined;
+        }
     }
 });
 

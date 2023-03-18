@@ -2,30 +2,36 @@
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import SaveIcon from '@mui/icons-material/Save';
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { CheckboxField, InputField, SelectSearchField } from '../../../custom-fields';
+import { InputField } from '../../../custom-fields';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { ManagerFormProps } from '../types';
+import { Manager } from '../types';
 
-
-
-
-export default function ManagerForm() {
+export default function ManagerForm(props: ManagerFormProps) {
+    const { onSubmit, initialValues, isEditMode } = props;
     const navigate = useNavigate();
-    const methods = useForm<any>({
+
+    const methods = useForm<Manager>({
+        defaultValues: initialValues,
     });
 
+    const {
+        handleSubmit,
+    } = methods;
+
+    console.log(initialValues)
     return (
         <FormProvider {...methods}>
-            <form autoComplete="off">
+            <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                 <Grid container spacing={8}>
                     <Grid item xs={12} >
-                        <Typography variant="h1">Thông tin nhân viên</Typography>
+                        <Typography variant="h1">Thông tin manager</Typography>
                         <br />
-                        <InputField name="id" label="Id nhân viên *" />
-                        <InputField name="name" label="Tên nhân viên *" />
+                        <InputField name="username" label="Username *" />
+                        <InputField name="email" label="Địa chỉ *" />
                         <InputField name="phone" label="Số điện thoại *" />
-                        <InputField name="address" label="Địa chỉ *" />
-                        <InputField name="position" label="Vai trò *" />
+                        <InputField name="role" label="Vai trò *" />
                     </Grid>
                 </Grid>
                 <Box sx={{ mt: 4, textAlign: 'end' }}>
