@@ -26,6 +26,8 @@ export type ManagerFormProps = {
 export type ManagerListProps = {
     rows: Manager[];
     onManagerEditClick?: (Manager: Manager) => void;
+    onManagerDeleteClick?: (Manager: Manager) => void;
+    onManagerCreateClick?: (Manager: Manager) => void;
 };
 
 export type DialogData = {

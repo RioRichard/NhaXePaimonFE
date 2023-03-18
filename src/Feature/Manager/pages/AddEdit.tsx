@@ -6,10 +6,12 @@ import managerApi from '../../../api/managerApi';
 import { useParams } from 'react-router-dom';
 import { Manager } from '../types';
 import { Response } from '../../../model';
+import { managerActions } from '../managerSlice';
+import { useDispatch } from 'react-redux';
 
 
 export default function AddEdit() {
-
+    const dispatch = useDispatch();
     const { managerId } = useParams<{ managerId: string }>();
     const [managers, setManagers] = React.useState<Manager>();
 
@@ -25,6 +27,18 @@ export default function AddEdit() {
     }, [managerId]);
 
     const handleSubmit = (values: Manager) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                if (isEditMode) {
+                    // edit
+                    dispatch(managerActions.updateManager(values));
+                } else {
+                    // add
+                    dispatch(managerActions.createManager(values));
+                }
+                resolve(true);
+            }, 1000);
+        });
     };
 
     const isEditMode = Boolean(managerId);

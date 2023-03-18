@@ -2,7 +2,6 @@
 import { Typography, Stack, Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
-import * as React from 'react';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
 import { Manager, ManagerListProps } from '../types';
 import Tippy from '@tippyjs/react';
@@ -10,10 +9,14 @@ import 'tippy.js/dist/tippy.css';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
 export default function ManagerList(props: ManagerListProps) {
-    const { rows, onManagerEditClick } = props;
+    const { rows, onManagerEditClick, onManagerDeleteClick } = props;
 
     const handleEditClick = (row: Manager) => {
         if (onManagerEditClick) onManagerEditClick?.(row);
+    };
+
+    const handleDeleteClick = (row: Manager) => {
+        if (onManagerDeleteClick) onManagerDeleteClick?.(row);
     };
 
     return (
@@ -48,7 +51,7 @@ export default function ManagerList(props: ManagerListProps) {
                                             </IconButton>
                                         </Tippy>
                                         <Tippy content="Xóa đơn">
-                                            <IconButton >
+                                            <IconButton onClick={() => handleDeleteClick(row)}>
                                                 <DeleteIcon />
                                             </IconButton>
                                         </Tippy>

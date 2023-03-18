@@ -6,8 +6,10 @@ import { Manager } from '../types';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useQueryParams } from '../../Hooks';
 import { managerActions, selectManagersList, selectManagerError, selectManagersuccess, selectManagerStatus } from '../managerSlice';
-import { IParams, MessageProps } from '../../../model';
+import { IParams, MessageProps, ConfirmDialogProps } from '../../../model';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Notification, ConfirmDialog } from '../../../components/Common';
+import managerApi from '../../../api/managerApi';
 
 export default function Main() {
     const dispatch = useAppDispatch();
@@ -27,6 +29,12 @@ export default function Main() {
         isOpen: false,
         message: '',
         type: 'success'
+    });
+    const [confirmDialog, setConfirmDialog] = React.useState<ConfirmDialogProps>({
+        isOpen: false,
+        title: '',
+        subTitle: '',
+        onConfirm: () => { }
     });
     React.useEffect(() => {
         dispatch(managerActions.fetchManagers(queryParams));
@@ -62,20 +70,58 @@ export default function Main() {
             });
         }
     }, [status, success]);
-    // handle edit, delete
+    // handle edit
     const handleManagerEditClick = (managers: Manager) => {
         navigate(`${location.pathname}/${managers.id}`);
+    };
+    //handle delete
+    const handleManagerDeleteClick = (managers: Manager) => {
+        setConfirmDialog({
+            isOpen: true,
+            title: `Xóa loại hồ sơ ${managers.id}`,
+            subTitle: `Bạn có chắc chắn muốn xóa loại hồ sơ ${managers.id}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
+            onConfirm: async () => {
+                setConfirmDialog({
+                    ...confirmDialog,
+                    isOpen: false
+                });
+                try {
+                    const response = await managerApi.deleteManager(managers);
+                    setNotify({
+                        isOpen: true,
+                        message: response.message as string,
+                        type: 'success'
+                    });
+
+                    // Trigger to re-fetch asset group list with current option
+                    dispatch(managerActions.fetchManagers(queryParams));
+                } catch (error) {
+                    setNotify({
+                        isOpen: true,
+                        message: error as string,
+                        type: 'error'
+                    });
+                }
+            }
+        });
     };
 
     return (
         <Stack >
+            {/* Action */}
             <ManagerAction
                 count={managers?.length}
             ></ManagerAction>
+            {/* List Table */}
             <ManagerList
                 rows={managers}
                 onManagerEditClick={handleManagerEditClick}
+                onManagerDeleteClick={handleManagerDeleteClick}
             ></ManagerList>
+            {/* Notification */}
+            <Notification notify={notify} setNotify={setNotify} />
+            {/* Dialog confirm before delete data */}
+            <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
         </Stack>
     )
 }

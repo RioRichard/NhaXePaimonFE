@@ -5,8 +5,9 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
 import { createTheme,/*  CssBaseline */ ThemeProvider } from '@mui/material';
+import CustomRouter from './utils/CustomRouter';
+import { history } from './utils/history';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -109,13 +110,13 @@ const theme = createTheme({
 });
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <CustomRouter history={history}>
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <App />
                 </ThemeProvider>
             </Provider>
-        </BrowserRouter>
+        </CustomRouter>
     </React.StrictMode>
 );
 

@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { ManagerActionProps } from '../types';
 
-//Các nút 
+ 
 export default function ManagerAction(props: ManagerActionProps) {
     const location = useLocation();
     const { count } = props;

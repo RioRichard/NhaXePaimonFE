@@ -8,9 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { ManagerFormProps } from '../types';
 import { Manager } from '../types';
 
-
-
-
 export default function ManagerForm(props: ManagerFormProps) {
     const { onSubmit, initialValues, isEditMode } = props;
     const navigate = useNavigate();
@@ -18,15 +15,19 @@ export default function ManagerForm(props: ManagerFormProps) {
     const methods = useForm<Manager>({
         defaultValues: initialValues,
     });
+
+    const {
+        handleSubmit,
+    } = methods;
+
     console.log(initialValues)
     return (
         <FormProvider {...methods}>
-            <form autoComplete="off">
+            <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                 <Grid container spacing={8}>
                     <Grid item xs={12} >
                         <Typography variant="h1">Thông tin manager</Typography>
                         <br />
-                        <InputField name="id" label="Id nhân viên *" />
                         <InputField name="username" label="Username *" />
                         <InputField name="email" label="Địa chỉ *" />
                         <InputField name="phone" label="Số điện thoại *" />
