@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { createTheme,/*  CssBaseline */ ThemeProvider } from '@mui/material';
 import CustomRouter from './utils/CustomRouter';
-import { history } from './utils/history';
+import { history } from './utils';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

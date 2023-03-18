@@ -13,12 +13,12 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí tài khoản',
-        url: '/admin/tai-khoan',
+        url: '/admin/staff',
         icon: FileCopyIcon
     },
     {
         name: 'Quản lí đơn đặt vé',
-        url: '/admin/ticket',
+        url: '/admin/order',
         icon: ViewInArIcon
     },
     {
@@ -28,7 +28,12 @@ export const MENU_SIDEBAR = [
     },
     {
         name: 'Quản lí base',
-        url: '/admin/vi-tri',
+        url: '/admin/base',
+        icon: TransferWithinAStationIcon
+    },
+    {
+        name: 'Quản lí route',
+        url: '/admin/route',
         icon: TransferWithinAStationIcon
     }
 ];
