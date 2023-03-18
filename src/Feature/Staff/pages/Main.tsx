@@ -1,29 +1,29 @@
 import * as React from 'react';
-import BaseList from '../componets/BaseList';
+import BaseList from '../componets/StaffList';
 import Stack from '@mui/material/Stack';
-import BaseAction from '../componets/BaseAction';
+import BaseAction from '../componets/StaffAction';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useQueryParams } from '../../Hooks';
 import { ConfirmDialogProps, IParams, MessageProps } from '../../../model';
-import { Base } from '../types';
-import { baseActions, selectBasesError, selectBasesList, selectBasesStatus, selectBasessuccess } from '../BaseSlice';
+import { Staff } from '../types';
+import { staffActions, selectStaffError, selectStaffList, selectStaffStatus, selectStaffsuccess } from '../StaffSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import basesApi from '../../../api/baseApi';
 import { Notification,ConfirmDialog } from '../../../components/Common';
+import staffApi from '../../../api/staffApi';
 
 export default function Main() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const [bases, setBases] = React.useState<Base[]>([]);
+    const [staff, setStaff] = React.useState<Staff[]>([]);
     const { queryParams, updateParams } = useQueryParams<IParams>();
-    const [basesChecked, setBasesChecked] = React.useState<Base[]>([]);
 
     // connect store
-    const listBases: any = useAppSelector(selectBasesList);
-    const error = useAppSelector(selectBasesError);
-    const success = useAppSelector(selectBasessuccess);
-    const status = useAppSelector(selectBasesStatus);
+    const listStaff: any = useAppSelector(selectStaffList);
+    const error = useAppSelector(selectStaffError);
+    const success = useAppSelector(selectStaffError);
+    const status = useAppSelector(selectStaffError);
     // dispatch fetch list
     const [notify, setNotify] = React.useState<MessageProps>({
         isOpen: false,
@@ -31,17 +31,17 @@ export default function Main() {
         type: 'success'
     });
     React.useEffect(() => {
-        dispatch(baseActions.fetchBases(queryParams));
+        dispatch(staffActions.fetchStaff(queryParams));
     }, [queryParams]);
     React.useEffect(() => {
-        setBases(
-            listBases?.bases?.map((item: any) => {
+        setStaff(
+            listStaff?.staffs?.map((item: any) => {
                 return {
                     ...item,
                 };
             })
         );
-    }, [listBases?.bases]);
+    }, [listStaff?.staffs]);
 
     // show message
     React.useEffect(() => {
@@ -69,16 +69,14 @@ export default function Main() {
         subTitle: '',
         onConfirm: () => { }
     });
-    const onBaseEditClick = (base: Base) => {
-        navigate(`${location.pathname}/${base.id}`);
+    const onStaffEditClick = (staff: Staff) => {
+        navigate(`${location.pathname}/${staff.id}`);
     };
-    const onBaseDeleteClick = (base: Base) => {
-        console.log("del");
-        
+    const onStaffDeleteClick = (staff: Staff) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa cơ sở này ${base.name}`,
-            subTitle: `Bạn có chắc chắn muốn xóa cơ sở ${base.name}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
+            title: `Xóa nhân viên này ${staff.name}`,
+            subTitle: `Bạn có chắc chắn muốn xóa nhân viên ${staff.name}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({
                     ...confirmDialog,
@@ -86,7 +84,7 @@ export default function Main() {
                 });
 
                 try {
-                    const response = await basesApi.deleteBase(base);
+                    const response = await staffApi.deleteStaff(staff);
                     setNotify({
                         isOpen: true,
                         message: response.message as string,
@@ -94,7 +92,7 @@ export default function Main() {
                     });
 
                     // Trigger to re-fetch asset group list with current option
-                    dispatch(baseActions.fetchBases(queryParams));
+                    dispatch(staffActions.fetchStaff(queryParams));
                 } catch (error: any) {
                     setNotify({
                         isOpen: true,
@@ -105,43 +103,15 @@ export default function Main() {
             }
         });
     };
-    const handleCheckboxAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let checked = e.target.checked;
-        setBases(
-            bases.map((d) => {
-                d.select = checked;
-                return d;
-            })
-        );
-        const basesChecked = bases.filter((x) => x.select === true);
-        setBasesChecked(basesChecked);
-    };
 
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let checked = e.target.checked;
-        let value = e.target.value;
-        setBases(
-            bases.map((sd) => {
-                if (sd.id === value) {
-                    sd.select = checked;
-                }
-                return sd;
-            })
-        );
-        const basesChecked = bases.filter((x) => x.select === true);
-        setBasesChecked(basesChecked);
-    };
-    console.log(bases?.length);
     
     return (
         <Stack >
-            <BaseAction count={bases?.length}/>
+            <BaseAction count={staff?.length}/>
             <BaseList
-                rows={listBases?.bases}
-                onBaseDeleteClick={onBaseDeleteClick}
-                onBaseEditClick={onBaseEditClick}
-                onCheckboxAllChange={handleCheckboxAllChange}
-                onCheckboxChange={handleCheckboxChange}
+                rows={listStaff?.staffs}
+                onStaffDeleteClick={onStaffDeleteClick}
+                onStaffEditClick={onStaffEditClick}
             />
             <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
             <Notification notify={notify} setNotify={setNotify} />
