@@ -78,15 +78,15 @@ export default function Main() {
     const handleManagerDeleteClick = (managers: Manager) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa loại hồ sơ ${managers.id}`,
-            subTitle: `Bạn có chắc chắn muốn xóa loại hồ sơ ${managers.id}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
+            title: `Xóa Manager "${managers.id} "`,
+            subTitle: ` Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({
                     ...confirmDialog,
                     isOpen: false
                 });
                 try {
-                    const response = await managerApi.deleteManager(managers);
+                    const response = await managerApi.deleteManager(managers); 
                     setNotify({
                         isOpen: true,
                         message: response.message as string,
