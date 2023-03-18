@@ -2,6 +2,7 @@ import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/t
 import managerReducer from '../Feature/Manager/managerSlice';
 import basesReducer from '../Feature/Base/BaseSlice';
 import staffReducer from '../Feature/Staff/StaffSlice';
+import busReducer from '../Feature/Bus/BusSlice';
 import rootSaga from './rootSaga';
 import createSagaMiddleware from 'redux-saga';
 
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
     manager: managerReducer,
     bases: basesReducer,
     staff: staffReducer,
+    bus:busReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
