@@ -1,29 +1,29 @@
 import * as React from 'react';
-import ManagerList from '../componets/ManagerList';
+import UserList from '../componets/UserList';
 import Stack from '@mui/material/Stack';
-import ManagerAction from '../componets/ManagerAction';
-import { Manager } from '../types';
+import UserAction from '../componets/UserAction';
+import { User } from '../types';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useQueryParams } from '../../Hooks';
-import { managerActions, selectManagersList, selectManagerError, selectManagersuccess, selectManagerStatus } from '../managerSlice';
+import { userActions, selectUsersList, selectUserError, selectUsersuccess, selectUserStatus } from '../userSlice';
 import { IParams, MessageProps, ConfirmDialogProps } from '../../../model';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Notification, ConfirmDialog } from '../../../components/Common';
-import managerApi from '../../../api/managerApi';
+import userApi from '../../../api/userApi';
 
 export default function Main() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const [managers, setManagers] = React.useState<Manager[]>([]);
+    const [users, setUsers] = React.useState<User[]>([]);
     const { queryParams, updateParams } = useQueryParams<IParams>();
 
 
     // connect store
-    const listManagers: any = useAppSelector(selectManagersList);
-    const error = useAppSelector(selectManagerError);
-    const success = useAppSelector(selectManagersuccess);
-    const status = useAppSelector(selectManagerStatus);
+    const listUsers: any = useAppSelector(selectUsersList);
+    const error = useAppSelector(selectUserError);
+    const success = useAppSelector(selectUsersuccess);
+    const status = useAppSelector(selectUserStatus);
     // dispatch fetch list
     const [notify, setNotify] = React.useState<MessageProps>({
         isOpen: false,
@@ -37,17 +37,18 @@ export default function Main() {
         onConfirm: () => { }
     });
     React.useEffect(() => {
-        dispatch(managerActions.fetchManagers(queryParams));
+        dispatch(userActions.fetchUsers(queryParams));
     }, [queryParams]);
     React.useEffect(() => {
-        setManagers(
-            listManagers?.managers?.map((item: any) => {
+        setUsers(
+            listUsers?.users?.map((item: any) => {
                 return {
                     ...item,
                 };
             })
         );
-    }, [listManagers?.managers]);
+    }, [listUsers?.users]);
+    console.log("listUsers", listUsers?.users)
 
     // show message
     React.useEffect(() => {
@@ -70,14 +71,14 @@ export default function Main() {
         }
     }, [status, success]);
     // handle edit
-    const handleManagerEditClick = (managers: Manager) => {
-        navigate(`${location.pathname}/${managers.id}`);
+    const handleUserEditClick = (users: User) => {
+        navigate(`${location.pathname}/${users.id}`);
     };
     //handle delete
-    const handleManagerDeleteClick = (managers: Manager) => {
+    const handleUserDeleteClick = (users: User) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa Manager "${managers.id} "`,
+            title: `Xóa User "${users.id} "`,
             subTitle: ` Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({
@@ -85,7 +86,7 @@ export default function Main() {
                     isOpen: false
                 });
                 try {
-                    const response = await managerApi.deleteManager(managers); 
+                    const response = await userApi.deleteUser(users); 
                     setNotify({
                         isOpen: true,
                         message: response.message as string,
@@ -93,7 +94,7 @@ export default function Main() {
                     });
 
                     // Trigger to re-fetch asset group list with current option
-                    dispatch(managerActions.fetchManagers(queryParams));
+                    dispatch(userActions.fetchUsers(queryParams));
                 } catch (error) {
                     setNotify({
                         isOpen: true,
@@ -108,15 +109,15 @@ export default function Main() {
     return (
         <Stack >
             {/* Action */}
-            <ManagerAction
-                count={managers?.length}
-            ></ManagerAction>
+            <UserAction
+                count={users?.length}
+            ></UserAction>
             {/* List Table */}
-            <ManagerList
-                rows={managers}
-                onManagerEditClick={handleManagerEditClick}
-                onManagerDeleteClick={handleManagerDeleteClick}
-            ></ManagerList>
+            <UserList
+                rows={users}
+                onUserEditClick={handleUserEditClick}
+                onUserDeleteClick={handleUserDeleteClick}
+            ></UserList>
             {/* Notification */}
             <Notification notify={notify} setNotify={setNotify} />
             {/* Dialog confirm before delete data */}
