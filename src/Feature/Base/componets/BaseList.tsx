@@ -1,5 +1,5 @@
 
-import { Typography } from '@mui/material';
+import { Checkbox, IconButton, Stack, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,15 +8,32 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
-
+import { Base, BaseListProps } from '../types';
+import Tippy from '@tippyjs/react';
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
+import 'tippy.js/dist/tippy.css'
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
-export default function BaseList() {
+export default function BaseList(props: BaseListProps) {
+    const { rows, onBaseDeleteClick, onBaseEditClick, onCheckboxAllChange, onCheckboxChange } = props;
+    const handleEditClick = (row: Base) => {
+        if (onBaseEditClick) onBaseEditClick?.(row);
+    };
+    const handleDeleteClick = (row: Base) => {
+        if (onBaseDeleteClick) onBaseDeleteClick?.(row);
+    };
+    const handleCheckboxAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (onCheckboxAllChange) onCheckboxAllChange(e);
+    };
 
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (onCheckboxChange) onCheckboxChange(e);
+    };
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">
                 <TableHead>
-                    <TableRow>
+                    <TableRow>                     
                         <TableCell>#</TableCell>
                         <TableCell>Mã cơ sở</TableCell>
                         <TableCell>Tên cơ sở</TableCell>
@@ -25,14 +42,31 @@ export default function BaseList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow>
-                        <TableCell colSpan={9} align="center" sx={{ p: 4 }}>
-                            <EmptySvg></EmptySvg>
-                            <Typography variant="h6" color="secondary" sx={{ mt: 1 }}>
-                                Không tìm thấy cơ sở phù hợp
-                            </Typography>
-                        </TableCell>
-                    </TableRow>
+                    {rows?.map((row, index) => {
+                        return (
+                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
+                                <TableCell>{row.id}</TableCell>
+                                <TableCell>{row.name}</TableCell>
+                                <TableCell>{row.address}</TableCell>
+                                <TableCell align="center">
+                                    <Stack direction="row" spacing={2} justifyContent="center">
+                                        <Tippy content="Chỉnh sửa nhóm tài sản">
+                                            <IconButton onClick={() => handleEditClick(row)}>
+                                                <CreateIcon />
+                                            </IconButton>
+                                        </Tippy>
+                                        <Tippy content="Xóa nhóm tài sản">
+                                            <IconButton onClick={() => handleDeleteClick(row)}>
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </Tippy>
+                                    </Stack>
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })
+                    }
                 </TableBody>
             </Table>
         </TableContainer>
