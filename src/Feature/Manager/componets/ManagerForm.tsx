@@ -20,7 +20,7 @@ export default function ManagerForm(props: ManagerFormProps) {
         handleSubmit,
     } = methods;
 
-    console.log(initialValues)
+    
     return (
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
