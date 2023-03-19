@@ -12,7 +12,8 @@ import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-
+import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import SquareRoundedIcon from '@mui/icons-material/SquareRounded';
 
 
 
@@ -41,7 +42,7 @@ export default function Step3() {
         }
     }
     const [selected, setSelected] = React.useState(false);
-    
+
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg">
@@ -67,35 +68,30 @@ export default function Step3() {
                                     <Typography align='left' fontSize={'16px'}>Yêu cầu bổ sung</Typography>
                                     <InputField name="description" label="" multiline rows={3} />
                                 </Grid>
+
                                 <Grid item md={4} container columnSpacing={1}>
                                     <Grid md={1}></Grid>
                                     <Grid md={3}>
                                         <Stack direction='column' spacing={1}>
-                                            <Checkbox
-                                                // {...label}
-                                                icon={<BookmarkBorderIcon />}
-                                                checkedIcon={<BookmarkIcon />}
-                                            />
-                                            <Button onClick={() => handle()} variant={selected == true ? "outlined" : "contained"} >1</Button>
-                                            <Button onClick={() => handle()} variant={selected == true ? "outlined" : "contained"} >1</Button>
+                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
                                         </Stack>
                                     </Grid>
                                     <Grid md={1}></Grid>
                                     <Grid md={3}>
                                         <Stack direction='column' spacing={1}>
-                                            <Button variant="outlined" >1</Button>
-                                            <Button variant="outlined" disabled>1</Button>
-                                            <Button variant="outlined">1</Button>
+                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
                                         </Stack>
                                     </Grid>
                                     <Grid md={1}></Grid>
-                                    <Grid md={3}>
-                                        <Stack direction='column' spacing={1}>
-                                            <Button variant="contained" disabled>1</Button>
-                                            <Button variant="contained">1</Button>
-                                            <Button variant="contained">1</Button>
-                                        </Stack>
-                                    </Grid>
+                                    <Stack direction='column' spacing={1}>
+                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                    </Stack>
                                 </Grid>
                                 <Grid item md={4}>
                                     <Stack direction={'column'} spacing={2} sx={{ backgroundColor: '#f5f5f5', alignItems: 'center' }}>
