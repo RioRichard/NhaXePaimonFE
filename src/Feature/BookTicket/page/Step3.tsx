@@ -4,12 +4,17 @@ import Grid from '@mui/material/Grid';
 import { FormProvider, useForm } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { Button, Box, FormControlLabel, Radio } from '@mui/material';
+import { Button, Box, FormControlLabel, Radio, ButtonGroup, ToggleButton, Checkbox } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+
+
+
 
 export default function Step3() {
     const methods = useForm<any>({
@@ -20,6 +25,23 @@ export default function Step3() {
         { id: 'GiN', name: 'Giường nằm' },
         { id: 'GhN', name: 'Ghế nằm' },
     ];
+    const [alignment, setAlignment] = React.useState('web');
+    const handleChange = (
+        event: React.MouseEvent<HTMLElement>,
+        newAlignment: string,
+    ) => {
+        setAlignment(newAlignment);
+    };
+    function handle() {
+        if (selected == true) {
+            setSelected(false)
+        }
+        else {
+            setSelected(true)
+        }
+    }
+    const [selected, setSelected] = React.useState(false);
+    
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg">
@@ -45,12 +67,39 @@ export default function Step3() {
                                     <Typography align='left' fontSize={'16px'}>Yêu cầu bổ sung</Typography>
                                     <InputField name="description" label="" multiline rows={3} />
                                 </Grid>
-                                <Grid item md={4}>
-                                    <InputField name="dateOfBirth" label="Năm sinh *" />
+                                <Grid item md={4} container columnSpacing={1}>
+                                    <Grid md={1}></Grid>
+                                    <Grid md={3}>
+                                        <Stack direction='column' spacing={1}>
+                                            <Checkbox
+                                                // {...label}
+                                                icon={<BookmarkBorderIcon />}
+                                                checkedIcon={<BookmarkIcon />}
+                                            />
+                                            <Button onClick={() => handle()} variant={selected == true ? "outlined" : "contained"} >1</Button>
+                                            <Button onClick={() => handle()} variant={selected == true ? "outlined" : "contained"} >1</Button>
+                                        </Stack>
+                                    </Grid>
+                                    <Grid md={1}></Grid>
+                                    <Grid md={3}>
+                                        <Stack direction='column' spacing={1}>
+                                            <Button variant="outlined" >1</Button>
+                                            <Button variant="outlined" disabled>1</Button>
+                                            <Button variant="outlined">1</Button>
+                                        </Stack>
+                                    </Grid>
+                                    <Grid md={1}></Grid>
+                                    <Grid md={3}>
+                                        <Stack direction='column' spacing={1}>
+                                            <Button variant="contained" disabled>1</Button>
+                                            <Button variant="contained">1</Button>
+                                            <Button variant="contained">1</Button>
+                                        </Stack>
+                                    </Grid>
                                 </Grid>
                                 <Grid item md={4}>
                                     <Stack direction={'column'} spacing={2} sx={{ backgroundColor: '#f5f5f5', alignItems: 'center' }}>
-                                        <h2 style={{ borderBottom: "#C1C1C1 1px solid", lineHeight: "60px", width: '80%' }} >Chọn Ghế</h2>
+                                        <h2 style={{ borderBottom: "#C1C1C1 1px solid", lineHeight: "60px", width: '80%' }} >Chi tiết vé</h2>
                                         <Stack direction="row" spacing={3} sx={{ justifyContent: 'center' }}>
                                             <Typography align='right' fontSize={'16px'}>Họ và tên:</Typography>
                                             <Typography align='left' color={'red'} fontSize={'15px'}>Họ và tên</Typography>
