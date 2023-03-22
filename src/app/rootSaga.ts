@@ -2,6 +2,7 @@ import managerSaga from "../Feature/Manager/managerSaga";
 import baseSaga from "../Feature/Base/BaseSaga";
 import staffSaga from "../Feature/Staff/StaffSaga";
 import busSaga from "../Feature/Bus/BusSaga";
+import userSaga from "../Feature/User/userSaga";
 import { all } from 'redux-saga/effects';
 export default function* rootSaga() {
     yield all([
@@ -9,5 +10,6 @@ export default function* rootSaga() {
         baseSaga(),
         staffSaga(),
         busSaga(),
+        userSaga(),
     ]);
 }

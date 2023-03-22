@@ -51,7 +51,7 @@ export const MENU_SETTING_SIDEBAR = [
     },
     {
         name: 'Người dùng',
-        url: '/admin/tai-khoan'
+        url: '/admin/user'
     },
 ];
 

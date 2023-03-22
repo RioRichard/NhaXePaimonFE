@@ -2,27 +2,40 @@
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import SaveIcon from '@mui/icons-material/Save';
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { CheckboxField, InputField, SelectSearchField } from '../../../custom-fields';
+import { InputField } from '../../../custom-fields';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { UserFormProps } from '../types';
+import { User } from '../types';
 
 
+export default function UserForm(props: UserFormProps) {
 
-
-export default function AccountForm() {
+    const { onSubmit, initialValues, isEditMode } = props;
     const navigate = useNavigate();
-    const methods = useForm<any>({
+
+    const methods = useForm<User>({
+        defaultValues: initialValues,
     });
+
+    const {
+        handleSubmit,
+    } = methods;
+
 
     return (
         <FormProvider {...methods}>
-            <form autoComplete="off">
+            <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                 <Grid container spacing={8}>
                     <Grid item xs={6} md={6}>
                         <Typography variant="h5">Thông tin đăng nhập</Typography>
                         <br />
                         <InputField name="username" label="Username *" />
-                        <InputField name="password" label="Mật khẩu *" />
+                        {
+                            !isEditMode && (
+                                <InputField name="password" label="Mật khẩu *" />
+                            )
+                        }
                     </Grid>
                     <Grid item xs={6} md={6}>
                         <Typography variant="h5">Thông tin người dùng</Typography>
@@ -31,12 +44,7 @@ export default function AccountForm() {
                         <br />
                         <InputField name="email" label="Email *" />
                         <br />
-                        <InputField name="phoneNumber" label="Số điện thoại *" />
-                        <br />
-                        <SelectSearchField name="position" label="Vai trò *" options={null} />
-                        <Typography variant="h5">Trạng thái</Typography>
-                        <br />
-                        <CheckboxField name="isApprove" label="Cho phép hoạt động" />
+                        <InputField name="phone" label="Số điện thoại *" />
                         <br />
                     </Grid>
                 </Grid>

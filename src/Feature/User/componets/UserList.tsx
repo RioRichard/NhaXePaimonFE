@@ -3,20 +3,20 @@ import { Typography, Stack, Table, Paper, TableBody, TableCell, TableContainer, 
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
-import { Manager, ManagerListProps } from '../types';
+import { User, UserListProps } from '../types';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-//Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
-export default function ManagerList(props: ManagerListProps) {
-    const { rows, onManagerEditClick, onManagerDeleteClick } = props;
+//Giao diện trang chủ hiển thị tất cả User mà Admin quản lý
+export default function UserList(props: UserListProps) {
+    const { rows, onUserEditClick, onUserDeleteClick } = props;
 
-    const handleEditClick = (row: Manager) => {
-        if (onManagerEditClick) onManagerEditClick?.(row);
+    const handleEditClick = (row: User) => {
+        if (onUserEditClick) onUserEditClick?.(row);
     };
 
-    const handleDeleteClick = (row: Manager) => {
-        if (onManagerDeleteClick) onManagerDeleteClick?.(row);
+    const handleDeleteClick = (row: User) => {
+        if (onUserDeleteClick) onUserDeleteClick?.(row);
     };
 
     return (
@@ -25,11 +25,10 @@ export default function ManagerList(props: ManagerListProps) {
                 <TableHead>
                     <TableRow>
                         <TableCell>#</TableCell>
-                        <TableCell>Id nhân viên</TableCell>
+                        <TableCell>Mã tài khoản</TableCell>
                         <TableCell>Username</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Số điện thoại</TableCell>
-                        <TableCell>Vai trò</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
                     </TableRow>
                 </TableHead>
@@ -42,7 +41,6 @@ export default function ManagerList(props: ManagerListProps) {
                                 <TableCell>{row.username}</TableCell>
                                 <TableCell>{row.email}</TableCell>
                                 <TableCell>{row.phone}</TableCell>
-                                <TableCell>{row.role}</TableCell>
                                 <TableCell align="center">
                                     <Stack direction="row" spacing={2} justifyContent="center">
                                         <Tippy content="Chỉnh sửa">

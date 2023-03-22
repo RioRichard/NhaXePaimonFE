@@ -3,6 +3,7 @@ import managerReducer from '../Feature/Manager/managerSlice';
 import basesReducer from '../Feature/Base/BaseSlice';
 import staffReducer from '../Feature/Staff/StaffSlice';
 import busReducer from '../Feature/Bus/BusSlice';
+import userReducer from '../Feature/User/userSlice';
 import rootSaga from './rootSaga';
 import createSagaMiddleware from 'redux-saga';
 
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     bases: basesReducer,
     staff: staffReducer,
     bus:busReducer,
+    user: userReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
