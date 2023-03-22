@@ -10,10 +10,6 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
-import SquareRoundedIcon from '@mui/icons-material/SquareRounded';
 
 
 
@@ -73,7 +69,7 @@ export default function Step3() {
                                     <Grid md={1}></Grid>
                                     <Grid md={3}>
                                         <Stack direction='column' spacing={1}>
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
+                                            <Checkbox disabled icon={<Button disabled variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
                                             <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
                                             <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
                                         </Stack>
