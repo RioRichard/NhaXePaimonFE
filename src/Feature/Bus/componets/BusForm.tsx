@@ -10,12 +10,13 @@ import { Bus, BusFormProps } from '../types';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-    plate: Yup.string().required('Vui lòng nhập biển số'),
-    type: Yup.string().required('Vui lòng nhập loại xe')
+    bus_number: Yup.string().required('Vui lòng nhập biển số'),
+    type: Yup.string().required('Vui lòng nhập loại xe'),
+    numberSeat: Yup.number().required('Vui lòng số lượng ghế')
 });
 
 export default function BusForm(props: BusFormProps) {
-    const { onSubmit, initialValues } = props;
+    const { onSubmit, initialValues, isEditMode } = props;
     const navigate = useNavigate();
 
     const methods = useForm<Bus>({
@@ -28,14 +29,14 @@ export default function BusForm(props: BusFormProps) {
         formState: { isSubmitting }
     } = methods;
 
-    console.log(initialValues);
+
 
     return (
         <FormProvider {...methods} >
             <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={8} >
                     <Grid item xs={12} >
-                        <Typography variant="h2">Thêm xe</Typography>
+                        <Typography variant="h2">{isEditMode ? "Sửa xe" : "Thêm xe"}</Typography>
                         <br />
                         <InputField name="bus_number" label="Biển số*" />
                         <InputField name="type" label="Loại xe *" />
@@ -49,6 +50,7 @@ export default function BusForm(props: BusFormProps) {
                                 )
                             })}
                         </Grid>
+                        {isEditMode ? null : <InputField type='number' name="numberSeat" label="Số lượng ghế *" />}
                     </Grid>
                 </Grid>
                 <Box sx={{ mt: 4, textAlign: 'end' }}>

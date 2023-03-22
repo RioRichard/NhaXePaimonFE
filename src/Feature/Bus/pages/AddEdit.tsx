@@ -1,5 +1,5 @@
 
-import { Box, Stack} from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import busesApi from '../../../api/busApi';
@@ -47,6 +47,8 @@ export default function AddEdit() {
     }, [status, error]);
 
     const handleSubmit = (values: Bus) => {
+        console.log(values);
+
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (isEditMode) {
@@ -63,13 +65,13 @@ export default function AddEdit() {
     const initialValues = isEditMode ? bus && bus : undefined;
     return (
         <Stack spacing={4}>
-                {(!isEditMode || Boolean(bus)) && (
+            {(!isEditMode || Boolean(bus)) && (
                 <Box sx={{ width: '60%', backgroundColor: '#fff', p: 3 }}>
                     <BusForm isEditMode={isEditMode} initialValues={initialValues} onSubmit={handleSubmit} />
                 </Box>
             )}
             <Notification notify={notify} setNotify={setNotify} />
         </Stack>
-        
+
     );
 }

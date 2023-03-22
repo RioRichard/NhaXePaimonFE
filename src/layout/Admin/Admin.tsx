@@ -56,7 +56,7 @@ export function AdminLayout() {
                 <Sidebar />
             </Box>
             
-            <Box sx={{}} className={classes.main}>
+            <Box className={classes.main}>
                 <Routes>
                     <Route path="/" element={<Navigate to="/admin/trang-chu" />} />
                     <Route path="*" element={<NotFound />} />
