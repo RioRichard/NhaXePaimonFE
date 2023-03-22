@@ -4,8 +4,14 @@ export type Bus = {
     id?: string;
     bus_number?: string;
     type?: string;
+    seats: Seat[];
     select?: boolean;
 };
+export type Seat = {
+    id?: string;
+    name?: string;
+    status?: boolean;
+}
 export type Bustate = {
     status: 'idle' | 'loading' | 'error' | 'success';
     listBus: Bus[];

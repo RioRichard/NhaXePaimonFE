@@ -2,7 +2,7 @@
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import SaveIcon from '@mui/icons-material/Save';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
+import { Box, Button, Checkbox, CircularProgress, Grid, Stack, Typography } from '@mui/material';
 import { CheckboxField, InputField, SelectSearchField } from '../../../custom-fields';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -22,11 +22,14 @@ export default function BusForm(props: BusFormProps) {
         defaultValues: initialValues,
         resolver: yupResolver(validationSchema)
     });
-    
+
     const {
         handleSubmit,
         formState: { isSubmitting }
     } = methods;
+
+    console.log(initialValues);
+
     return (
         <FormProvider {...methods} >
             <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -36,6 +39,16 @@ export default function BusForm(props: BusFormProps) {
                         <br />
                         <InputField name="bus_number" label="Biển số*" />
                         <InputField name="type" label="Loại xe *" />
+
+                        <Grid md={12} container columnSpacing={1}>
+                            {initialValues?.seats.map((item, index) => {
+                                return (
+                                    <div>
+                                        <Checkbox icon={<Button disabled={item.status} variant={item.status ? "contained" : "outlined"}>{item.name}</Button>} checkedIcon={<Button variant="contained">{item.name}</Button>} />
+                                    </div>
+                                )
+                            })}
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Box sx={{ mt: 4, textAlign: 'end' }}>
