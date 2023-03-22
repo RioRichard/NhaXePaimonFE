@@ -34,7 +34,7 @@ export default function BusForm(props: BusFormProps) {
                     <Grid item xs={12} >
                         <Typography variant="h2">Thêm xe</Typography>
                         <br />
-                        <InputField name="plate" label="Biển số*" />
+                        <InputField name="bus_number" label="Biển số*" />
                         <InputField name="type" label="Loại xe *" />
                     </Grid>
                 </Grid>

@@ -2,7 +2,7 @@ import { PaginationParams } from "../../../model";
 
 export type Bus = {
     id?: string;
-    plate?: string;
+    bus_number?: string;
     type?: string;
     select?: boolean;
 };

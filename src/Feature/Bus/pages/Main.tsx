@@ -77,8 +77,8 @@ export default function Main() {
         
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa xe này ${bus.plate}`,
-            subTitle: `Bạn có chắc chắn muốn xóa xe có biển số ${bus.plate}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
+            title: `Xóa xe này ${bus.bus_number}`,
+            subTitle: `Bạn có chắc chắn muốn xóa xe có biển số ${bus.bus_number}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({
                     ...confirmDialog,
