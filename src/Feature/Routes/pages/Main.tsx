@@ -28,6 +28,8 @@ export default function Main() {
         message: '',
         type: 'success'
     });
+    console.log(listRoutes?.routes);
+    
     React.useEffect(() => {
         dispatch(routesActions.fetchRoutes(queryParams));
     }, [queryParams]);

@@ -1,12 +1,13 @@
 import { PaginationParams } from "../../../model";
+import { Bus } from "../../Bus/types";
 
 export type Routes = {
     id?: string;
-    fromId?: string;
-    toId?: string;
+    bus?:Bus;
+    from?: any;
+    to?: any;
     departure?: string;
     arrival?: string;
-    bus?: string;
     driver?: string;
     extraStaff?: string;
     price?: string;

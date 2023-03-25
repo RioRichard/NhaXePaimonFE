@@ -12,6 +12,7 @@ import 'tippy.js/dist/tippy.css'
 import Tippy from '@tippyjs/react';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
+import moment from 'moment';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
 export default function RouteList(props: RoutesListProps) {
@@ -48,11 +49,11 @@ export default function RouteList(props: RoutesListProps) {
                             <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
                                 <TableCell>{row.id}</TableCell>
-                                <TableCell>{row.fromId}</TableCell>
-                                <TableCell>{row.toId}</TableCell>
-                                <TableCell>{row.departure}</TableCell>
-                                <TableCell>{row.arrival}</TableCell>
-                                <TableCell>{row.bus}</TableCell>
+                                <TableCell>{row.from.address}</TableCell>
+                                <TableCell>{row.to.address}</TableCell>
+                                <TableCell>{moment(row.departure).format('DD/MM/YYYY')}</TableCell>
+                                <TableCell>{moment(row.arrival).format('DD/MM/YYYY')}</TableCell>
+                                <TableCell>{row?.bus?.bus_number}</TableCell>
                                 <TableCell>{row.driver}</TableCell>
                                 <TableCell>{row.extraStaff}</TableCell>
                                 <TableCell>{row.price}</TableCell>
