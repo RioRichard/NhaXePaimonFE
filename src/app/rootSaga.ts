@@ -4,6 +4,7 @@ import staffSaga from "../Feature/Staff/StaffSaga";
 import routesSaga from "../Feature/Routes/RoutesSaga";
 import busSaga from "../Feature/Bus/BusSaga";
 import userSaga from "../Feature/User/userSaga";
+import authSaga from "../Feature/auth/authSaga";
 import { all } from 'redux-saga/effects';
 export default function* rootSaga() {
     yield all([
@@ -13,5 +14,6 @@ export default function* rootSaga() {
         routesSaga(),
         busSaga(),
         userSaga(),
+        authSaga(),
     ]);
 }

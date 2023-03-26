@@ -3,14 +3,13 @@ import { Button, Typography, Grid, Divider } from '@mui/material';
 import { InputField } from '../../../custom-fields';
 import { PasswordField } from '../../../custom-fields/PasswordField';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { LoginFormProps } from '../types';
 import { selectIsLogging, LoginPayload } from '../authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppSelector } from '../../../app/hooks';
 
-export default function LoginForm(props: LoginFormProps) {
+export default function AdminLoginForm(props: LoginFormProps) {
     const { onSubmit } = props;
     const validationSchema = Yup.object().shape({
         username: Yup.string().required('Vui lòng nhập tên người dùng của bạn.'),
@@ -48,16 +47,6 @@ export default function LoginForm(props: LoginFormProps) {
                         </Button>
                     </Grid>
                     <br />
-                    <Divider>
-                        <Grid item>
-                            <Typography component="span">Bạn không có tài khoản?</Typography>
-                            <Link to="/register">
-                                <Typography fontWeight={550} component="span" sx={{ ml: 1 }}>
-                                    Đăng ký
-                                </Typography>
-                            </Link>
-                        </Grid>
-                    </Divider>
                 </Grid>
             </form>
         </FormProvider>

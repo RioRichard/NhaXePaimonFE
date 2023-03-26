@@ -12,12 +12,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { authActions } from '../Feature/auth/authSlice';
+import { useAppDispatch } from '../app/hooks';
 
 export function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const dispatch = useAppDispatch();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -34,6 +35,9 @@ export function Navbar() {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    dispatch(authActions.logout());
+};
   return (
     <AppBar position="static" style={{ backgroundColor: "orange" }}>
       <Container maxWidth="xl" >
@@ -85,24 +89,24 @@ export function Navbar() {
               }}
             >
               <Link to="#" style={{ textDecoration: 'none' }} >
-                <MenuItem  sx={{color: 'black'}} onClick={handleCloseNavMenu}>
+                <MenuItem sx={{ color: 'black' }} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Điều khoản hoạt động</Typography>
                 </MenuItem>
               </Link>
               <Link to="#" style={{ textDecoration: 'none' }} >
-                <MenuItem sx={{color: 'black'}} onClick={handleCloseNavMenu}>
+                <MenuItem sx={{ color: 'black' }} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Chính sách hoạt động</Typography>
                 </MenuItem>
               </Link>
               <Link to="#" style={{ textDecoration: 'none' }} >
-                <MenuItem sx={{color: 'black'}} onClick={handleCloseNavMenu}>
+                <MenuItem sx={{ color: 'black' }} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Chính sách bảo mật</Typography>
                 </MenuItem>
               </Link>
 
             </Menu>
           </Box>
-          
+
           <DirectionsBusIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -117,7 +121,7 @@ export function Navbar() {
               fontWeight: 700,
               letterSpacing: '.3rem',
               textDecoration: 'none',
-              color:'inherit'
+              color: 'inherit'
             }}
           >
             PAIMON
@@ -162,11 +166,12 @@ export function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Account</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
