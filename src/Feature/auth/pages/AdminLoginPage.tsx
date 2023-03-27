@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
-import LoginForm from '../components/LoginForm';
+import AdminLoginForm from '../components/AdminLoginForm';
 import { Notification } from '../../../components/Common';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import React from 'react';
 import { authActions, LoginPayload, selectIsError, selectIsSuccess } from '../authSlice';
 
-export default function LoginPage() {
+export default function AdminLoginPage() {
     const dispatch = useAppDispatch();
     const [notify, setNotify] = React.useState({
         isOpen: false,
@@ -37,11 +37,11 @@ export default function LoginPage() {
     }, [success]);
 
     const handleSubmit = (data: LoginPayload) => {
-        dispatch(authActions.login(data));
+        dispatch(authActions.adminLogin(data));
     };
     return (
         <Box sx={{
-            backgroundImage: `url(https://i1-vnexpress.vnecdn.net/2021/04/08/Xe-Bus-Dien-VinFast-VnExpress-12-1617869550.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=QtGfexgpQhQLsIuHd7yKlg)`,
+            backgroundImage: `url(https://previews.123rf.com/images/peshkov/peshkov1906/peshkov190600457/124294224-coding-and-hacking-concept-hacker-with-abstract-coding-text-on-blurry-background-double-exposure.jpg)`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -62,13 +62,13 @@ export default function LoginPage() {
             }}>
                 <Box>
                     <Typography variant="h4" fontWeight="bold">
-                        Đăng nhập
+                        Đăng nhập Admin
                     </Typography>
                     <Typography color="secondary">Nhập thông tin đăng nhập của bạn để tiếp tục</Typography>
                 </Box>
 
                 <Box sx={{ marginTop: '24px' }}>
-                    <LoginForm onSubmit={handleSubmit} />
+                    <AdminLoginForm onSubmit={handleSubmit} />
                 </Box>
             </Box>
             <Notification notify={notify} setNotify={setNotify} />

@@ -1,11 +1,10 @@
 import { Box } from '@mui/material';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Theme } from '@mui/material/styles';
 import { NotFound } from '../../components/Common';
 import { makeStyles } from '@mui/styles';
-import Container from '@mui/material/Container';
 import HomePage from '../../Feature/Dashboard/page/HomePage';
 import Discount from '../../Feature/Discount';
 import Manager from '../../Feature/Manager';
@@ -58,7 +57,6 @@ export function AdminLayout() {
             
             <Box className={classes.main}>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/admin/trang-chu" />} />
                     <Route path="*" element={<NotFound />} />
                     <Route path="user/*" element={<User />} />
                     <Route path="trang-chu" element={<HomePage />} />

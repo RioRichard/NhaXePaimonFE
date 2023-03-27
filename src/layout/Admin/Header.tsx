@@ -8,10 +8,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import { useAppSelector,useAppDispatch } from '../../app/hooks';
-// import { authActions, selectIsUser } from 'Features/auth/authSlice';
+import { useAppDispatch } from '../../app/hooks';
+import { authActions } from '../../Feature/auth/authSlice';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     link: {
@@ -24,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     navLink: {
         color: '#fff',
 
-        
+
     },
     menuIcon: {
         marginRight: '300px'
@@ -42,11 +41,9 @@ const useStyles = makeStyles(theme => ({
 
 export function Header() {
     const dispatch = useAppDispatch();
-    
-    
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-    // const currentUser = useAppSelector(selectIsUser);
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         if (anchorEl !== event.currentTarget) {
@@ -57,11 +54,11 @@ export function Header() {
         setAnchorEl(null);
     };
 
-    // const handleLogout = () => {
-    //     dispatch(authActions.logout());
-    // };
+    const handleLogout = () => {
+        dispatch(authActions.adminLogout());
+    };
     const classes = useStyles();
-    
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ boxShadow: 0, background: '#fff', color: '#111' }}>
@@ -69,13 +66,13 @@ export function Header() {
                     <Box sx={{ flexGrow: 1 }}>
                     </Box>
                     <Box >
-                    <Typography variant="h2" fontWeight={900} sx={{ flex:1, minHeight: '64px',minWidth: '300px', lineHeight: '64px', marginRight: '500px' }}>
-                            </Typography>
+                        <Typography variant="h2" fontWeight={900} sx={{ flex: 1, minHeight: '64px', minWidth: '300px', lineHeight: '64px', marginRight: '500px' }}>
+                        </Typography>
                     </Box>
                     <Box>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             {/* <Typography sx={{ mr: 1 }}> {currentUser && currentUser.userName}</Typography> */}
-                            <IconButton size="small" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true"   onClick={handleMenu} color="inherit">
+                            <IconButton size="small" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit">
                                 <AccountCircle fontSize="small" />
                             </IconButton>
                         </Box>
@@ -87,7 +84,7 @@ export function Header() {
                                 </Link>
                             </MenuItem> */}
                             <MenuItem >
-                                <Box className={classes.link} /* onClick={handleLogout} */>
+                                <Box className={classes.link} onClick={handleLogout}>
                                     <LogoutIcon fontSize="small" sx={{ mr: 2 }} />
                                     Đăng xuất
                                 </Box>
