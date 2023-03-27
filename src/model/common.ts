@@ -20,7 +20,7 @@ export type Response<T> = {
     code?: string;
 };
 export type ResponseList<T> = {
-    data: T[];
+    data: any;
     pagination: PaginationParams;
     message?: string;
 };

@@ -22,4 +22,17 @@ axiosClient.interceptors.response.use(
     },
 );
 
+axiosClient.interceptors.request.use(
+    config  => {
+      const adminToken = storage.getAccessToken();
+      const token = storage.getAccessToken();
+      if (token) {
+        config.headers.Authorization = `Bearer ${adminToken}`;
+      }
+      return config;
+    },
+    error => {
+      Promise.reject(error);
+    }
+  );
 export default axiosClient;

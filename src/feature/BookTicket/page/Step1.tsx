@@ -26,7 +26,7 @@ export default function Step1() {
 
     const { queryParams, updateParams } = useQueryParams<IParams>();
 
-    const [roles, setRoles] = React.useState<Base[]>([]);
+    const [base, setBase] = React.useState<Base[]>([]);
     const methods = useForm<any>({
     });
     const {
@@ -46,7 +46,7 @@ export default function Step1() {
      React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
     }, [queryParams]);
-    console.log(listBase!)
+    console.log(listBase)
 
     const Test = ['Test1', 'Test2', 'Test3', 'Test4'];
     return (
@@ -62,7 +62,7 @@ export default function Step1() {
                                     </Typography>
                                     <Grid container spacing={8}>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={Test!} />
+                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={listBase} />
                                         </Grid>
                                         <Grid item md={4}>
                                             <SelectSearchField name="destination" label="Chọn điểm đến *" options={Test!} />
