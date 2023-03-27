@@ -1,6 +1,6 @@
 export type IParams = {
     _page?: number;
-    _limit?: number;
+    _size?: number;
     _sort?: string;
     _order?: boolean;
     // _q?: string;
@@ -25,7 +25,7 @@ export type ResponseList<T> = {
     message?: string;
 };
 export type PaginationParams = {
-    _limit: number;
+    _size: number;
     _page: number;
     _total: number;
     
