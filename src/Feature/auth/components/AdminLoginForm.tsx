@@ -1,5 +1,5 @@
 
-import { Button, Typography, Grid, Divider } from '@mui/material';
+import { Button, Typography, Grid } from '@mui/material';
 import { InputField } from '../../../custom-fields';
 import { PasswordField } from '../../../custom-fields/PasswordField';
 import { FormProvider, useForm } from 'react-hook-form';

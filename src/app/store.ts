@@ -5,6 +5,7 @@ import staffReducer from '../Feature/Staff/StaffSlice';
 import routesReducer from '../Feature/Routes/RoutesSlice';
 import busReducer from '../Feature/Bus/BusSlice';
 import userReducer from '../Feature/User/userSlice';
+import orderReducer from '../Feature/Order/orderSlice';
 import authReducer from '../Feature/auth/authSlice';
 import rootSaga from './rootSaga';
 import createSagaMiddleware from 'redux-saga';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     bus:busReducer,
     user: userReducer,
     auth: authReducer,
+    order: orderReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

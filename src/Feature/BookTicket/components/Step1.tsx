@@ -9,27 +9,22 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
-import { BaseListProps } from '../../Base/types';
 import { useQueryParams } from '../../Hooks';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { Base } from '../../Base/types';
 import React from 'react';
 import { IParams } from '../../../model';
 import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
-export default function Step1() {
+import { SelectDateField } from '../../../custom-fields/SelectDateField';
+import { Step1FormProps } from '../types';
+export default function Step1(props:Step1FormProps) {
+    const {onSubmit} = props;
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const { queryParams, updateParams } = useQueryParams<IParams>();
-
-    const [base, setBase] = React.useState<Base[]>([]);
+    const { queryParams } = useQueryParams<IParams>();
     const methods = useForm<any>({
     });
     const {
+        handleSubmit,
         watch,
     } = methods;
     //use watch to check the value in SelectField
@@ -41,20 +36,18 @@ export default function Step1() {
         indents.push(moment().add(i, 'days').format("DD-MM-YYYY"));
     }
     // connect store
-    const listBase = useAppSelector(selectBasesList);
+    const listBase : any = useAppSelector(selectBasesList);
      // dispatch fetch list
      React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
     }, [queryParams]);
-    console.log(listBase)
-
-    const Test = ['Test1', 'Test2', 'Test3', 'Test4'];
+    console.log(listBase.bases)
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg" >
                 <Box sx={{ bgcolor: '', height: '100vh' }}>
                     <Container maxWidth="lg">
-                        <form autoComplete="off">
+                        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                             <Grid container spacing={4}>
                                 <Grid item md={12}>
                                     <Typography variant="h5" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
@@ -62,13 +55,13 @@ export default function Step1() {
                                     </Typography>
                                     <Grid container spacing={8}>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={listBase} />
+                                            <SelectSearchField name="from_id" label="Chọn điểm đi *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="destination" label="Chọn điểm đến *" options={Test!} />
+                                            <SelectSearchField name="to_id" label="Chọn điểm đến *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="dateStart" label="Ngày đi *" options={indents} />
+                                            <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -154,9 +147,7 @@ export default function Step1() {
                                         Tiếp tục
                                     </Link>
                                 </Button>
-
                             </Stack>
-
                         </form>
                     </Container>
                 </Box>
