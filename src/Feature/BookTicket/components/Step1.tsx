@@ -17,16 +17,25 @@ import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
 import { SelectDateField } from '../../../custom-fields/SelectDateField';
 import { Step1FormProps } from '../types';
-export default function Step1(props:Step1FormProps) {
-    const {onSubmit} = props;
+export default function Step1(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
+    const { onSubmit, page, setPage, formData, setFormData } = props;
+    console.log(onSubmit);
     const dispatch = useAppDispatch();
     const { queryParams } = useQueryParams<IParams>();
     const methods = useForm<any>({
     });
     const {
-        handleSubmit,
         watch,
     } = methods;
+    function handleSubmit() {
+        setFormData({
+            ...formData,
+            from_id:departure?.id,
+            to_id:destination?.id,
+            departure:dateStart
+        })
+        setPage(page + 1);
+    }
     //use watch to check the value in SelectField
     const departure = watch('departure');
     const destination = watch('destination');
@@ -36,18 +45,17 @@ export default function Step1(props:Step1FormProps) {
         indents.push(moment().add(i, 'days').format("DD-MM-YYYY"));
     }
     // connect store
-    const listBase : any = useAppSelector(selectBasesList);
-     // dispatch fetch list
-     React.useEffect(() => {
+    const listBase: any = useAppSelector(selectBasesList);
+    // dispatch fetch list
+    React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
     }, [queryParams]);
-    console.log(listBase.bases)
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg" >
                 <Box sx={{ bgcolor: '', height: '100vh' }}>
                     <Container maxWidth="lg">
-                        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+                        <form onSubmit={handleSubmit} autoComplete="off">
                             <Grid container spacing={4}>
                                 <Grid item md={12}>
                                     <Typography variant="h5" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
@@ -55,10 +63,10 @@ export default function Step1(props:Step1FormProps) {
                                     </Typography>
                                     <Grid container spacing={8}>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="from_id" label="Chọn điểm đi *" options={listBase?.bases!} />
+                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="to_id" label="Chọn điểm đến *" options={listBase?.bases!} />
+                                            <SelectSearchField name="destination" label="Chọn điểm đến *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
                                             <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />
@@ -140,12 +148,9 @@ export default function Step1(props:Step1FormProps) {
                                     </Grid>
                                 </Grid>
                             </Grid>
-
                             <Stack direction="row-reverse" spacing={2} sx={{ marginTop: "15px" }}>
-                                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
-                                    <Link to="/chon-ghe" style={{ textDecoration: 'none' }} >
-                                        Tiếp tục
-                                    </Link>
+                                <Button type='submit' variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
+                                    Tiếp tục
                                 </Button>
                             </Stack>
                         </form>

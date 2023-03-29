@@ -10,14 +10,18 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../Routes/types';
 
 
 
-export default function Step3() {
+export default function Step3(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
+    const { onSubmit, page, setPage, formData, setFormData } = props;
     const methods = useForm<any>({
         // defaultValues: initialValues,
         // resolver: yupResolver(validationSchema)
     });
+    console.log("data", formData?.from_id);
+    
     const status = [
         { id: 'GiN', name: 'Giường nằm' },
         { id: 'GhN', name: 'Ghế nằm' },
@@ -37,6 +41,18 @@ export default function Step3() {
             setSelected(true)
         }
     }
+    const [route, setRoute] = React.useState<Routes>();
+    /* React.useEffect(() => {
+        if (!formData?.from_id) return;
+        (async () => {
+            try {
+                const response: Response<any> = await busesApi.fetchBusById(busId);
+                setBus(response.data.buses);
+            } catch (error) {
+                // navigate(-1);
+            }
+        })();
+    }, [busId]); */
     const [selected, setSelected] = React.useState(false);
 
     return (
