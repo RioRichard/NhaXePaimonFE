@@ -19,7 +19,6 @@ import { SelectDateField } from '../../../custom-fields/SelectDateField';
 import { Step1FormProps } from '../types';
 export default function Step1(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
     const { onSubmit, page, setPage, formData, setFormData } = props;
-    console.log(onSubmit);
     const dispatch = useAppDispatch();
     const { queryParams } = useQueryParams<IParams>();
     const methods = useForm<any>({

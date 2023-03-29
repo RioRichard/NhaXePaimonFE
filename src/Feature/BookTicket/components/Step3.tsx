@@ -11,20 +11,28 @@ import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
 import { Routes } from '../../Routes/types';
+import { useQueryParams } from '../../Hooks';
+import { IParams } from '../../../model';
+import { routesActions, selectRoutesList } from '../../Routes/RoutesSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 
 
 export default function Step3(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
+    const dispatch = useAppDispatch();
+
     const { onSubmit, page, setPage, formData, setFormData } = props;
+    const { queryParams, updateParams } = useQueryParams<IParams>();
+    const [route, setRoute] = React.useState<Routes>();
+    const [selected, setSelected] = React.useState(false);
     const methods = useForm<any>({
         // defaultValues: initialValues,
         // resolver: yupResolver(validationSchema)
     });
-    console.log("data", formData?.from_id);
     
     const status = [
-        { id: 'GiN', name: 'Giường nằm' },
-        { id: 'GhN', name: 'Ghế nằm' },
+        { id: 'GiN', name: 'Thường' },
+        { id: 'GhN', name: 'VIP' },
     ];
     const [alignment, setAlignment] = React.useState('web');
     const handleChange = (
@@ -41,19 +49,17 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
             setSelected(true)
         }
     }
-    const [route, setRoute] = React.useState<Routes>();
-    /* React.useEffect(() => {
-        if (!formData?.from_id) return;
-        (async () => {
-            try {
-                const response: Response<any> = await busesApi.fetchBusById(busId);
-                setBus(response.data.buses);
-            } catch (error) {
-                // navigate(-1);
-            }
-        })();
-    }, [busId]); */
-    const [selected, setSelected] = React.useState(false);
+    const param:IParams={
+        ...queryParams,
+        fromId:formData?.from_id,
+        toId:formData?.to_id,
+    }
+    React.useEffect(() => {
+        dispatch(routesActions.fetchRoutes(param));
+    }, [queryParams]);
+    const routes=useAppSelector(selectRoutesList);
+    console.log(routes);
+    
 
     return (
         <FormProvider {...methods}>
@@ -65,8 +71,7 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                                 <Grid item md={4}>
                                     <Typography align='left' fontSize={'16px'} fontWeight={'bold'}>Từ ... đến ...</Typography>
-                                    <SelectSearchField name="seatType" label="Chọn loại ghế *" options={status} />
-                                    <SelectSearchField name="xiexie" label="Chọn chuyến xe *" options={status} />
+                                    <SelectSearchField name="busType" label="Chọn loại xe *" options={status} />
                                     <Typography align='left' fontSize={'16px'}>Nơi lên xe</Typography>
                                     <RadioField name="inplace" label="">
                                         <FormControlLabel value="1" control={<Radio />} label="Bến" />
@@ -156,4 +161,5 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
         </FormProvider>
     )
 }
+
 
