@@ -23,8 +23,8 @@ export function SelectSearchField(props: SelectSearchFielddProps) {
                     sx={{ mb: 2 }}
                     value={value}
                     onChange={(event, selectedOptions) => onChange(selectedOptions)}
-                    options={options}
-                    getOptionLabel={(option) => option.name}
+                    options={options!}
+                    getOptionLabel={(option) => option?.name}
                     isOptionEqualToValue={(option, value) => option.id === value.id}
                     noOptionsText="Không có lựa chọn nào được tìm thấy"
                     disabled={disabled}

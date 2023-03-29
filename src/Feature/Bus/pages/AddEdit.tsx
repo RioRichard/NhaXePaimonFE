@@ -64,8 +64,14 @@ export default function AddEdit() {
                 resolve(true);
             }, 1000);
         });
-    };
-    const initialValues = isEditMode ? bus && bus : undefined;
+    };/*  */
+    console.log("bus",bus!);
+    
+    const defaultBus:any={
+        ...bus,
+        type:{ id:bus?.type, name: bus?.type },
+    }
+    const initialValues = isEditMode ? defaultBus && defaultBus : undefined;
     return (
         <Stack spacing={4}>
             {(!isEditMode || Boolean(bus)) && (
