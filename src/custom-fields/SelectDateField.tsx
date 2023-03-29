@@ -8,7 +8,7 @@ interface SelectSearchFielddProps {
     disabled?: boolean;
 }
 
-export function SelectSearchField(props: SelectSearchFielddProps) {
+export function SelectDateField(props: SelectSearchFielddProps) {
     const { control } = useFormContext();
     const { name, label, options, disabled } = props;
 
@@ -24,7 +24,7 @@ export function SelectSearchField(props: SelectSearchFielddProps) {
                     value={value}
                     onChange={(event, selectedOptions) => onChange(selectedOptions)}
                     options={options}
-                    getOptionLabel={(option) => option.name}
+                    getOptionLabel={(option) => option}
                     isOptionEqualToValue={(option, value) => option.id === value.id}
                     noOptionsText="Không có lựa chọn nào được tìm thấy"
                     disabled={disabled}

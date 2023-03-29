@@ -46,17 +46,20 @@ export default function AddEdit() {
         }
     }, [status, error]);
 
-    const handleSubmit = (values: Bus) => {
-        console.log(values);
+    const handleSubmit = (values: any) => {
+        const data = {
+            ...values,
+            type: values.type.id
+        }
 
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (isEditMode) {
                     // edit
-                    dispatch(busActions.updateBus(values));
+                    dispatch(busActions.updateBus(data));
                 } else {
                     // add
-                    dispatch(busActions.createBus(values));
+                    dispatch(busActions.createBus(data));
                 }
                 resolve(true);
             }, 1000);

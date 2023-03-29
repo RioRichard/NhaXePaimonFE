@@ -22,13 +22,6 @@ export default function BaseList(props: BaseListProps) {
     const handleDeleteClick = (row: Base) => {
         if (onBaseDeleteClick) onBaseDeleteClick?.(row);
     };
-    const handleCheckboxAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (onCheckboxAllChange) onCheckboxAllChange(e);
-    };
-
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (onCheckboxChange) onCheckboxChange(e);
-    };
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">

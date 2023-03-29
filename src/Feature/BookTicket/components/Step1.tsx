@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { FormProvider, useForm } from 'react-hook-form';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -9,10 +9,22 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom';
-export default function Step1() {
+import { useQueryParams } from '../../Hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import React from 'react';
+import { IParams } from '../../../model';
+import { selectBasesList } from '../../Base/BaseSlice';
+import { baseActions } from '../../Base/BaseSlice';
+import { SelectDateField } from '../../../custom-fields/SelectDateField';
+import { Step1FormProps } from '../types';
+export default function Step1(props:Step1FormProps) {
+    const {onSubmit} = props;
+    const dispatch = useAppDispatch();
+    const { queryParams } = useQueryParams<IParams>();
     const methods = useForm<any>({
     });
     const {
+        handleSubmit,
         watch,
     } = methods;
     //use watch to check the value in SelectField
@@ -23,15 +35,19 @@ export default function Step1() {
     for (var i = 0; i < 5; i++) {
         indents.push(moment().add(i, 'days').format("DD-MM-YYYY"));
     }
-  
-
-    const Test = ['Test1', 'Test2', 'Test3', 'Test4'];
+    // connect store
+    const listBase : any = useAppSelector(selectBasesList);
+     // dispatch fetch list
+     React.useEffect(() => {
+        dispatch(baseActions.fetchBases(queryParams));
+    }, [queryParams]);
+    console.log(listBase.bases)
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg" >
                 <Box sx={{ bgcolor: '', height: '100vh' }}>
                     <Container maxWidth="lg">
-                        <form autoComplete="off">
+                        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                             <Grid container spacing={4}>
                                 <Grid item md={12}>
                                     <Typography variant="h5" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
@@ -39,13 +55,13 @@ export default function Step1() {
                                     </Typography>
                                     <Grid container spacing={8}>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={Test!} />
+                                            <SelectSearchField name="from_id" label="Chọn điểm đi *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="destination" label="Chọn điểm đến *" options={Test!} />
+                                            <SelectSearchField name="to_id" label="Chọn điểm đến *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="dateStart" label="Ngày đi *" options={indents} />
+                                            <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -124,13 +140,14 @@ export default function Step1() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Link to="/chon-ghe" style={{ textDecoration: 'none' }} >
-                                <Stack direction="row-reverse" spacing={2} sx={{marginTop:"15px"}}>
-                                    <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
+
+                            <Stack direction="row-reverse" spacing={2} sx={{ marginTop: "15px" }}>
+                                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
+                                    <Link to="/chon-ghe" style={{ textDecoration: 'none' }} >
                                         Tiếp tục
-                                    </Button>
-                                </Stack>
-                            </Link>
+                                    </Link>
+                                </Button>
+                            </Stack>
                         </form>
                     </Container>
                 </Box>

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { IParams, Response, ResponseList } from '../../model';
-import { Staff, StaffState } from './types';
+import { Order, OrderState } from './types';
 
 // Define the initial state using that type
-const initialState: StaffState = {
+const initialState: OrderState = {
     status: 'idle',
-    listStaff: [],
+    listOrders: [],
     pagination: {
         _page: 1,
         _size: 5,
@@ -16,70 +16,70 @@ const initialState: StaffState = {
     success: undefined
 };
 
-const staffSlice = createSlice({
-    name: 'staff',
+const orderSlice = createSlice({
+    name: 'order',
     initialState,
     reducers: {
         // fetch list
-        fetchStaff: (state, action: PayloadAction<IParams>) => {
+        fetchOrders: (state, action: PayloadAction<IParams>) => {
             state.status = 'loading';
             state.error = undefined;
             state.success = undefined;
         },
-        fetchStaffSuccess: (state, action: PayloadAction<ResponseList<Staff>>) => {
+        fetchOrdersSuccess: (state, action: PayloadAction<ResponseList<Order>>) => {
             state.status = 'success';
             state.error = undefined;
             state.success = undefined;
-            state.listStaff = action.payload.data;
+            state.listOrders = action.payload.data;
             state.pagination = action.payload.pagination;
         },
-        fetchStaffFailed: (state, action: PayloadAction<string>) => {
+        fetchOrdersFailed: (state, action: PayloadAction<string>) => {
             state.status = 'error';
             state.error = action.payload;
             state.success = undefined;
         },
-        createStaff: (state, action: PayloadAction<Staff>) => {
+        // upload list
+        updateOrder: (state, action: PayloadAction<Order>) => {
             state.status = 'loading';
             state.error = undefined;
             state.success = undefined;
         },
-        createStaffSuccess: (state, action: PayloadAction<Response<Staff>>) => {
+        updateOrderSuccess: (state, action: PayloadAction<Response<Order>>) => {
             state.status = 'success';
             state.error = undefined;
             state.success = action.payload.message;
         },
-        createStaffFailed: (state, action: PayloadAction<any>) => {
+        updateOrderFailed: (state, action: PayloadAction<string>) => {
             state.status = 'error';
-            state.error = action.payload.message;
+            state.error = action.payload;
             state.success = undefined;
         },
-
-        // update
-        updateStaff: (state, action: PayloadAction<Staff>) => {
+        // create list
+        createOrder: (state, action: PayloadAction<Order>) => {
             state.status = 'loading';
             state.error = undefined;
             state.success = undefined;
         },
-        updateStaffSuccess: (state, action: PayloadAction<Response<Staff>>) => {
+        createOrderSuccess: (state, action: PayloadAction<Response<Order>>) => {
             state.status = 'success';
             state.error = undefined;
             state.success = action.payload.message;
         },
-        updateStaffFailed: (state, action: PayloadAction<any>) => {
+        createOrderFailed: (state, action: PayloadAction<string>) => {
             state.status = 'error';
-            state.error = action.payload.message;
+            state.error = action.payload;
             state.success = undefined;
         }
     }
 });
 
-export const staffActions = staffSlice.actions;
+export const orderActions = orderSlice.actions;
 
 // Selectors
-export const selectStaffList = (state: RootState) => state.staff.listStaff;
-export const selectStaffError = (state: RootState) => state.staff.error;
-export const selectStaffStatus = (state: RootState) => state.staff.status;
-export const selectStaffsuccess = (state: RootState) => state.staff.success;
+export const selectOrdersList = (state: RootState) => state.order.listOrders;
+export const selectOrderError = (state: RootState) => state.order.error;
+export const selectOrderStatus = (state: RootState) => state.order.status;
+export const selectOrdersuccess = (state: RootState) => state.order.success;
 
-const staffReducer = staffSlice.reducer;
-export default staffReducer;
+const orderReducer = orderSlice.reducer;
+export default orderReducer;

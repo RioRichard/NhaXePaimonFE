@@ -8,7 +8,7 @@ export type Base = {
 };
 export type BaseState = {
     status: 'idle' | 'loading' | 'error' | 'success';
-    listBases: Base[];
+    listBases: any;
     pagination: PaginationParams;
     error?: string;
     success?: string;

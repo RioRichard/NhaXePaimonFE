@@ -11,7 +11,7 @@ export const useQueryParams = <T>() => {
         return {
             ...params,
             _page: Number(params._page) || 1,
-            _limit: Number(params._limit) || 100
+            _size: Number(params._size) || 100
         };
     }, [location.search]);
 

@@ -9,7 +9,7 @@ const initialState: UserState = {
     listUsers: [],
     pagination: {
         _page: 1,
-        _limit: 5,
+        _size: 5,
         _total: 5
     },
     error: undefined,
