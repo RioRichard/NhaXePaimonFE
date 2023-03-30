@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { Order } from "../../Order/types";
 
 export default function Step1Page() {
-    const dispatch = useAppDispatch();
+    /* const dispatch = useAppDispatch();
     const handleSubmit = (values: Order) => {
 
         return new Promise((resolve) => {
@@ -17,8 +17,8 @@ export default function Step1Page() {
                 resolve(true);
             }, 1000);
         });
-    }
+    } */
     return (
-        <Step1 onSubmit={handleSubmit}></Step1>
+        <></>
     );
 }
