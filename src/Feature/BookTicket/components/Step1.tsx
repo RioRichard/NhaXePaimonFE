@@ -15,7 +15,6 @@ import React from 'react';
 import { IParams } from '../../../model';
 import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
-import { SelectDateField } from '../../../custom-fields/SelectDateField';
 import { Step1FormProps } from '../types';
 export default function Step1(props:Step1FormProps) {
     const {onSubmit} = props;
@@ -41,7 +40,6 @@ export default function Step1(props:Step1FormProps) {
      React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
     }, [queryParams]);
-    console.log(listBase.bases)
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg" >
@@ -61,7 +59,7 @@ export default function Step1(props:Step1FormProps) {
                                             <SelectSearchField name="to_id" label="Chọn điểm đến *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />
+                                            <SelectSearchField name="dateStart" label="Ngày đi *" options={indents!} />
                                         </Grid>
                                     </Grid>
                                 </Grid>

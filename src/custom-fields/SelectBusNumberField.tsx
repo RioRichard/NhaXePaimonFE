@@ -8,10 +8,11 @@ interface SelectSearchFielddProps {
     disabled?: boolean;
 }
 
-export function SelectSearchField(props: SelectSearchFielddProps) {
+export function SelectBusNumberField(props: SelectSearchFielddProps) {
     const { control } = useFormContext();
     const { name, label, options, disabled } = props;
     return (
+        
         <Controller
             name={name}
             control={control}
@@ -22,7 +23,7 @@ export function SelectSearchField(props: SelectSearchFielddProps) {
                     value={value}
                     onChange={(event, selectedOptions) => onChange(selectedOptions)}
                     options={options}
-                    getOptionLabel={(option) => option.name || option.from?.name || option.to?.name }
+                    getOptionLabel={(option) => option.bus_number? option.bus_number : "Không tìm thấy xe"}
                     isOptionEqualToValue={(option, value) => option.id === value.id}
                     noOptionsText="Không có lựa chọn nào được tìm thấy"
                     disabled={disabled}

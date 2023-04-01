@@ -3,16 +3,19 @@ import { Bus } from "../../Bus/types";
 
 export type Routes = {
     id?: string;
-    bus?:Bus;
+    bus?: Bus;
     from?: any;
     to?: any;
-    departure?: string;
-    arrival?: string;
+    departure?: any;
+    arrival?: any;
     driver?: string;
     extraStaff?: string;
     price?: string;
     status?: string;
     select?: boolean;
+    bus_id?: string;
+    from_id?: string;
+    to_id?: string;
 };
 export type RoutesState = {
     status: 'idle' | 'loading' | 'error' | 'success';
@@ -26,10 +29,10 @@ export type RoutesListProps = {
     rows: Routes[];
     onRoutesDeleteClick?: (route: Routes) => void;
     onRoutesEditClick?: (route: Routes) => void;
-    onCheckboxAllChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onCheckboxChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export type RouteFormProps = {
+    listBase: any;
+    listBus: any;
     onSubmit: (values: Routes) => void;
     initialValues?: Routes;
     isEditMode: boolean;

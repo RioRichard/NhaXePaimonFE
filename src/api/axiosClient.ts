@@ -24,9 +24,9 @@ axiosClient.interceptors.response.use(
 
 axiosClient.interceptors.request.use(
     config  => {
-      const adminToken = storage.getAccessToken();
+      const adminToken = storage.getAdminAccessToken();
       const token = storage.getAccessToken();
-      if (token) {
+      if (adminToken) {
         config.headers.Authorization = `Bearer ${adminToken}`;
       }
       return config;

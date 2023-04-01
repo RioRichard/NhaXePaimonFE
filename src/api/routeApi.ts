@@ -16,7 +16,8 @@ const routeApi = {
         return axiosClient.delete(`/routes/${data.id}`);
     },
     updateRoutes(data: Routes): Promise<Response<Routes>> {
-        return axiosClient.put(`/routes/${data.id}`, data);
+        console.log(data)
+        return axiosClient.put(`/routes/${data?.id}`, data);
     },
 };
 

@@ -50,8 +50,8 @@ export function Sidebar() {
                     <Link to="/admin/trang-chu" style={{ textDecoration:'none' }}>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Box className={classes.logo}></Box>
-                            <Typography variant="h2" fontWeight={900} sx={{ minHeight: '64px', lineHeight: '64px', px: 2}}>
-                                 Admin PAIMON Team
+                            <Typography variant="h3" fontWeight={900} sx={{ minHeight: '64px', lineHeight: '64px', px: 2}}>
+                                PAIMON Team
                             </Typography>
                         </Box>
                     </Link>
