@@ -127,17 +127,17 @@ export function Navbar() {
             PAIMON
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Link to="#" style={{ textDecoration: 'none' }} >
+            <Link to="operatingpolicy" style={{ textDecoration: 'none' }} >
               <Typography sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>
                 Điều khoản hoạt động
               </Typography>
             </Link>
-            <Link to="#" style={{ textDecoration: 'none' }} >
+            <Link to="/termofuse" style={{ textDecoration: 'none' }} >
               <Typography sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>
                 Chính sách hoạt động
               </Typography>
             </Link>
-            <Link to="#" style={{ textDecoration: 'none' }} >
+            <Link to="/privacypolicy" style={{ textDecoration: 'none' }} >
               <Typography sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>
                 Chính sách bảo mật
               </Typography>

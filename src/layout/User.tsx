@@ -6,6 +6,9 @@ import Step1 from '../Feature/BookTicket/components/Step1';
 import Step3 from '../Feature/BookTicket/components/Step3';
 import Step4 from '../Feature/BookTicket/components/Step4';
 import User from '../Feature/User';
+import TermOfUsePage from '../Feature/BusinessPage/TermOfUsePage';
+import PrivacyPolicyPage from '../Feature/BusinessPage/PrivacyPolicyPage';
+import OperatingPolicyPage from '../Feature/BusinessPage/OperatingPolicyPage';
 
 export function UserLayout() {
     return (
@@ -31,6 +34,10 @@ export function UserLayout() {
                     <Route path="/chon-ghe" element={<Step3 />} />
                     <Route path="/thanh-toan" element={<Step4 />} />
                     <Route path="/nguoi-dung/*" element={<User />} />
+                    <Route path="/termofuse/*" element={<TermOfUsePage />} />
+                    <Route path="/privacypolicy/*" element={<PrivacyPolicyPage />} />
+                    <Route path="/operatingpolicy/*" element={<OperatingPolicyPage />} />
+
                 </Routes>
             </Box>
             <Box sx={{ gridArea: 'footer' }}>
