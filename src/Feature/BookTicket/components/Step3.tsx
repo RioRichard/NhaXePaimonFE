@@ -4,12 +4,14 @@ import Grid from '@mui/material/Grid';
 import { FormProvider, useForm } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { Button, Box, FormControlLabel, Radio, ButtonGroup, ToggleButton, Checkbox } from '@mui/material';
+import { Button, Box, FormControlLabel, Radio, Checkbox } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
+import { getFinalData } from '../BookTicketSlice';
+import { useAppSelector } from '../../../app/hooks';
 
 
 
@@ -18,6 +20,7 @@ export default function Step3() {
         // defaultValues: initialValues,
         // resolver: yupResolver(validationSchema)
     });
+    const finalData: any = useAppSelector(getFinalData);
     const status = [
         { id: 'GiN', name: 'Giường nằm' },
         { id: 'GhN', name: 'Ghế nằm' },
