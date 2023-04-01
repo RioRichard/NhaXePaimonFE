@@ -5,7 +5,7 @@ import { updateFormData } from "../BookTicketSlice";
 import { history } from "../../../utils";
 
 export default function Step1Page() {
-    const dispatch = useAppDispatch();
+    /* const dispatch = useAppDispatch();
     const handleSubmit = (values: Order) => {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -23,8 +23,8 @@ export default function Step1Page() {
                 resolve(true);
             }, 10);
         });
-    }
+    } */
     return (
-        <Step1 onSubmit={handleSubmit}></Step1>
+        <></>
     );
 }

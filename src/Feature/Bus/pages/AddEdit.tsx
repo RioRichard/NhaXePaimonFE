@@ -46,23 +46,32 @@ export default function AddEdit() {
         }
     }, [status, error]);
 
-    const handleSubmit = (values: Bus) => {
-        console.log(values);
+    const handleSubmit = (values: any) => {
+        const data = {
+            ...values,
+            type: values.type.id
+        }
 
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (isEditMode) {
                     // edit
-                    dispatch(busActions.updateBus(values));
+                    dispatch(busActions.updateBus(data));
                 } else {
                     // add
-                    dispatch(busActions.createBus(values));
+                    dispatch(busActions.createBus(data));
                 }
                 resolve(true);
             }, 1000);
         });
-    };
-    const initialValues = isEditMode ? bus && bus : undefined;
+    };/*  */
+    console.log("bus",bus!);
+    
+    const defaultBus:any={
+        ...bus,
+        type:{ id:bus?.type, name: bus?.type },
+    }
+    const initialValues = isEditMode ? defaultBus && defaultBus : undefined;
     return (
         <Stack spacing={4}>
             {(!isEditMode || Boolean(bus)) && (

@@ -1,15 +1,12 @@
 import { PaginationParams } from "../../../model";
+import { Routes } from "../../Routes/types";
 import { Staff } from "../../Staff/types";
 
 export type Order = {
     id?: string;
-    userId?: string;
-    routeId?: string;
-    seatsId?: string;
+    route?: Routes;
     status?: string;
-    paymentInfo?: number;
-    from_id?: string;
-    to_id?:string;
+    paymentInfo?: string;
 }
 export type OrderState = {
     status: 'idle' | 'loading' | 'error' | 'success';
@@ -21,7 +18,7 @@ export type OrderState = {
 
 export type OrderFormProps = {
     onSubmit: (values: Order) => void;
-    initialValues: Order;
+    initialValues?: Order;
     isEditMode?: boolean;
 };
 
