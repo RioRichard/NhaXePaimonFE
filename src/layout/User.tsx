@@ -5,7 +5,6 @@ import { Box } from '@mui/material';
 import Step1 from '../Feature/BookTicket/components/Step1';
 import Step3 from '../Feature/BookTicket/components/Step3';
 import Step4 from '../Feature/BookTicket/components/Step4';
-import Step1Page from '../Feature/BookTicket/page/Step1Page';
 import User from '../Feature/User';
 
 export function UserLayout() {
@@ -28,7 +27,7 @@ export function UserLayout() {
             }}>
                 <Routes>
                     <Route path="/" element={<Navigate to="trang-chu" />} />
-                    <Route path="trang-chu" element={<Step1Page />} />
+                    <Route path="trang-chu" element={<Step1 />} />
                     <Route path="/chon-ghe" element={<Step3 />} />
                     <Route path="/thanh-toan" element={<Step4 />} />
                     <Route path="/nguoi-dung/*" element={<User />} />

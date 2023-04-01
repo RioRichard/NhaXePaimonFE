@@ -15,10 +15,8 @@ import React from 'react';
 import { IParams } from '../../../model';
 import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
-import { SelectDateField } from '../../../custom-fields/SelectDateField';
-import { Step1FormProps } from '../types';
-export default function Step1(props:Step1FormProps) {
-    const {onSubmit} = props;
+import { SelectoptionValue } from '../../../custom-fields/SelectOptionValue';
+export default function Step1() {
     const dispatch = useAppDispatch();
     const { queryParams } = useQueryParams<IParams>();
     const methods = useForm<any>({
@@ -41,13 +39,12 @@ export default function Step1(props:Step1FormProps) {
      React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
     }, [queryParams]);
-    console.log(listBase.bases)
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg" >
                 <Box sx={{ bgcolor: '', height: '100vh' }}>
                     <Container maxWidth="lg">
-                        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+                        <form autoComplete="off">
                             <Grid container spacing={4}>
                                 <Grid item md={12}>
                                     <Typography variant="h5" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
@@ -61,7 +58,7 @@ export default function Step1(props:Step1FormProps) {
                                             <SelectSearchField name="to_id" label="Chọn điểm đến *" options={listBase?.bases!} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />
+                                            <SelectoptionValue name="dateStart" label="Ngày đi *" options={indents!} />
                                         </Grid>
                                     </Grid>
                                 </Grid>
