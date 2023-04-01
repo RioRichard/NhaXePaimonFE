@@ -17,9 +17,8 @@ import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
 import { SelectDateField } from '../../../custom-fields/SelectDateField';
 import { Step1FormProps } from '../types';
-import { getFinalData } from '../BookTicketSlice';
-export default function Step1(props: Step1FormProps) {
-    const { onSubmit } = props;
+export default function Step1(props:Step1FormProps) {
+    const {onSubmit} = props;
     const dispatch = useAppDispatch();
     const { queryParams } = useQueryParams<IParams>();
     const methods = useForm<any>({
@@ -29,21 +28,20 @@ export default function Step1(props: Step1FormProps) {
         watch,
     } = methods;
     //use watch to check the value in SelectField
-    const from_id = watch('from_id');
-    const to_id = watch('to_id');
+    const departure = watch('departure');
+    const destination = watch('destination');
     const dateStart = watch('dateStart');
     var indents: any = [];
     for (var i = 0; i < 5; i++) {
         indents.push(moment().add(i, 'days').format("DD-MM-YYYY"));
     }
     // connect store
-    const listBase: any = useAppSelector(selectBasesList);
-    const finalData: any = useAppSelector(getFinalData);
-    console.log(finalData)
-    // dispatch fetch list
-    React.useEffect(() => {
+    const listBase : any = useAppSelector(selectBasesList);
+     // dispatch fetch list
+     React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
     }, [queryParams]);
+    console.log(listBase.bases)
     return (
         <FormProvider {...methods}>
             <Container maxWidth="lg" >
@@ -144,7 +142,7 @@ export default function Step1(props: Step1FormProps) {
                             </Grid>
 
                             <Stack direction="row-reverse" spacing={2} sx={{ marginTop: "15px" }}>
-                                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && to_id && from_id) ? false : true} sx={{ ml: 1 }}>
+                                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
                                     <Link to="/chon-ghe" style={{ textDecoration: 'none' }} >
                                         Tiếp tục
                                     </Link>
