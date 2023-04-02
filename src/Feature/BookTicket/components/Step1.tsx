@@ -70,7 +70,7 @@ export default function Step1(props: { onSubmit: any, page: any, setPage: any, f
                                             <SelectSearchField name="destination" label="Chọn điểm đến *" options={listBase?.bases} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />
+                                            <SelectoptionValue name="dateStart" label="Ngày đi *" options={indents!} />
                                         </Grid>
                                     </Grid>
                                 </Grid>

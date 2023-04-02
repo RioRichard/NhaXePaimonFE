@@ -10,12 +10,13 @@ import { useQueryParams } from '../../Hooks';
 import { ConfirmDialogProps, IParams, MessageProps } from '../../../model';
 import { routesActions, selectRoutesList, selectRoutesStatus, selectRoutessuccess } from '../RoutesSlice';
 import { selectBasesError } from '../../Base/BaseSlice';
+import { Notification, ConfirmDialog } from '../../../components/Common';
 export default function Main() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const [routes, setRoutes] = React.useState<Routes[]>([]);
-    const { queryParams, updateParams } = useQueryParams<IParams>();
+    const { queryParams } = useQueryParams<IParams>();
 
     // connect store
     const listRoutes: any = useAppSelector(selectRoutesList);
@@ -28,8 +29,7 @@ export default function Main() {
         message: '',
         type: 'success'
     });
-    console.log(listRoutes?.routes);
-    
+
     React.useEffect(() => {
         dispatch(routesActions.fetchRoutes(queryParams));
     }, [queryParams]);
@@ -75,8 +75,8 @@ export default function Main() {
     const onRoutesDeleteClick = (routes: Routes) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa tuyến này ${routes.id}`,
-            subTitle: `Bạn có chắc chắn muốn xóa tuyến ${routes.id}? <br/> Bạn không thể hoàn tác thao tác này!!!`,
+            title: `Xóa tuyến "${routes.id} "? `,
+            subTitle: `Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({
                     ...confirmDialog,
@@ -112,6 +112,10 @@ export default function Main() {
                 onRoutesDeleteClick={onRoutesDeleteClick}
                 onRoutesEditClick={onRoutesEditClick}
             />
+            {/* Notification */}
+            <Notification notify={notify} setNotify={setNotify} />
+            {/* Dialog confirm before delete data */}
+            <ConfirmDialog confirmDialog={confirmDialog} setConfirmDialog={setConfirmDialog} />
         </Stack>
 
     )

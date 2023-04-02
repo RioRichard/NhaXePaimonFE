@@ -19,7 +19,7 @@ function* routesCreate(action: PayloadAction<Routes>) {
     try {
         const data: Response<Routes> = yield call(routeApi.createRoutes, action.payload);
         yield put(routesActions.createRoutesSuccess(data));
-        yield call(history.push, '/admin/routes');
+        yield call(history.push, '/admin/route');
     } catch (error: any) {
         yield put(routesActions.createRoutesFailed(error));
     }
@@ -29,7 +29,7 @@ function* routesUpdate(action: PayloadAction<Routes>) {
     try {
         const data: Response<Routes> = yield call(routeApi.updateRoutes, action.payload);
         yield put(routesActions.updateRoutesSuccess(data));
-        yield call(history.push, '/admin/routes');
+        yield call(history.push, '/admin/route');
     } catch (error: any) {
         yield put(routesActions.updateRoutesFailed(error));
     }

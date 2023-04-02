@@ -36,10 +36,7 @@ export default function RouteList(props: RoutesListProps) {
                         <TableCell>Thời gian khởi hành</TableCell>
                         <TableCell>Thời gian đến</TableCell>
                         <TableCell>Xe</TableCell>
-                        <TableCell>Tài xế</TableCell>
-                        <TableCell>Phu xe</TableCell>
                         <TableCell>Giá</TableCell>
-                        <TableCell>Trạng Thái</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
                     </TableRow>
                 </TableHead>
@@ -47,17 +44,14 @@ export default function RouteList(props: RoutesListProps) {
                     {rows?.map((row, index) => {
                         return (
                             <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
+                                <TableCell>{index + 1 }</TableCell>
                                 <TableCell>{row.id}</TableCell>
-                                <TableCell>{row.from.address}</TableCell>
-                                <TableCell>{row.to.address}</TableCell>
+                                <TableCell>{row.from.name}</TableCell>
+                                <TableCell>{row.to.name}</TableCell>
                                 <TableCell>{moment(row.departure).format('DD/MM/YYYY')}</TableCell>
                                 <TableCell>{moment(row.arrival).format('DD/MM/YYYY')}</TableCell>
                                 <TableCell>{row?.bus?.bus_number}</TableCell>
-                                <TableCell>{row.driver}</TableCell>
-                                <TableCell>{row.extraStaff}</TableCell>
                                 <TableCell>{row.price}</TableCell>
-                                <TableCell>{row.status}</TableCell>
                                 <TableCell align="center">
                                     <Stack direction="row" spacing={2} justifyContent="center">
                                         <Tippy content="Chỉnh sửa tuyến đi">
