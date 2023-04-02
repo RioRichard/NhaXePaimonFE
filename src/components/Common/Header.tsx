@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme?: any) => ({
 }));
 
 export function Header() {
-/*     const dispatch = useAppDispatch(); */
+    /*     const dispatch = useAppDispatch(); */
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-/* 
-    const currentUser = useAppSelector(selectIsUser); */
+    /* 
+        const currentUser = useAppSelector(selectIsUser); */
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         if (anchorEl !== event.currentTarget) {
@@ -55,10 +55,10 @@ export function Header() {
         setAnchorEl(null);
     };
 
-/*     const handleLogout = () => {
-        dispatch(authActions.logout());
-    }; */
-
+    /*     const handleLogout = () => {
+            dispatch(authActions.logout());
+        }; */
+    console.log("Hello");
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ boxShadow: 0, background: '#fff', color: '#111' }}>
