@@ -45,6 +45,8 @@ export default function Step1(props: { onSubmit: any, page: any, setPage: any, f
     }
     // connect store
     const listBase: any = useAppSelector(selectBasesList);
+    console.log("listBase",listBase);
+    
     // dispatch fetch list
     React.useEffect(() => {
         dispatch(baseActions.fetchBases(queryParams));
@@ -62,10 +64,10 @@ export default function Step1(props: { onSubmit: any, page: any, setPage: any, f
                                     </Typography>
                                     <Grid container spacing={8}>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={listBase?.bases!} />
+                                            <SelectSearchField name="departure" label="Chọn điểm đi *" options={listBase?.bases} />
                                         </Grid>
                                         <Grid item md={4}>
-                                            <SelectSearchField name="destination" label="Chọn điểm đến *" options={listBase?.bases!} />
+                                            <SelectSearchField name="destination" label="Chọn điểm đến *" options={listBase?.bases} />
                                         </Grid>
                                         <Grid item md={4}>
                                             <SelectDateField name="dateStart" label="Ngày đi *" options={indents!} />

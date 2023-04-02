@@ -36,9 +36,6 @@ export default function Main() {
         <>
             <Box>
                 {conditionalComponent()}
-                <Button onClick={handleSubmit}>
-                    {page === 0 || page === 1 ? "Next" : "Submit"}
-                </Button>
             </Box>
         </>
     )

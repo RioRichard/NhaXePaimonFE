@@ -29,7 +29,7 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
         // defaultValues: initialValues,
         // resolver: yupResolver(validationSchema)
     });
-    
+
     const status = [
         { id: 'GiN', name: 'Thường' },
         { id: 'GhN', name: 'VIP' },
@@ -49,17 +49,27 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
             setSelected(true)
         }
     }
-    const param:IParams={
+    const param: IParams = {
         ...queryParams,
-        fromId:formData?.from_id,
-        toId:formData?.to_id,
+        fromId: formData?.from_id,
+        toId: formData?.to_id,
     }
     React.useEffect(() => {
         dispatch(routesActions.fetchRoutes(param));
     }, [queryParams]);
-    const routes=useAppSelector(selectRoutesList);
-    console.log(routes);
-    
+    const routes: any = useAppSelector(selectRoutesList);
+    // console.log("routes",routes);
+    const r1 = routes?.routes[0]?.bus?.seats;
+    React.useEffect(() => {
+        setRoute(
+            routes?.routes?.map((item: any) => {
+                return {
+                    ...item,
+                };
+            })
+        );
+    }, [routes?.routes]);
+    console.log("r1", r1);
 
     return (
         <FormProvider {...methods}>
@@ -86,31 +96,13 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                     <InputField name="description" label="" multiline rows={3} />
                                 </Grid>
 
-                                <Grid item md={4} container columnSpacing={1}>
-                                    <Grid md={1}></Grid>
-                                    <Grid md={3}>
-                                        <Stack direction='column' spacing={1}>
-                                            <Checkbox disabled icon={<Button disabled variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        </Stack>
-                                    </Grid>
-                                    <Grid md={1}></Grid>
-                                    <Grid md={3}>
-                                        <Stack direction='column' spacing={1}>
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        </Stack>
-                                    </Grid>
-                                    <Grid md={1}></Grid>
-                                    <Stack direction='column' spacing={1}>
-                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                    </Stack>
+                                <Grid item md={3} container columnSpacing={1}>
+                                    {r1?.map((item: any) => (
+                                        <Checkbox icon={<Button variant="outlined">{item?.name}</Button>} checkedIcon={<Button variant="contained">{item?.name}</Button>} />
+                                    ))
+                                    }
                                 </Grid>
-                                <Grid item md={4}>
+                                <Grid item md={5}>
                                     <Stack direction={'column'} spacing={2} sx={{ backgroundColor: '#f5f5f5', alignItems: 'center' }}>
                                         <h2 style={{ borderBottom: "#C1C1C1 1px solid", lineHeight: "60px", width: '80%' }} >Chi tiết vé</h2>
                                         <Stack direction="row" spacing={3} sx={{ justifyContent: 'center' }}>
