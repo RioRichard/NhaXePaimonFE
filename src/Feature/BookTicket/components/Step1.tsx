@@ -15,7 +15,7 @@ import React from 'react';
 import { IParams } from '../../../model';
 import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
-import { SelectDateField } from '../../../custom-fields/SelectDateField';
+import { SelectoptionValue } from '../../../custom-fields/SelectOptionValue';
 import { Step1FormProps } from '../types';
 export default function Step1(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
     const { onSubmit, page, setPage, formData, setFormData } = props;
