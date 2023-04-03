@@ -33,9 +33,9 @@ const baseSlice = createSlice({
             state.listBases = action.payload.data;
             state.pagination = action.payload.pagination;
         },
-        fetchBaessFailed: (state, action: PayloadAction<string>) => {
+        fetchBaessFailed: (state, action: PayloadAction<any>) => {
             state.status = 'error';
-            state.error = action.payload;
+            state.error = action.payload.message;
             state.success = undefined;
         },
         createBases: (state, action: PayloadAction<Base>) => {

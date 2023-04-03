@@ -9,6 +9,7 @@ import User from '../Feature/User';
 import TermOfUsePage from '../Feature/BusinessPage/TermOfUsePage';
 import PrivacyPolicyPage from '../Feature/BusinessPage/PrivacyPolicyPage';
 import OperatingPolicyPage from '../Feature/BusinessPage/OperatingPolicyPage';
+import BookTicket from '../Feature/BookTicket';
 
 export function UserLayout() {
     return (
@@ -30,9 +31,10 @@ export function UserLayout() {
             }}>
                 <Routes>
                     <Route path="/" element={<Navigate to="trang-chu" />} />
-                    <Route path="trang-chu" element={<Step1 />} />
-                    <Route path="/chon-ghe" element={<Step3 />} />
-                    <Route path="/thanh-toan" element={<Step4 />} />
+                    <Route path="trang-chu" element={<BookTicket />} />
+                    {/* <Route path="trang-chu" element={<Step1Page />} /> */}
+{/*                     <Route path="/chon-ghe" element={<Step3 />} />
+                    <Route path="/thanh-toan" element={<Step4 />} /> */}
                     <Route path="/nguoi-dung/*" element={<User />} />
                     <Route path="/termofuse/*" element={<TermOfUsePage />} />
                     <Route path="/privacypolicy/*" element={<PrivacyPolicyPage />} />

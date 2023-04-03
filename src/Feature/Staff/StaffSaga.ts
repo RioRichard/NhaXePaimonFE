@@ -30,7 +30,7 @@ function* staffUpdate(action: PayloadAction<Staff>) {
     try {
         const data: Response<Staff> = yield call(staffApi.updateStaff, action.payload);
         yield put(staffActions.updateStaffSuccess(data));
-        yield call(history.push, '/admin/base');
+        yield call(history.push, '/admin/staff');
     } catch (error: any) {
         yield put(staffActions.updateStaffFailed(error));
     }

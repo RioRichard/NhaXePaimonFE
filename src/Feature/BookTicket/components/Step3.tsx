@@ -10,17 +10,29 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import { SelectSearchField } from '../../../custom-fields/SelectSearchField';
 import { RadioField, InputField } from '../../../custom-fields';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../Routes/types';
+import { useQueryParams } from '../../Hooks';
+import { IParams } from '../../../model';
+import { routesActions, selectRoutesList } from '../../Routes/RoutesSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 
 
-export default function Step3() {
+export default function Step3(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
+    const dispatch = useAppDispatch();
+
+    const { onSubmit, page, setPage, formData, setFormData } = props;
+    const { queryParams, updateParams } = useQueryParams<IParams>();
+    const [route, setRoute] = React.useState<Routes>();
+    const [selected, setSelected] = React.useState(false);
     const methods = useForm<any>({
         // defaultValues: initialValues,
         // resolver: yupResolver(validationSchema)
     });
+
     const status = [
-        { id: 'GiN', name: 'Giường nằm' },
-        { id: 'GhN', name: 'Ghế nằm' },
+        { id: 'GiN', name: 'Thường' },
+        { id: 'GhN', name: 'VIP' },
     ];
     const [alignment, setAlignment] = React.useState('web');
     const handleChange = (
@@ -37,7 +49,27 @@ export default function Step3() {
             setSelected(true)
         }
     }
-    const [selected, setSelected] = React.useState(false);
+    const param: IParams = {
+        ...queryParams,
+        fromId: formData?.from_id,
+        toId: formData?.to_id,
+    }
+    React.useEffect(() => {
+        dispatch(routesActions.fetchRoutes(param));
+    }, [queryParams]);
+    const routes: any = useAppSelector(selectRoutesList);
+    // console.log("routes",routes);
+    const r1 = routes?.routes[0]?.bus?.seats;
+    React.useEffect(() => {
+        setRoute(
+            routes?.routes?.map((item: any) => {
+                return {
+                    ...item,
+                };
+            })
+        );
+    }, [routes?.routes]);
+    console.log("r1", r1);
 
     return (
         <FormProvider {...methods}>
@@ -49,8 +81,7 @@ export default function Step3() {
                             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                                 <Grid item md={4}>
                                     <Typography align='left' fontSize={'16px'} fontWeight={'bold'}>Từ ... đến ...</Typography>
-                                    <SelectSearchField name="seatType" label="Chọn loại ghế *" options={status} />
-                                    <SelectSearchField name="xiexie" label="Chọn chuyến xe *" options={status} />
+                                    <SelectSearchField name="busType" label="Chọn loại xe *" options={status} />
                                     <Typography align='left' fontSize={'16px'}>Nơi lên xe</Typography>
                                     <RadioField name="inplace" label="">
                                         <FormControlLabel value="1" control={<Radio />} label="Bến" />
@@ -65,31 +96,13 @@ export default function Step3() {
                                     <InputField name="description" label="" multiline rows={3} />
                                 </Grid>
 
-                                <Grid item md={4} container columnSpacing={1}>
-                                    <Grid md={1}></Grid>
-                                    <Grid md={3}>
-                                        <Stack direction='column' spacing={1}>
-                                            <Checkbox disabled icon={<Button disabled variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        </Stack>
-                                    </Grid>
-                                    <Grid md={1}></Grid>
-                                    <Grid md={3}>
-                                        <Stack direction='column' spacing={1}>
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                            <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        </Stack>
-                                    </Grid>
-                                    <Grid md={1}></Grid>
-                                    <Stack direction='column' spacing={1}>
-                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                        <Checkbox icon={<Button variant="outlined">A1</Button>} checkedIcon={<Button variant="contained">A1</Button>} />
-                                    </Stack>
+                                <Grid item md={3} container columnSpacing={1}>
+                                    {r1?.map((item: any) => (
+                                        <Checkbox icon={<Button variant="outlined">{item?.name}</Button>} checkedIcon={<Button variant="contained">{item?.name}</Button>} />
+                                    ))
+                                    }
                                 </Grid>
-                                <Grid item md={4}>
+                                <Grid item md={5}>
                                     <Stack direction={'column'} spacing={2} sx={{ backgroundColor: '#f5f5f5', alignItems: 'center' }}>
                                         <h2 style={{ borderBottom: "#C1C1C1 1px solid", lineHeight: "60px", width: '80%' }} >Chi tiết vé</h2>
                                         <Stack direction="row" spacing={3} sx={{ justifyContent: 'center' }}>
@@ -140,4 +153,5 @@ export default function Step3() {
         </FormProvider>
     )
 }
+
 

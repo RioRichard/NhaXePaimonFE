@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 
 
-export default function Step4() {
+export default function Step4(onSubmit:any) {
   const methods = useForm<any>({
   });
   return (
