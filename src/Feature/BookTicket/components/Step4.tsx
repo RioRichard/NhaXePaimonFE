@@ -7,11 +7,32 @@ import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
+import React from 'react';
+import { Response } from '../../../model';
+import routeApi from '../../../api/routeApi';
+import { Routes } from '../../Routes/types';
+import moment from 'moment';
 
-
-export default function Step4(onSubmit:any) {
+export default function Step4(props: { onSubmit: any, page: any, setPage: any, formData: any }) {
+  const { onSubmit, page, setPage, formData } = props;
   const methods = useForm<any>({
   });
+  const [route, setRoute] = React.useState<any>();
+  console.log("data", formData);
+  React.useEffect(() => {
+    if (!formData?.routeId) return;
+    (async () => {
+      try {
+        const response: Response<Routes> = await routeApi.fetchRoutesById(formData?.routeId);
+        const routesData: any = response.data;
+        setRoute(routesData.routes);
+      } catch (error) {
+        // navigate(-1);
+      }
+    })();
+  }, [formData?.routeId]);
+  console.log("route", route);
+
   return (
     <FormProvider {...methods}>
       <Container maxWidth="lg" >
@@ -56,18 +77,16 @@ export default function Step4(onSubmit:any) {
                           <TableRow style={{ height: "100px" }} >
                             <TableCell sx={{ textAlign: "left" }}>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Tuyến xe:  </Typography>
+                                Tuyến xe: {route?.from?.name + " - " + route?.to?.name} </Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Thời gian:  </Typography>
+                                Thời gian:  {moment(route?.arival).format('DD/MM/YYYY') + " đến " + moment(route?.departure).format('DD/MM/YYYY')}</Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Số lượng ghế: </Typography>
-                              <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Số ghế: </Typography>
+                                Số ghế: {formData?.seatName}</Typography>
                             </TableCell>
                           </TableRow>
                           <TableRow sx={{ height: "20px" }} >
                             <TableCell colSpan={3} sx={{ textAlign: "right", color: "black", fontSize: "21px" }}>
-                              Tổng tiền </TableCell>
+                              Tổng tiền: {route?.price}đ</TableCell>
                           </TableRow>
                         </Table>
                       </TableContainer>
@@ -82,19 +101,19 @@ export default function Step4(onSubmit:any) {
                 <Grid item md={12}>
                   <Grid container spacing={6}>
                     <Grid item md={6}>
-                      <Box sx={{height:"200px", weight:"100px", border:1}}>
+                      <Box sx={{ height: "200px", weight: "100px", border: 1 }}>
                         Thanh toán bằng thẻ nội địa
                       </Box>
                     </Grid>
                     <Grid item md={6}>
-                    <Box sx={{height:"200px", weight:"100px", border:1}}>
+                      <Box sx={{ height: "200px", weight: "100px", border: 1 }}>
                         Thanh toán bằng thẻ quốc tế
                       </Box>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-              <Stack sx={{marginTop:"10px"}}direction="row-reverse" spacing={2}>
+              <Stack sx={{ marginTop: "10px" }} direction="row-reverse" spacing={2}>
                 <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} sx={{ ml: 1 }}>
                   Thanh toán
                 </Button>

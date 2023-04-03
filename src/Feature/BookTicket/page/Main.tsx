@@ -10,16 +10,22 @@ export default function Main() {
     const [formData, setFormData] = useState({
         from_id: '',
         to_id: '',
-        departure: null
+        departure: null,
+        seatId: '',
+        seatName: '',
+        routeId: "",
+        userId: "",
+        status: "Chưa thanh toán",
+        paymentInfo: "Thanh toán tại quầy"
     });
     const conditionalComponent = () => {
         switch (page) {
             case 0:
-                return <Step1 onSubmit={handleSubmit} page={page} setPage={setPage} formData={formData} setFormData={setFormData}/>;
+                return <Step1 onSubmit={handleSubmit} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />;
             case 1:
-                return <Step3 onSubmit={handleSubmit} page={page} setPage={setPage} formData={formData} setFormData={setFormData}/>;
+                return <Step3 onSubmit={handleSubmit} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />;
             case 2:
-                return <Step4 onSubmit={handleSubmit}/>;
+                return <Step4 page={page} setPage={setPage} formData={formData} onSubmit={handleSubmit} />;
             // default:
             //     return <Step1 onSubmit={handleSubmit} />;
         }
@@ -27,11 +33,11 @@ export default function Main() {
 
     function handleSubmit() {
         console.log("holyshit dudime");
-        
+
         setPage(page + 1);
     }
     console.log(formData);
-    
+
     return (
         <>
             <Box>

@@ -18,7 +18,7 @@ export function UserLayout() {
                 `" header header" 
             "main main" 
             "footer footer"`,
-            minHeight: '100vh'
+            minHeight: '150vh'
         }}>
             <Box sx={{ gridArea: 'header' }}>
                 <Header />
@@ -29,14 +29,11 @@ export function UserLayout() {
                 <Routes>
                     <Route path="/" element={<Navigate to="trang-chu" />} />
                     <Route path="trang-chu" element={<BookTicket />} />
-                    {/* <Route path="trang-chu" element={<Step1Page />} /> */}
-{/*                     <Route path="/chon-ghe" element={<Step3 />} />
-                    <Route path="/thanh-toan" element={<Step4 />} /> */}
                     <Route path="/nguoi-dung/*" element={<User />} />
                 </Routes>
             </Box>
             <Box sx={{ gridArea: 'footer' }}>
-                <Footer />
+                <Footer></Footer>
             </Box>
         </Box>
     )

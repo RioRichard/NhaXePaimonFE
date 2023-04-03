@@ -15,8 +15,7 @@ import React from 'react';
 import { IParams } from '../../../model';
 import { selectBasesList } from '../../Base/BaseSlice';
 import { baseActions } from '../../Base/BaseSlice';
-import { SelectDateField } from '../../../custom-fields/SelectDateField';
-import { Step1FormProps } from '../types';
+import { SelectoptionValue } from '../../../custom-fields/SelectOptionValue';
 export default function Step1(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
     const { onSubmit, page, setPage, formData, setFormData } = props;
     const dispatch = useAppDispatch();
@@ -63,14 +62,11 @@ export default function Step1(props: { onSubmit: any, page: any, setPage: any, f
                                         HỢP ĐỒNG/ MUA VÉ TRỰC TUYẾN
                                     </Typography>
                                     <Grid container spacing={8}>
-                                        <Grid item md={4}>
+                                        <Grid item md={6}>
                                             <SelectSearchField name="departure" label="Chọn điểm đi *" options={listBase?.bases} />
                                         </Grid>
-                                        <Grid item md={4}>
+                                        <Grid item md={6}>
                                             <SelectSearchField name="destination" label="Chọn điểm đến *" options={listBase?.bases} />
-                                        </Grid>
-                                        <Grid item md={4}>
-                                            <SelectoptionValue name="dateStart" label="Ngày đi *" options={indents!} />
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -150,7 +146,7 @@ export default function Step1(props: { onSubmit: any, page: any, setPage: any, f
                                 </Grid>
                             </Grid>
                             <Stack direction="row-reverse" spacing={2} sx={{ marginTop: "15px" }}>
-                                <Button type='submit' variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(dateStart && destination && departure) ? false : true} sx={{ ml: 1 }}>
+                                <Button type='submit' variant="contained" color="primary" startIcon={<ArrowForwardIcon />} disabled={(destination && departure) ? false : true} sx={{ ml: 1 }}>
                                     Tiếp tục
                                 </Button>
                             </Stack>
