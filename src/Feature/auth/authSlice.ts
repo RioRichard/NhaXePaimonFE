@@ -15,6 +15,7 @@ export interface AuthState {
     currentUser?: User;
     error?: string;
     success?: string;
+    currentAdminUser?: User;
 }
 
 const initialState: AuthState = {
@@ -53,7 +54,7 @@ const authSlice = createSlice({
         },
         adminLogout(state) {
             state.isLoggedIn = false;
-            state.currentUser = undefined;
+            state.currentAdminUser = undefined;
             state.success = undefined;
         },
         logout(state) {
@@ -90,6 +91,10 @@ const authSlice = createSlice({
 
         setMe(state, action: PayloadAction<User>) {
             state.currentUser = action.payload;
+        },
+        
+        setAdminMe(state, action: PayloadAction<User>) {
+            state.currentAdminUser = action.payload;
         }
     }
 });
@@ -102,6 +107,7 @@ export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 export const selectIsLogging = (state: RootState) => state.auth.logging;
 export const selectIsError = (state: RootState) => state.auth.error;
 export const selectIsUser = (state: RootState) => state.auth.currentUser;
+export const selectIsAdminUser = (state: RootState) => state.auth.currentAdminUser;
 export const selectIsSuccess = (state: RootState) => state.auth.success;
 
 // Reducer
