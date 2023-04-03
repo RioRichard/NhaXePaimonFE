@@ -13,12 +13,14 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import { authActions } from '../Feature/auth/authSlice';
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { selectIsUser } from '../Feature/auth/authSlice';
 
 export function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const dispatch = useAppDispatch();
+  const currentUser: any = useAppSelector(selectIsUser);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -37,7 +39,7 @@ export function Navbar() {
 
   const handleLogout = () => {
     dispatch(authActions.logout());
-};
+  };
   return (
     <AppBar position="static" style={{ backgroundColor: "orange" }}>
       <Container maxWidth="xl" >
@@ -58,7 +60,6 @@ export function Navbar() {
           >
             PAIMON
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -88,22 +89,21 @@ export function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Link to="#" style={{ textDecoration: 'none' }} >
-                <MenuItem sx={{ color: 'black' }} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Điều khoản hoạt động</Typography>
-                </MenuItem>
+              <Link to="operatingpolicy" style={{ textDecoration: 'none' }} >
+                <Typography sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>
+                  Điều khoản hoạt động
+                </Typography>
               </Link>
-              <Link to="#" style={{ textDecoration: 'none' }} >
-                <MenuItem sx={{ color: 'black' }} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Chính sách hoạt động</Typography>
-                </MenuItem>
+              <Link to="/termofuse" style={{ textDecoration: 'none' }} >
+                <Typography sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>
+                  Chính sách hoạt động
+                </Typography>
               </Link>
-              <Link to="#" style={{ textDecoration: 'none' }} >
-                <MenuItem sx={{ color: 'black' }} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Chính sách bảo mật</Typography>
-                </MenuItem>
+              <Link to="/privacypolicy" style={{ textDecoration: 'none' }} >
+                <Typography sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>
+                  Chính sách bảo mật
+                </Typography>
               </Link>
-
             </Menu>
           </Box>
 
@@ -143,7 +143,11 @@ export function Navbar() {
               </Typography>
             </Link>
           </Box>
-
+          <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+            <Link to="ownUserManagement" style={{ textDecoration: 'none' }} >
+              <Typography variant="h2" sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>{currentUser && currentUser?.data?.user?.username}</Typography>
+            </Link>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -167,7 +171,9 @@ export function Navbar() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Account</Typography>
+                <Link to="ownUserManagement" style={{ textDecoration: 'none' }} >
+                  <Typography textAlign="center">Account</Typography>
+                </Link>
               </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>

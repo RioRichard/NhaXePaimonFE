@@ -1,4 +1,4 @@
-import { ResponseAuth } from '../Feature/auth/types';
+import { User } from '../Feature/User/types'
 import axiosClient from './axiosClient';
 
 const authApi = {
@@ -11,6 +11,12 @@ const authApi = {
     register(data: object) {
         return axiosClient.post('auth/register', data);
     },
+    getMe(): Promise<User> {
+        return axiosClient.get('authen/getme');
+    },
+    getMeAdmin(): Promise<User> {
+        return axiosClient.get('authen/admin/getme');
+    }
 };
 
 export default authApi;

@@ -8,22 +8,23 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.svg';
-import { Order } from '../../Order/types';
+import { Bus } from '../../Bus/types';
 import Chip from '@mui/material/Chip';
-import BoltIcon from '@mui/icons-material/Bolt';
-interface OrderListProps {
-    rows: Order[];
+import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
+
+interface BusListProps {
+    rows: Bus[];
 }
-export default function BookTicketList(props: OrderListProps) {
-    const { rows } = props;
+export default function BusList(props: BusListProps) {
+    const { rows } = props
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 250 }}>
             <Table size="small" stickyHeader>
                 <TableHead>
                     <TableRow>
                         <TableCell>#</TableCell>
-                        <TableCell align="center">Mã đơn đặt vé</TableCell>
-                        <TableCell align="center">Tình trạng</TableCell>
+                        <TableCell align="center">Mã xe</TableCell>
+                        <TableCell align="center">Loại xe</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -35,7 +36,7 @@ export default function BookTicketList(props: OrderListProps) {
                                 </TableCell>
                                 <TableCell align="center">{row.id}</TableCell>
                                 <TableCell align="center">
-                                    <Chip icon={<BoltIcon />} label={row.status} size="small" color="warning" variant="outlined" />
+                                    <Chip icon={<AirportShuttleIcon />} label={row?.type} size="small" color="warning" variant="outlined" />
                                 </TableCell>
                             </TableRow>
                         ))
@@ -46,10 +47,10 @@ export default function BookTicketList(props: OrderListProps) {
                                 Không có dữ liệu
                             </Typography>
                         </TableCell>
-                    </TableRow>)}
+                    </TableRow>)
+                    }
                 </TableBody>
             </Table>
         </TableContainer>
     );
 }
-

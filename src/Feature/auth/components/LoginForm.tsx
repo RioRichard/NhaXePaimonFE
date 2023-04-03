@@ -9,6 +9,7 @@ import { LoginFormProps } from '../types';
 import { selectIsLogging, LoginPayload } from '../authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppSelector } from '../../../app/hooks';
+import storage from '../../../utils/storage';
 
 export default function LoginForm(props: LoginFormProps) {
     const { onSubmit } = props;
@@ -24,11 +25,14 @@ export default function LoginForm(props: LoginFormProps) {
 
     const { handleSubmit } = methods;
 
+    const handleLogout = () => {
+        storage.clearAdminToken();
+    }
     const isLogging = useAppSelector(selectIsLogging);
 
     return (
         <FormProvider {...methods}>
-            <form  onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+            <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                 <Grid container direction="column">
                     <Grid item>
                         <InputField name="username" label="Username" />
@@ -42,8 +46,8 @@ export default function LoginForm(props: LoginFormProps) {
                         </Link> */}
                     </Grid>
                     <br />
-                    <Grid item>
-                        <Button fullWidth variant="contained" color="primary" type="submit" size="large">
+                    <Grid item> 
+                        <Button onClick={handleLogout} fullWidth variant="contained" color="primary" type="submit" size="large">
                             Đăng nhập
                         </Button>
                     </Grid>

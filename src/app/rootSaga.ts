@@ -6,6 +6,7 @@ import busSaga from "../Feature/Bus/BusSaga";
 import userSaga from "../Feature/User/userSaga";
 import authSaga from "../Feature/auth/authSaga";
 import orderSaga from "../Feature/Order/orderSaga";
+import dashboardSaga from "../Feature/Dashboard/dashboardSaga";
 import { all } from 'redux-saga/effects';
 export default function* rootSaga() {
     yield all([
@@ -17,5 +18,6 @@ export default function* rootSaga() {
         userSaga(),
         authSaga(),
         orderSaga(),
+        dashboardSaga(),
     ]);
 }

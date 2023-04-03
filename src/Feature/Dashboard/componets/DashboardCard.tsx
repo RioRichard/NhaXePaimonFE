@@ -7,9 +7,6 @@ import { DashboardCardProps } from '../types';
 
 export default function DashboardCard(props: DashboardCardProps) {
     const { icon, title, count } = props;
-
-   
-
     return (
         <Card>
             <CardHeader
@@ -19,16 +16,17 @@ export default function DashboardCard(props: DashboardCardProps) {
                     </Avatar>
                 }
                 titleTypographyProps={{
-                    fontSize: 14
+                    fontSize: 18
                 }}
                 title={title}
             />
             <CardContent sx={{ padding: '8px 16px' }}>
                 <Box display="flex" alignItems="baseline">
-                    <Typography fontWeight={550} fontSize={22} sx={{ mr: 1 }}>
-                         {count} 
+                    <Typography>số lượng</Typography>
+                    <Typography fontWeight={550} fontSize={22} sx={{ ml: 1 }}>
+                        {count}
                     </Typography>
-                    <Typography>tài sản</Typography>
+
                 </Box>
             </CardContent>
         </Card>

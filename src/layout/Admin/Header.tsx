@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useAppDispatch } from '../../app/hooks';
 import { authActions } from '../../Feature/auth/authSlice';
+import { selectIsAdminUser } from '../../Feature/auth/authSlice';
+import { useAppSelector } from '../../app/hooks';
 import * as React from 'react';
 
 const useStyles = makeStyles(theme => ({
@@ -44,7 +46,7 @@ export function Header() {
 
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+    const currentAdminUser: any = useAppSelector(selectIsAdminUser);
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         if (anchorEl !== event.currentTarget) {
             setAnchorEl(event.currentTarget);
@@ -71,7 +73,7 @@ export function Header() {
                     </Box>
                     <Box>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            {/* <Typography sx={{ mr: 1 }}> {currentUser && currentUser.userName}</Typography> */}
+                            <Typography sx={{ mr: 1 }}> {currentAdminUser && currentAdminUser?.data?.manager?.username}</Typography>
                             <IconButton size="small" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit">
                                 <AccountCircle fontSize="small" />
                             </IconButton>
