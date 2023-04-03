@@ -18,7 +18,7 @@ function* staffFetch(action: PayloadAction<IParams>) {
 }
 function* staffCreate(action: PayloadAction<Staff>) {
     try {
-        const data: Response<Staff> = yield call(staffApi.createStaff, action.payload);
+        const data: Response<Staff> = yield call(staffApi.createStaff, action.payload); 
         yield put(staffActions.createStaffSuccess(data));
         yield call(history.push, '/admin/staff');
     } catch (error: any) {

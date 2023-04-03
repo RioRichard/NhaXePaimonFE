@@ -4,6 +4,7 @@ import { Notification } from '../../../components/Common';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import React from 'react';
 import { authActions, LoginPayload, selectIsError, selectIsSuccess } from '../authSlice';
+import userLoginImage from '../../../assets/images/userLogin.jpg'
 
 export default function LoginPage() {
     const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export default function LoginPage() {
     };
     return (
         <Box sx={{
-            backgroundImage: `url(https://i1-vnexpress.vnecdn.net/2021/04/08/Xe-Bus-Dien-VinFast-VnExpress-12-1617869550.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=QtGfexgpQhQLsIuHd7yKlg)`,
+            backgroundImage: `url(${userLoginImage})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",

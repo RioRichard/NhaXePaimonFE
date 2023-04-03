@@ -9,16 +9,18 @@ import orderReducer from '../Feature/Order/orderSlice';
 import authReducer from '../Feature/auth/authSlice';
 import rootSaga from './rootSaga';
 import createSagaMiddleware from 'redux-saga';
+import dashboardReducer from '../Feature/Dashboard/dashboardSlice';
 
 const rootReducer = combineReducers({
     manager: managerReducer,
     bases: basesReducer,
     staff: staffReducer,
     routes: routesReducer,
-    bus:busReducer,
+    bus: busReducer,
     user: userReducer,
     auth: authReducer,
     order: orderReducer,
+    dashboard: dashboardReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

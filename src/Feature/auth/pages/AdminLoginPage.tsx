@@ -4,6 +4,7 @@ import { Notification } from '../../../components/Common';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import React from 'react';
 import { authActions, LoginPayload, selectIsError, selectIsSuccess } from '../authSlice';
+import adminLoginImage from '../../../assets/images/adminLogin.jpg'
 
 export default function AdminLoginPage() {
     const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export default function AdminLoginPage() {
     };
     return (
         <Box sx={{
-            backgroundImage: `url(https://previews.123rf.com/images/peshkov/peshkov1906/peshkov190600457/124294224-coding-and-hacking-concept-hacker-with-abstract-coding-text-on-blurry-background-double-exposure.jpg)`,
+            backgroundImage: `url(${adminLoginImage})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",

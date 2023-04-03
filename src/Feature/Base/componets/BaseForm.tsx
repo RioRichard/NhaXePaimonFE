@@ -33,10 +33,10 @@ export default function BaseForm(props: BasesFormProps) {
             <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={8} >
                     <Grid item xs={12} >
-                        <Typography variant="h2">Thêm cơ sở</Typography>
+                        <Typography variant="h2">Sửa địa điểm</Typography>
                         <br />
-                        <InputField name="name" label="Tên cơ sở *" />
-                        <InputField name="address" label="Địa chỉ cơ sở *" />
+                        <InputField name="name" label="Tên địa điểm *" />
+                        <InputField name="address" label="Địa chỉ *" />
                     </Grid>
                 </Grid>
                 <Box sx={{ mt: 4, textAlign: 'end' }}>

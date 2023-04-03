@@ -8,15 +8,16 @@ import { LoginFormProps } from '../types';
 import { selectIsLogging, LoginPayload } from '../authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppSelector } from '../../../app/hooks';
-
+import storage from '../../../utils/storage';
 export default function AdminLoginForm(props: LoginFormProps) {
     const { onSubmit } = props;
     const validationSchema = Yup.object().shape({
         username: Yup.string().required('Vui lòng nhập tên người dùng của bạn.'),
         pass: Yup.string().required('Vui lòng nhập mật khẩu của bạn.')
     });
-
-
+    const handleLogout = () => {
+        storage.clearToken();
+    }
     const methods = useForm<LoginPayload>({
         resolver: yupResolver(validationSchema)
     });
@@ -42,7 +43,7 @@ export default function AdminLoginForm(props: LoginFormProps) {
                     </Grid>
                     <br />
                     <Grid item>
-                        <Button fullWidth variant="contained" color="primary" type="submit" size="large">
+                        <Button onClick={handleLogout} fullWidth variant="contained" color="primary" type="submit" size="large">
                             Đăng nhập
                         </Button>
                     </Grid>
