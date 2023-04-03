@@ -58,7 +58,6 @@ export function Header() {
 /*     const handleLogout = () => {
         dispatch(authActions.logout());
     }; */
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ boxShadow: 0, background: '#fff', color: '#111' }}>

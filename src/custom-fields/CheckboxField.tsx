@@ -5,11 +5,13 @@ interface CheckboxFieldProps {
     name: any;
     label?: string;
     disabled?: boolean;
+    icon?: any;
+    checkedIcon?: any
 }
 
 export function CheckboxField(props: CheckboxFieldProps) {
     const { control } = useFormContext();
-    const { name, label, disabled } = props;
+    const { name, label, disabled, icon, checkedIcon } = props;
 
     return (
         <Controller
@@ -19,7 +21,7 @@ export function CheckboxField(props: CheckboxFieldProps) {
             render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <FormControl error={!!error}>
                     <FormGroup>
-                        <FormControlLabel disabled={disabled} control={<Checkbox checked={value} value={value} onChange={onChange} />} label={label} />
+                        <FormControlLabel disabled={disabled} control={<Checkbox icon={icon} checkedIcon={checkedIcon} checked={value} value={value} onChange={onChange} />} label={label} />
                     </FormGroup>
                     <FormHelperText>{error && error?.message}</FormHelperText>
                 </FormControl>
