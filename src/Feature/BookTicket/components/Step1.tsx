@@ -44,7 +44,6 @@ export default function Step1(props: { onSubmit: any, page: any, setPage: any, f
     }
     // connect store
     const listBase: any = useAppSelector(selectBasesList);
-    console.log("listBase",listBase);
     
     // dispatch fetch list
     React.useEffect(() => {

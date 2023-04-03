@@ -3,10 +3,10 @@ import { useState } from "react";
 import Step1 from "../components/Step1";
 import Step3 from "../components/Step3";
 import Step4 from "../components/Step4";
+import Success from "../components/Success";
 
 export default function Main() {
     const [page, setPage] = useState(0);
-    console.log(page);
     const [formData, setFormData] = useState({
         from_id: '',
         to_id: '',
@@ -14,7 +14,7 @@ export default function Main() {
         seatId: '',
         seatName: '',
         routeId: "",
-        userId: "",
+        user: null,
         status: "Chưa thanh toán",
         paymentInfo: "Thanh toán tại quầy"
     });
@@ -25,18 +25,18 @@ export default function Main() {
             case 1:
                 return <Step3 onSubmit={handleSubmit} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />;
             case 2:
-                return <Step4 page={page} setPage={setPage} formData={formData} onSubmit={handleSubmit} />;
+                return <Step4 page={page} setPage={setPage} formData={formData} />;
+            case 3:
+                return <Success></Success>;
+                
             // default:
             //     return <Step1 onSubmit={handleSubmit} />;
         }
     };
 
     function handleSubmit() {
-        console.log("holyshit dudime");
-
         setPage(page + 1);
     }
-    console.log(formData);
 
     return (
         <>

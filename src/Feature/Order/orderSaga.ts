@@ -25,9 +25,8 @@ function* orderUpdate(action: PayloadAction<Order>) {
 }
 function* orderCreate(action: PayloadAction<Order>) {
     try {
-        const data: Response<Order> = yield call(orderApi.createOrder, action.payload);
-        yield put(orderActions.createOrderSuccess(data));
-        yield call(history.push, '/admin/order');
+        const data: Response<Order> = yield call(orderApi.createOrder, action.payload); 
+        yield put(orderActions.createOrderSuccess(data));;
     } catch (error: any) {
         yield put(orderActions.createOrderFailed(error));
     }

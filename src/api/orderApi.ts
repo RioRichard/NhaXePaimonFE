@@ -10,6 +10,8 @@ const orderApi = {
         return axiosClient.get(`/orders/${id}`);
     },
     createOrder(data: Order): Promise<Response<Order>> {
+        console.log("post", data);
+        
         return axiosClient.post('/orders', data);
     },
     deleteOrder(data: Order): Promise<Response<Order>> {

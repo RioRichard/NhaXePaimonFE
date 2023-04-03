@@ -18,10 +18,15 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import moment from 'moment';
 import { Response } from '../../../model';
 import routeApi from '../../../api/routeApi';
+import { authActions, selectIsUser } from '../../auth/authSlice';
+import storage from '../../../utils/storage';
+import authApi from '../../../api/authApi';
 
 
 export default function Step3(props: { onSubmit: any, page: any, setPage: any, formData: any, setFormData: any }) {
     const dispatch = useAppDispatch();
+    const currentUser = useAppSelector(selectIsUser);
+    const isLoggedIn = Boolean(storage.getAccessToken());
 
     const { onSubmit, page, setPage, formData, setFormData } = props;
     const { queryParams, updateParams } = useQueryParams<IParams>();
@@ -59,7 +64,18 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
     React.useEffect(() => {
         dispatch(routesActions.fetchRoutes(param));
     }, [queryParams]);
+    React.useEffect(() => {
+        (async () => {
+            if (isLoggedIn && !currentUser) {
+                const user = await authApi.getMe();
+                dispatch(authActions.setMe(user));
+            }
+        })();
+        
+    }, [dispatch, isLoggedIn]);
+    const isUser: any = useAppSelector(selectIsUser);
     const routes: any = useAppSelector(selectRoutesList);
+    
     // const r1 = routes?.routes[0]?.bus?.seats;
     React.useEffect(() => {
         setRoute(
@@ -99,7 +115,8 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
             ...formData,
             seatId: selectedSeat,
             routeId: routeId,
-            seatName:selectedSeatname
+            seatName: selectedSeatname,
+            user:isUser
         })
         setPage(page + 1);
     }
@@ -145,7 +162,7 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
 
                                             <Grid height={'100px'} item md={3} container columnSpacing={1}>
                                                 {selectedRoute?.bus?.seats?.map((item: any) => (
-                                                    <Checkbox disabled={chosen}  onChange={handleSelect} name={item?.name} key={item?.id} value={item?.id} icon={<Button disabled={chosen} style={{ maxWidth: "10px" }} variant="outlined">{item?.name}</Button>} checkedIcon={<Button style={{ maxWidth: "10px" }} variant="contained">{item?.name}</Button>} />
+                                                    <Checkbox disabled={chosen} onChange={handleSelect} name={item?.name} key={item?.id} value={item?.id} icon={<Button disabled={chosen} style={{ maxWidth: "10px" }} variant="outlined">{item?.name}</Button>} checkedIcon={<Button style={{ maxWidth: "10px" }} variant="contained">{item?.name}</Button>} />
                                                 ))
                                                 }
                                             </Grid>
@@ -154,27 +171,35 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                                     <h2 style={{ borderBottom: "#C1C1C1 1px solid", lineHeight: "60px", width: '80%' }} >Chi tiết vé</h2>
                                                     <Stack direction="row" spacing={3} sx={{ justifyContent: 'center' }}>
                                                         <Typography align='right' fontSize={'16px'}>Họ và tên:</Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>Họ và tên</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{isUser?.data?.user.name}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='right' fontSize={'16px'}>Điện thoại:</Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>0327387506</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{isUser?.data?.user.phone}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
-                                                        <Typography align='left' fontSize={'16px'}>Họ và tên:</Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>Họ và tên</Typography>
+                                                        <Typography align='right' fontSize={'16px'}>Nơi khởi hành:</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.from?.address}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
-                                                        <Typography align='left' fontSize={'16px'}>Họ và tên:    </Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>Họ và tên</Typography>
+                                                        <Typography align='right' fontSize={'16px'}>Nơi xuống xe:    </Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.to?.address}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
-                                                        <Typography align='left' fontSize={'16px'}>Họ và tên:    </Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>Họ và tên</Typography>
+                                                        <Typography align='right' fontSize={'16px'}>Giờ khởi hành: </Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{moment(selectedRoute?.arrival).format('DD/MM/YYYY')}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
-                                                        <Typography align='left' fontSize={'16px'}>Họ và tên:    </Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>Họ và tên</Typography>
+                                                        <Typography align='left' fontSize={'16px'}>Số xe:    </Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.bus?.bus_number}</Typography>
+                                                    </Stack>
+                                                    <Stack direction="row" spacing={3}>
+                                                        <Typography align='left' fontSize={'16px'}>Loại xe:    </Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.bus?.type}</Typography>
+                                                    </Stack>
+                                                    <Stack direction="row" spacing={3}>
+                                                        <Typography align='left' fontSize={'16px'}>Số ghế:    </Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedSeatname}</Typography>
                                                     </Stack>
                                                 </Stack>
                                             </Grid>
