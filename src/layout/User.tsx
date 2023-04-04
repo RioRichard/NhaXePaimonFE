@@ -19,7 +19,7 @@ export function UserLayout() {
                 `" header header" 
             "main main" 
             "footer footer"`,
-            minHeight: '100vh'
+            minHeight: '150vh'
         }}>
             <Box sx={{ gridArea: 'header' }}>
                 <Header />
@@ -39,7 +39,7 @@ export function UserLayout() {
                 </Routes>
             </Box>
             <Box sx={{ gridArea: 'footer' }}>
-                <Footer />
+                <Footer></Footer>
             </Box>
         </Box>
     )

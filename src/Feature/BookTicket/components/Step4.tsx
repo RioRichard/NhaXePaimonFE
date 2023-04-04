@@ -7,17 +7,59 @@ import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
+import React from 'react';
+import { Response } from '../../../model';
+import routeApi from '../../../api/routeApi';
+import { Routes } from '../../Routes/types';
+import moment from 'moment';
+import { orderActions } from '../../Order/orderSlice';
+import { useAppDispatch } from '../../../app/hooks';
 
-
-export default function Step4(onSubmit:any) {
+export default function Step4(props: { page: any, setPage: any, formData: any }) {
+  const dispatch = useAppDispatch();
+  const { page, setPage, formData } = props;
   const methods = useForm<any>({
   });
+  const [route, setRoute] = React.useState<any>();
+  React.useEffect(() => {
+    if (!formData?.routeId) return;
+    (async () => {
+      try {
+        const response: Response<Routes> = await routeApi.fetchRoutesById(formData?.routeId);
+        const routesData: any = response.data;
+        setRoute(routesData.routes);
+      } catch (error) {
+        // navigate(-1);
+      }
+    })();
+  }, [formData?.routeId]);
+  function handleSubmit() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // add
+        const newData: any = {
+          seatId: [
+            formData?.seatId
+          ],
+          routeId: formData?.routeId,
+          userId: formData?.user?.data?.user?.id,
+          status: "Chưa thanh toán",
+          paymentInfo: "Thanh toán tại quầy"
+        }
+        console.log("huh?", newData);
+
+        dispatch(orderActions.createOrder(newData));
+        resolve(true);
+      }, 1000);
+      setPage(page + 1);
+    });
+  }
   return (
     <FormProvider {...methods}>
       <Container maxWidth="lg" >
         <Box sx={{ bgcolor: '', height: '100vh' }}>
           <Container maxWidth="lg">
-            <form autoComplete="off">
+            <form autoComplete="off" onSubmit={handleSubmit} >
               <Grid container spacing={4}>
                 <Grid item md={12}>
                   <Typography variant="h1" sx={{ mb: 2, lineHeight: "70px", fontStyle: "bold", }}>
@@ -42,11 +84,9 @@ export default function Step4(onSubmit:any) {
                           <TableRow style={{ height: "100px" }} >
                             <TableCell sx={{ textAlign: "left" }}>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Họ tên:  </Typography>
+                                Họ tên: {formData?.user?.data?.user?.name}</Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Số điện thoại:  </Typography>
-                              <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Email: </Typography>
+                                Số điện thoại:  {formData?.user?.data?.user?.phone}</Typography>
                             </TableCell>
                           </TableRow>
                           <TableRow sx={{ height: "20px" }} >
@@ -56,18 +96,16 @@ export default function Step4(onSubmit:any) {
                           <TableRow style={{ height: "100px" }} >
                             <TableCell sx={{ textAlign: "left" }}>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Tuyến xe:  </Typography>
+                                Tuyến xe: {route?.from?.name + " - " + route?.to?.name} </Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Thời gian:  </Typography>
+                                Thời gian:  {moment(route?.arival).format('DD/MM/YYYY') + " đến " + moment(route?.departure).format('DD/MM/YYYY')}</Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Số lượng ghế: </Typography>
-                              <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Số ghế: </Typography>
+                                Số ghế: {formData?.seatName}</Typography>
                             </TableCell>
                           </TableRow>
                           <TableRow sx={{ height: "20px" }} >
                             <TableCell colSpan={3} sx={{ textAlign: "right", color: "black", fontSize: "21px" }}>
-                              Tổng tiền </TableCell>
+                              Tổng tiền: {route?.price}đ</TableCell>
                           </TableRow>
                         </Table>
                       </TableContainer>
@@ -82,20 +120,20 @@ export default function Step4(onSubmit:any) {
                 <Grid item md={12}>
                   <Grid container spacing={6}>
                     <Grid item md={6}>
-                      <Box sx={{height:"200px", weight:"100px", border:1}}>
+                      <Box sx={{ height: "200px", weight: "100px", border: 1 }}>
                         Thanh toán bằng thẻ nội địa
                       </Box>
                     </Grid>
                     <Grid item md={6}>
-                    <Box sx={{height:"200px", weight:"100px", border:1}}>
+                      <Box sx={{ height: "200px", weight: "100px", border: 1 }}>
                         Thanh toán bằng thẻ quốc tế
                       </Box>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-              <Stack sx={{marginTop:"10px"}}direction="row-reverse" spacing={2}>
-                <Button variant="contained" color="primary" startIcon={<ArrowForwardIcon />} sx={{ ml: 1 }}>
+              <Stack sx={{ marginTop: "10px" }} direction="row-reverse" spacing={2}>
+                <Button type='submit' variant="contained" color="primary" startIcon={<ArrowForwardIcon />} sx={{ ml: 1 }}>
                   Thanh toán
                 </Button>
                 <Button variant="contained" color="primary" startIcon={<ArrowBackIcon />} sx={{ ml: 1 }}>
@@ -109,3 +147,4 @@ export default function Step4(onSubmit:any) {
     </FormProvider >
   );
 }
+
