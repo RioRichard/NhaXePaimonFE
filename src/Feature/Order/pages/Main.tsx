@@ -15,7 +15,7 @@ export default function Main() {
     const navigate = useNavigate();
     const location = useLocation();
     const [order, setOrder] = React.useState<Order[]>([]);
-    const { queryParams, updateParams } = useQueryParams<IParams>();
+    const { queryParams} = useQueryParams<IParams>();
 
     // connect store
     const listOrder: any = useAppSelector(selectOrdersList);

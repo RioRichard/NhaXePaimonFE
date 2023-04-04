@@ -41,9 +41,6 @@ export default function LoginForm(props: LoginFormProps) {
                         <PasswordField name="pass" label="Mật khẩu" />
                     </Grid>
                     <Grid item textAlign="end">
-                        {/* <Link to="/forgot-password">
-                            <Typography fontWeight={550}>Quên mật khẩu?</Typography>
-                        </Link> */}
                     </Grid>
                     <br />
                     <Grid item> 
