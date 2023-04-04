@@ -14,14 +14,14 @@ export default function AdminLoginPage() {
         type: 'success'
     });
 
-    const error = useAppSelector(selectIsError);
-    const success = useAppSelector(selectIsSuccess);
+    const error : any= useAppSelector(selectIsError);
+    const success :any = useAppSelector(selectIsSuccess);
 
     React.useEffect(() => {
         if (error) {
             setNotify({
                 isOpen: true,
-                message: error,
+                message: error?.message,
                 type: 'error'
             });
         }
@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
         if (success) {
             setNotify({
                 isOpen: true,
-                message: success,
+                message: success?.message,
                 type: 'success'
             });
         }

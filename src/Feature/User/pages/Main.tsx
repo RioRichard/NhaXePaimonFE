@@ -21,8 +21,8 @@ export default function Main() {
 
     // connect store
     const listUsers: any = useAppSelector(selectUsersList);
-    const error = useAppSelector(selectUserError);
-    const success = useAppSelector(selectUsersuccess);
+    const error: any = useAppSelector(selectUserError);
+    const success: any = useAppSelector(selectUsersuccess);
     const status = useAppSelector(selectUserStatus);
     // dispatch fetch list
     const [notify, setNotify] = React.useState<MessageProps>({
@@ -55,7 +55,7 @@ export default function Main() {
         if (status === 'error' && error) {
             setNotify({
                 isOpen: true,
-                message: error,
+                message: error?.message,
                 type: 'error'
             });
         }
@@ -65,7 +65,7 @@ export default function Main() {
         if (status === 'success' && success) {
             setNotify({
                 isOpen: true,
-                message: success,
+                message: success?.message,
                 type: 'success'
             });
         }

@@ -171,7 +171,7 @@ export function Navbar() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="ownUserManagement" style={{ textDecoration: 'none' }} >
+                <Link to="/tai-khoan" style={{ textDecoration: 'none' }} >
                   <Typography textAlign="center">Account</Typography>
                 </Link>
               </MenuItem>
