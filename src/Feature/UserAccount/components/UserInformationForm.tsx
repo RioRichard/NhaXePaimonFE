@@ -14,6 +14,8 @@ interface infoListProps {
 export default function UserInformationForm(props: infoListProps) {
     const { rows } = props
     const location = useLocation();
+    console.log("rows", rows);
+    
     return (
         <Container maxWidth="lg" style={{ marginTop: "40px" }} >
             <TableContainer sx={{ maxHeight: 600 }}>
@@ -51,14 +53,7 @@ export default function UserInformationForm(props: infoListProps) {
                 </Table>
             </TableContainer>
 
-            <Stack direction="row-reverse" spacing={2} sx={{ marginTop: "15px" }}>
-                <Link to={`${location.pathname}/sua-doi`} style={{ textDecoration: "none" }}>
-                    <Button variant="contained" color="primary" sx={{ ml: 1 }}>
-                        Sửa đổi thông tin tài khoản
-                    </Button>
-                </Link>
-
-            </Stack>
+            
         </Container>
 
     )

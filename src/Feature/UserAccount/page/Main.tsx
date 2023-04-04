@@ -19,7 +19,7 @@ export default function Main() {
     const { queryParams } = useQueryParams<IParams>();
     const currentUser: any = useAppSelector(selectIsUser);
     const currentUserOrder = currentUser?.data?.user?.orders;
-    const currentUserInfo = currentUser?.data?.user;
+    const currentUserInfo = currentUser;
     const error: any = useAppSelector(selectUserError);
     const success: any = useAppSelector(selectUsersuccess);
     const status = useAppSelector(selectUserStatus);
@@ -32,9 +32,6 @@ export default function Main() {
         type: 'success'
     });
 
-    React.useEffect(() => {
-        dispatch(userActions.fetchUsers(queryParams))
-    }, [queryParams]);
 
     React.useEffect(() => {
         setUser(
@@ -45,7 +42,6 @@ export default function Main() {
             })
         );
     }, [listUser?.users]);
-    console.log(currentUser)
     // show message
     React.useEffect(() => {
         if (status === 'error' && error) {
@@ -66,10 +62,11 @@ export default function Main() {
             });
         }
     }, [status, success]);
-
+    console.log(currentUserInfo);
+    
     return (
         <Stack >
-            <UserInformationForm rows={currentUserInfo!}></UserInformationForm>
+            <UserInformationForm rows={currentUserInfo}></UserInformationForm>
             <HistoryPaymentForm rows={currentUserOrder!}></HistoryPaymentForm>
             {/* Notification */}
             <Notification notify={notify} setNotify={setNotify} />

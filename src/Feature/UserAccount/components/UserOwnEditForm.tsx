@@ -20,7 +20,8 @@ export default function UserOwnEditForm(props: UserFormProps) {
         handleSubmit,
     } = methods;
 
-
+    console.log(initialValues);
+    
     return (
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">

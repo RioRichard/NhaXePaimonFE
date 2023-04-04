@@ -16,14 +16,15 @@ export default function Edit() {
     const dispatch = useDispatch();
     const [user, setUser] = React.useState<User>();
     const currentUser: any = useAppSelector(selectIsUser);
-    const userId = currentUser?.data?.user?.id
+    const userId = currentUser?.id
 
         React.useEffect(() => {
             if (!userId) return;
             (async () => {
                 try {
                     const response: Response<any> = await userApi.fetchUserById(userId);
-                    setUser(response.data.users);
+                    console.log(response);    
+                    setUser(response.data);
                 } catch (error) {
                 }
             })();
