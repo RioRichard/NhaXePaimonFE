@@ -7,6 +7,7 @@ import TermOfUsePage from '../Feature/BusinessPage/TermOfUsePage';
 import PrivacyPolicyPage from '../Feature/BusinessPage/PrivacyPolicyPage';
 import OperatingPolicyPage from '../Feature/BusinessPage/OperatingPolicyPage';
 import BookTicket from '../Feature/BookTicket';
+import UserAccount from '../Feature/UserAccount';
 
 export function UserLayout() {
     return (
@@ -33,6 +34,7 @@ export function UserLayout() {
                     <Route path="/termofuse/*" element={<TermOfUsePage />} />
                     <Route path="/privacypolicy/*" element={<PrivacyPolicyPage />} />
                     <Route path="/operatingpolicy/*" element={<OperatingPolicyPage />} />
+                    <Route path="tai-khoan/*" element={<UserAccount />} />
 
                 </Routes>
             </Box>

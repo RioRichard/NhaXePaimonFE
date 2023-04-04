@@ -54,6 +54,21 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.success = undefined;
         },
+        updateOwnUser: (state, action: PayloadAction<User>) => {
+            state.status = 'loading';
+            state.error = undefined;
+            state.success = undefined;
+        },
+        updateUserOwnSuccess: (state, action: PayloadAction<Response<User>>) => {
+            state.status = 'success';
+            state.error = undefined;
+            state.success = action.payload.message;
+        },
+        updateUserOwnFailed: (state, action: PayloadAction<string>) => {
+            state.status = 'error';
+            state.error = action.payload;
+            state.success = undefined;
+        },
         // create list
         createUser: (state, action: PayloadAction<User>) => {
             state.status = 'loading';

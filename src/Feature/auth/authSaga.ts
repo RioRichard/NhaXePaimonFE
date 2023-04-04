@@ -1,5 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import authApi from '../../api/authApi';
+import userApi from '../../api/userApi';
 import { User } from '../User/types';
 import { Response } from '../../model';
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
@@ -49,7 +50,7 @@ function* handleAdminLogout() {
 function* handleRegister(action: PayloadAction<User>) {
     try {
         yield delay(1000);
-        const data: Response<User> = yield call(authApi.register, action.payload);
+        const data: Response<User> = yield call(userApi.createUser, action.payload);
         yield put(authActions.registerSuccess(data));
         yield call(history.push, '/login');
     } catch (error: any) {
