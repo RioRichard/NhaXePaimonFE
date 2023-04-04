@@ -29,13 +29,13 @@ export default function AddEdit() {
         (async () => {
             try {
                 const response: Response<any> = await orderApi.fetchOrderById(orderId);
-                setOrder(response.data.orders);
+                setOrder(response.data);
             } catch (error) {
                 // navigate(-1);
             }
         })();
     }, [orderId]);
-
+    
     React.useEffect(() => {
         if (status === 'error' && error) {
             setNotify({
@@ -46,7 +46,6 @@ export default function AddEdit() {
         }
     }, [status, error]);
     const handleSubmit = (values: Order) => {
-        console.log("values",values);
         const putData={
             id:values.id,
             status:values.status,

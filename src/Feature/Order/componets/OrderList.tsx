@@ -12,6 +12,7 @@ import { ReactComponent as EmptySvg } from '../../../assets/images/grid-empty.sv
 import { Order, OrderListProps } from '../types';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
+import moment from 'moment';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
 export default function OrderList(props: OrderListProps) {
@@ -26,8 +27,8 @@ export default function OrderList(props: OrderListProps) {
                     <TableRow>
                         <TableCell>#</TableCell>
                         <TableCell>Mã đơn đặt vé</TableCell>
-                        <TableCell>Nơi đi</TableCell>
-                        <TableCell>Nơi đến</TableCell>
+                        <TableCell>Ngày đi</TableCell>
+                        <TableCell>Ngày đến</TableCell>
                         <TableCell>Trạng thái</TableCell>
                         <TableCell>Thông tin thanh toán</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
@@ -38,8 +39,8 @@ export default function OrderList(props: OrderListProps) {
                         <TableRow key={row?.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
                             <TableCell>{row.id}</TableCell>
-                            <TableCell>{row.route?.from.name}</TableCell>
-                            <TableCell>{row.route?.to.name}</TableCell>
+                            <TableCell>{moment(row?.route?.arrival).format('DD/MM/YYYY')}</TableCell>
+                            <TableCell>{moment(row?.route?.departure).format('DD/MM/YYYY')}</TableCell>
                             <TableCell>{row.status}</TableCell>
                             <TableCell>{row.paymentInfo}</TableCell>
                             <TableCell align="center">

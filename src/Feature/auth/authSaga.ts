@@ -26,7 +26,7 @@ function* handleAdminLogin(action: PayloadAction<LoginPayload>) {
         yield delay(1000);
         const response: ResponseAuth = yield call(authApi.adminLogin, action.payload);
         yield put(authActions.loginSuccess(response));
-        storage.setAdminAccessToken(response.data?.token);
+        storage.setAdminAccessToken(response.data?.managers);
         yield call(history.push, 'admin/trang-chu');
     } catch (error: any) {
         yield put(authActions.loginFailed(error));
