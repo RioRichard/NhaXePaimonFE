@@ -37,7 +37,6 @@ export default function RouteForm(props: RouteFormProps) {
             });
         }
     }
-    console.log(listBase)
     return (
         <FormProvider {...methods} >
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" >

@@ -59,30 +59,47 @@ export default function AddEdit() {
 
 
     const handleSubmit = (values: Routes) => {
+        console.log("value", values);
+
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (isEditMode) {
                     // edit
-                    const newData = {
+                    const tempDeparture = new Date(values.departure?.value ? values.departure?.value : values.departure);
+                    const departure = tempDeparture.toISOString().slice(0, 19).replace('T', ' ');
+
+                    const tempArrival = new Date(values.arrival?.value ? values.arrival?.value : values.arrival);
+                    const arrival = tempArrival.toISOString().slice(0, 19).replace('T', ' ');
+
+                    const newData: any = {
                         id: routeId,
-                        departure: values.departure,
-                        arrival: values.arrival,
-                        bus_id: values.bus?.id,
-                        from_id: values.from?.id,
-                        to_id: values.to?.id,
+                        departure: departure,
+                        arrival: arrival,
+                        bus: values.bus?.id,
+                        fromId: values.from?.id,
+                        toId: values.to?.id,
                         price: values.price,
                     }
+
+
                     dispatch(routesActions.updateRoutes(newData));
                 } else {
                     // add
-                    const newData = {
-                        departure: values.departure?.value,
-                        arrival: values.arrival?.value,
-                        bus_id: values.bus?.id,
-                        from_id: values.from?.id,
-                        to_id: values.to?.id,
+                    const tempDeparture = new Date(values.departure?.value);
+                    const departure = tempDeparture.toISOString().slice(0, 19).replace('T', ' ');
+
+                    const tempArrival = new Date(values.arrival?.value);
+                    const arrival = tempArrival.toISOString().slice(0, 19).replace('T', ' ');
+
+                    const newData: any = {
+                        departure: departure,
+                        arrival: arrival,
+                        bus: values.bus?.id,
+                        fromId: values.from?.id,
+                        toId: values.to?.id,
                         price: values.price,
                     }
+                    console.log(departure);
                     dispatch(routesActions.createRoutes(newData));
                 }
                 resolve(true);
@@ -90,8 +107,7 @@ export default function AddEdit() {
         });
     };
     const initialValues = isEditMode ? routes && routes : undefined;
-    if(listBase?.bases && listBus?.buses)
-    {
+    if (listBase?.bases && listBus?.buses) {
         return (
             <Stack spacing={4}>
                 {(!isEditMode || Boolean(routes)) && (
@@ -108,9 +124,9 @@ export default function AddEdit() {
             </Stack>
         );
     }
-    else{
+    else {
         return <>
         </>
     }
-    }
- 
+}
+
