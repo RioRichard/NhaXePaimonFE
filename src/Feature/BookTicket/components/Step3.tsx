@@ -98,6 +98,8 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
         setSelectedSeatName(event.target.name)
         setChose(true);
     }
+    console.log(selectedRoute);
+    
     React.useEffect(() => {
         if (!routeId) return;
         (async () => {
@@ -120,6 +122,8 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
         })
         setPage(page + 1);
     }
+    console.log("isUser",selectedRoute);
+    
     return (
         <>
             {count === 0 ?
@@ -171,11 +175,11 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                                     <h2 style={{ borderBottom: "#C1C1C1 1px solid", lineHeight: "60px", width: '80%' }} >Chi tiết vé</h2>
                                                     <Stack direction="row" spacing={3} sx={{ justifyContent: 'center' }}>
                                                         <Typography align='right' fontSize={'16px'}>Họ và tên:</Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{isUser?.data?.user.name}</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{isUser?.name}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='right' fontSize={'16px'}>Điện thoại:</Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{isUser?.data?.user.phone}</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{isUser?.phone}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='right' fontSize={'16px'}>Nơi khởi hành:</Typography>

@@ -33,16 +33,16 @@ export default function Step4(props: { page: any, setPage: any, formData: any })
       }
     })();
   }, [formData?.routeId]);
+  console.log(formData);
+  
   function handleSubmit() {
     return new Promise((resolve) => {
       setTimeout(() => {
         // add
         const newData: any = {
-          seatId: [
-            formData?.seatId
-          ],
+          seatId: formData?.seatId,
           routeId: formData?.routeId,
-          userId: formData?.user?.data?.user?.id,
+          userId: formData?.user?.id,
           status: "Chưa thanh toán",
           paymentInfo: "Thanh toán tại quầy"
         }
@@ -84,9 +84,9 @@ export default function Step4(props: { page: any, setPage: any, formData: any })
                           <TableRow style={{ height: "100px" }} >
                             <TableCell sx={{ textAlign: "left" }}>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Họ tên: {formData?.user?.data?.user?.name}</Typography>
+                                Họ tên: {formData?.user?.name}</Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Số điện thoại:  {formData?.user?.data?.user?.phone}</Typography>
+                                Số điện thoại:  {formData?.user?.phone}</Typography>
                             </TableCell>
                           </TableRow>
                           <TableRow sx={{ height: "20px" }} >
