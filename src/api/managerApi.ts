@@ -9,8 +9,8 @@ const managerApi = {
     fetchManagerById(id: string): Promise<Response<Manager>> {
         return axiosClient.get(`/managers/${id}`);
     },
-    updateManager(data: Manager): Promise<Response<Manager>> {
-        return axiosClient.put(`/managers/${data.id}`, data);
+    updateManager(data: any): Promise<Response<Manager>> {
+        return axiosClient.patch(`/managers/${data?.data?.id}`, data);
     },
     createManager(data: Manager): Promise<Response<Manager>> {
         return axiosClient.post(`/managers`, data);

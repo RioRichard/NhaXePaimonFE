@@ -39,12 +39,12 @@ const managerSlice = createSlice({
             state.success = undefined;
         },
         // upload list
-        updateManager: (state, action: PayloadAction<Manager>) => {
+        updateManager: (state, action: PayloadAction<any>) => {
             state.status = 'loading';
             state.error = undefined;
             state.success = undefined;
         },
-        updateManagerSuccess: (state, action: PayloadAction<Response<Manager>>) => {
+        updateManagerSuccess: (state, action: PayloadAction<Response<any>>) => {
             state.status = 'success';
             state.error = undefined;
             state.success = action.payload.message;
