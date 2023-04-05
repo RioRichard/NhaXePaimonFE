@@ -21,10 +21,12 @@ export default function HomePage() {
     const newBusList: any = useAppSelector(selectNewBusList);
     const newRouteList: any = useAppSelector(selectNewRouteList);
     const newUserList: any = useAppSelector(selectNewUserList);
+    console.log(newUserList);
+    
     const fiveNewBusList: any = newBusList?.buses?.slice(0, 5);
     const fiveNewOrderList: any = newOrderList?.orders?.slice(0, 5);
     const fiveNewRouteList: any = newRouteList?.routes?.slice(0, 5);
-    const fiveNewUserList: any = newUserList?.users?.slice(0, 5);
+    const fiveNewUserList: any = newUserList?.slice(0, 5);
     React.useEffect(() => {
         dispatch(dashboardActions.fetchData());
     }, []);

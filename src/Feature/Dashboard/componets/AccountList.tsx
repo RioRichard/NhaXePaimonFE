@@ -13,10 +13,12 @@ import Chip from '@mui/material/Chip';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
 interface UserListProps {
-    rows: User[];
+    rows: any[];
 }
 export default function AccountList(props: UserListProps) {
     const { rows } = props
+    console.log(rows);
+    
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 250 }}>
             <Table size="small" stickyHeader>

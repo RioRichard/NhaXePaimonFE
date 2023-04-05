@@ -145,7 +145,7 @@ export function Navbar() {
           </Box>
           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
             <Link to="ownUserManagement" style={{ textDecoration: 'none' }} >
-              <Typography variant="h2" sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>{currentUser && currentUser?.data?.user?.username}</Typography>
+              <Typography variant="h2" sx={{ my: 2, color: 'white', display: 'block' }} style={{ marginRight: "20px" }}>{currentUser && currentUser?.username}</Typography>
             </Link>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
