@@ -30,11 +30,13 @@ export default function UserForm(props: UserFormProps) {
                     <Grid item xs={6} md={6}>
                         <Typography variant="h5">Thông tin đăng nhập</Typography>
                         <br />
-                        <InputField name="username" label="Username *" />
                         {
-                            !isEditMode && (
+                            !isEditMode ? <>
+                                <InputField name="username" label="Username *" />
                                 <InputField name="password" label="Mật khẩu *" />
-                            )
+                            </>
+                                :
+                                <Typography>BẠN KHÔNG THỂ CHỈNH SỬA USERNAME VÀ PASSWORD</Typography>
                         }
                     </Grid>
                     <Grid item xs={6} md={6}>

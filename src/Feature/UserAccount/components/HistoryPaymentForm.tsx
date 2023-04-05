@@ -14,7 +14,7 @@ interface OrderListProps {
 }
 export default function HistoryPaymentForm(props: OrderListProps) {
     const { rows } = props
-    
+
     return (
         <Container maxWidth="lg" style={{ marginTop: "40px" }}>
             <TableContainer sx={{ maxHeight: 600 }}>
@@ -25,11 +25,13 @@ export default function HistoryPaymentForm(props: OrderListProps) {
                         </TableRow>
                         <TableRow>
                             <TableCell>#</TableCell>
-                            <TableCell>Chuyến xe đi</TableCell>
-                            <TableCell>Thời gian khởi hành</TableCell>
-                            <TableCell>Thời gian đến</TableCell>
-                            <TableCell>Số ghế</TableCell>
-                            <TableCell>Tình trạng</TableCell>
+                            <TableCell align="center">Mã đơn</TableCell>
+                            <TableCell align="center">Hình thức thanh toán</TableCell>
+                            {/*  <TableCell align="center">Loại xe</TableCell>
+                            <TableCell align="center">Thời gian khởi hành</TableCell>
+                            <TableCell align="center">Thời gian đến</TableCell>
+                            <TableCell align="center">Số ghế</TableCell> */}
+                            <TableCell align="center">Tình trạng</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -38,10 +40,11 @@ export default function HistoryPaymentForm(props: OrderListProps) {
                                 <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell component="th" scope="row"> {index + 1}</TableCell>
                                     <TableCell align="center">{row?.id}</TableCell>
-                                    <TableCell align="center">{row?.route?.bus?.bus_number}</TableCell>
+                                    <TableCell align="center">{row?.paymentInfo}</TableCell>
+                                    {/*   <TableCell align="center">{row?.route?.bus?.bus_number}</TableCell>
                                     <TableCell align="center">{moment(row?.route?.arrival).format('DD/MM/YYYY')}</TableCell>
                                     <TableCell align="center">{moment(row?.route?.departure).format('DD/MM/YYYY')}</TableCell>
-                                    <TableCell align="center">{row?.route?.bus?.seats?.name}</TableCell>
+                                    <TableCell align="center">{row?.route?.bus?.seats?.name}</TableCell> */}
                                     <TableCell align="center">{row?.status}</TableCell>
                                 </TableRow>
                             ))

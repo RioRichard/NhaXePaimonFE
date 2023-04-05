@@ -18,21 +18,30 @@ export default function Edit() {
     const currentUser: any = useAppSelector(selectIsUser);
     const userId = currentUser?.data?.user?.id
 
-        React.useEffect(() => {
-            if (!userId) return;
-            (async () => {
-                try {
-                    const response: Response<any> = await userApi.fetchUserById(userId);
-                    setUser(response.data.users);
-                } catch (error) {
-                }
-            })();
-        }, [userId]);
+    React.useEffect(() => {
+        if (!userId) return;
+        (async () => {
+            try {
+                const response: Response<any> = await userApi.fetchUserById(userId);
+                setUser(response.data.users);
+            } catch (error) {
+            }
+        })();
+    }, [userId]);
 
     const handleSubmit = (values: User) => {
         return new Promise((resolve) => {
             setTimeout(() => {
-                dispatch(userActions.updateOwnUser(values));
+                const newData = {
+                    propChanging: ["email", "phone", "name"],
+                    data: {
+                        id: values.id,
+                        email: values.email,
+                        phone: values.phone,
+                        name: values.name
+                    }
+                };
+                dispatch(userActions.updateOwnUser(newData));
                 resolve(true);
             }, 1000);
         });

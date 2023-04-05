@@ -30,7 +30,7 @@ export default function ManagerForm(props: ManagerFormProps) {
         handleSubmit,
     } = methods;
 
-    
+
     return (
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
@@ -38,8 +38,13 @@ export default function ManagerForm(props: ManagerFormProps) {
                     <Grid item xs={12} >
                         <Typography variant="h1">Thông tin manager</Typography>
                         <br />
-                        <InputField name="username" label="Username *" />
-                        <InputField name="email" label="Địa chỉ *" />
+
+                        {!isEditMode && <>
+                            <InputField name="username" label="Username *" />
+                            <InputField name="pass" label="Password *" />
+                        </>
+                        }
+                        <InputField name="email" label="Email *" />
                         <InputField name="phone" label="Số điện thoại *" />
                         <InputField name="role" label="Vai trò *" />
                     </Grid>

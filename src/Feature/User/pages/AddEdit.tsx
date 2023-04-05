@@ -30,8 +30,16 @@ export default function AddEdit() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (isEditMode) {
-                    // edit
-                    dispatch(userActions.updateUser(values));
+                    const newData = {
+                        propChanging: ["email", "phone", "name"],
+                        data: {
+                            id: values.id,
+                            email: values.email,
+                            phone: values.phone,
+                            name: values.name
+                        }
+                    };
+                    dispatch(userActions.updateUser(newData));
                 } else {
                     // add
                     dispatch(userActions.createUser(values));

@@ -48,8 +48,7 @@ export default function Main() {
             })
         );
     }, [listUsers?.users]);
-    console.log("listUsers", listUsers?.users)
-
+   
     // show message
     React.useEffect(() => {
         if (status === 'error' && error) {
@@ -65,7 +64,7 @@ export default function Main() {
         if (status === 'success' && success) {
             setNotify({
                 isOpen: true,
-                message: success?.message,
+                message: success,
                 type: 'success'
             });
         }

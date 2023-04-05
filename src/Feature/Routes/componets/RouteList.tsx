@@ -46,12 +46,12 @@ export default function RouteList(props: RoutesListProps) {
                             <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>{index + 1 }</TableCell>
                                 <TableCell>{row.id}</TableCell>
-                                <TableCell>{row.from.name}</TableCell>
-                                <TableCell>{row.to.name}</TableCell>
+                                <TableCell>{row?.from?.name}</TableCell>
+                                <TableCell>{row?.to?.name}</TableCell>
                                 <TableCell>{moment(row.departure).format('DD/MM/YYYY')}</TableCell>
                                 <TableCell>{moment(row.arrival).format('DD/MM/YYYY')}</TableCell>
                                 <TableCell>{row?.bus?.bus_number}</TableCell>
-                                <TableCell>{row.price}</TableCell>
+                                <TableCell>{row?.price}</TableCell>
                                 <TableCell align="center">
                                     <Stack direction="row" spacing={2} justifyContent="center">
                                         <Tippy content="Chỉnh sửa tuyến đi">

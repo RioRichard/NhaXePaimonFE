@@ -29,7 +29,6 @@ export default function UserOwnEditForm(props: UserFormProps) {
                     <Grid item xs={8} >
                         <Typography variant="h1">Sửa đổi thông tin tài khoản</Typography>
                         <br />
-                        <InputField name="username" label="Username *" />
                         <InputField name="name" label="Họ tên *" />
                         <InputField name="email" label="Địa chỉ *" />
                         <InputField name="phone" label="Số điện thoại *" />

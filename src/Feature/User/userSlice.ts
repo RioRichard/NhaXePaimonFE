@@ -39,30 +39,32 @@ const userSlice = createSlice({
             state.success = undefined;
         },
         // upload list
-        updateUser: (state, action: PayloadAction<User>) => {
+        updateUser: (state, action: PayloadAction<any>) => {
             state.status = 'loading';
             state.error = undefined;
             state.success = undefined;
         },
-        updateUserSuccess: (state, action: PayloadAction<Response<User>>) => {
+        updateUserSuccess: (state, action: PayloadAction<Response<any>>) => {
             state.status = 'success';
             state.error = undefined;
             state.success = action.payload.message;
+            console.log(action)
         },
         updateUserFailed: (state, action: PayloadAction<string>) => {
             state.status = 'error';
             state.error = action.payload;
             state.success = undefined;
         },
-        updateOwnUser: (state, action: PayloadAction<User>) => {
+        updateOwnUser: (state, action: PayloadAction<any>) => {
             state.status = 'loading';
             state.error = undefined;
             state.success = undefined;
         },
-        updateUserOwnSuccess: (state, action: PayloadAction<Response<User>>) => {
+        updateUserOwnSuccess: (state, action: PayloadAction<Response<any>>) => {
             state.status = 'success';
             state.error = undefined;
             state.success = action.payload.message;
+
         },
         updateUserOwnFailed: (state, action: PayloadAction<string>) => {
             state.status = 'error';

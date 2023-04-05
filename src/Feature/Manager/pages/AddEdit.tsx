@@ -27,11 +27,21 @@ export default function AddEdit() {
     }, [managerId]);
 
     const handleSubmit = (values: Manager) => {
+        console.log(values)
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (isEditMode) {
                     // edit
-                    dispatch(managerActions.updateManager(values));
+                    const newData = {
+                        propChanging: ["email", "phone", "name"],
+                        data: {
+                            id: values.id,
+                            email: values.email,
+                            phone: values.phone,
+                            name: values.name
+                        }
+                    };
+                    dispatch(managerActions.updateManager(newData));
                 } else {
                     // add
                     dispatch(managerActions.createManager(values));
