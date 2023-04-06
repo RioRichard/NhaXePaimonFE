@@ -41,15 +41,17 @@ const authSlice = createSlice({
             state.success = undefined;
         },
         loginSuccess(state, action: PayloadAction<ResponseAuth>) {
+            
             state.isLoggedIn = true;
             state.logging = false;
             state.error = undefined;
             state.success = undefined;
             // state.currentUser = action.payload.user;
         },
-        loginFailed(state, action: PayloadAction<string>) {
+        loginFailed(state, action: PayloadAction<any>) {
+            console.log(action);
             state.logging = false;
-            state.error = action.payload;
+            state.error = action.payload.response.data.message;
             state.success = undefined;
         },
         adminLogout(state) {

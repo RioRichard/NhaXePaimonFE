@@ -12,7 +12,6 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
     bus_number: Yup.string().required('Vui lòng nhập biển số'),
     // type: Yup.object().required('Vui lòng nhập loại xe'),
-    numberSeat: Yup.number().required('Vui lòng số lượng ghế')
 });
 
 export default function BusForm(props: BusFormProps) {
@@ -43,15 +42,6 @@ export default function BusForm(props: BusFormProps) {
                         <InputField name="bus_number" label="Biển số*" />
                         {/* <InputField name="type" label="Loại xe *" /> */}
                         <SelectSearchField name="type" label="Chọn loại xe *" options={busType!} />
-                        <Grid md={12} container columnSpacing={1}>
-                            {initialValues?.seats.map((item, index) => {
-                                return (
-                                    <div>
-                                        <Checkbox icon={<Button disabled={item.status} variant={item.status ? "contained" : "outlined"}>{item.name}</Button>} checkedIcon={<Button variant="contained">{item.name}</Button>} />
-                                    </div>
-                                )
-                            })}
-                        </Grid>
                         {isEditMode ? null : <InputField type='number' name="numberSeat" label="Số lượng ghế *" />}
                     </Grid>
                 </Grid>

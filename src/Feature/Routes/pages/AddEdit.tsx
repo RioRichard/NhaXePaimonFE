@@ -65,13 +65,13 @@ export default function AddEdit() {
                     // edit
                     const newData = {
                         id: routeId,
-                        departure: values.departure,
-                        arrival: values.arrival,
+                        departure: values.departure?.value,
+                        arrival: values.arrival?.value,
                         bus_id: values.bus?.id,
                         from_id: values.from?.id,
                         to_id: values.to?.id,
                         price: values.price,
-                    }
+                    }                  
                     dispatch(routesActions.updateRoutes(newData));
                 } else {
                     // add

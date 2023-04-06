@@ -38,8 +38,8 @@ export default function OrderList(props: OrderListProps) {
                         <TableRow key={row?.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
                             <TableCell>{row.id}</TableCell>
-                            <TableCell>{row.route?.from.name}</TableCell>
-                            <TableCell>{row.route?.to.name}</TableCell>
+                            <TableCell>{row.route?.from?.name}</TableCell>
+                            <TableCell>{row.route?.to?.name}</TableCell>
                             <TableCell>{row.status}</TableCell>
                             <TableCell>{row.paymentInfo}</TableCell>
                             <TableCell align="center">

@@ -59,11 +59,6 @@ export default function RouteList(props: RoutesListProps) {
                                                 <CreateIcon />
                                             </IconButton>
                                         </Tippy>
-                                        <Tippy content="Xóa tuyến đi">
-                                            <IconButton onClick={() => handleDeleteClick(row)}>
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        </Tippy>
                                     </Stack>
                                 </TableCell>
                             </TableRow>
