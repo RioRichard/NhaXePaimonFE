@@ -41,13 +41,13 @@ export default function Main() {
     }, [queryParams]);
     React.useEffect(() => {
         setUsers(
-            listUsers?.user?.map((item: any) => {
+            listUsers?.users?.map((item: any) => {
                 return {
                     ...item,
                 };
             })
         );
-    }, [listUsers?.user]);
+    }, [listUsers?.users]);
    
     // show message
     React.useEffect(() => {

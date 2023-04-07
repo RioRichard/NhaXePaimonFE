@@ -20,7 +20,7 @@ export default function AddEdit() {
         (async () => {
             try {
                 const response: Response<any> = await userApi.fetchUserById(userId);
-                setUsers(response.data.user);
+                setUsers(response.data.users);
             } catch (error) {
             }
         })();

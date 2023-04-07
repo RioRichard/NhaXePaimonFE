@@ -10,7 +10,7 @@ const userApi = {
         return axiosClient.get(`/users/${id}`);
     },
     updateUser(data: any): Promise<Response<User>> {    
-        return axiosClient.put(`/users/${data?._id}`, data);
+        return axiosClient.patch(`/users/${data?._id}`, data);
     },
     createUser(data: User): Promise<Response<User>> {
         return axiosClient.post(`/users`, data);
