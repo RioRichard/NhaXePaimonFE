@@ -31,7 +31,7 @@ export default function AddEdit() {
             setTimeout(() => {
                 if (isEditMode) {
                     const newData = {
-                        _id: values._id,
+                        id: values._id,
                         email: values.email,
                         phone: values.phone,
                         name: values.name

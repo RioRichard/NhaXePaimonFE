@@ -24,7 +24,7 @@ export default function HomePage() {
     const fiveNewBusList: any = newBusList?.buses?.slice(0, 5);
     const fiveNewOrderList: any = newOrderList?.order?.slice(0, 5);
     const fiveNewRouteList: any = newRouteList?.routes?.slice(0, 5);
-    const fiveNewUserList: any = newUserList?.user?.slice(0, 5);
+    const fiveNewUserList: any = newUserList?.users?.slice(0, 5);
     React.useEffect(() => {
         dispatch(dashboardActions.fetchData());
     }, []);

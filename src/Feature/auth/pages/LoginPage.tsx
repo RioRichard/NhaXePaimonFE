@@ -42,8 +42,6 @@ export default function LoginPage() {
             username: data.username,
             password: data.pass
         }
-
-        
         dispatch(authActions.login(newData));
     };
     return (

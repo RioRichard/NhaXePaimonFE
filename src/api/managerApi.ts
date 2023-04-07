@@ -10,7 +10,7 @@ const managerApi = {
         return axiosClient.get(`/managers/${id}`);
     },
     updateManager(data: any): Promise<Response<Manager>> {
-        return axiosClient.put(`/managers/${data?._id}`, data);
+        return axiosClient.patch(`/managers/${data?._id}`, data);
     },
     createManager(data: Manager): Promise<Response<Manager>> {
         console.log(data);

@@ -13,9 +13,7 @@ import { userActions, selectUsersList, selectUserError, selectUsersuccess, selec
 export default function Main() {
     const dispatch = useAppDispatch()
 
-    const listUser: any = useAppSelector(selectUsersList)
 
-    const [user, setUser] = React.useState<any[]>([]);
     const { queryParams } = useQueryParams<IParams>();
     const currentUser: any = useAppSelector(selectIsUser);
     const currentUserOrder = currentUser?.data?.user?.orders;
@@ -23,7 +21,6 @@ export default function Main() {
     const error: any = useAppSelector(selectUserError);
     const success: any = useAppSelector(selectUsersuccess);
     const status = useAppSelector(selectUserStatus);
-    const userId = currentUser?.data?.user?.id
 
     // dispatch fetch list
     const [notify, setNotify] = React.useState<MessageProps>({
@@ -32,19 +29,6 @@ export default function Main() {
         type: 'success'
     });
 
-    React.useEffect(() => {
-        dispatch(userActions.fetchUsers(queryParams))
-    }, [queryParams]);
-
-    React.useEffect(() => {
-        setUser(
-            listUser?.users?.map((item: any) => {
-                return {
-                    ...item,
-                };
-            })
-        );
-    }, [listUser?.users]);
     // show message
     React.useEffect(() => {
         if (status === 'error' && error) {
