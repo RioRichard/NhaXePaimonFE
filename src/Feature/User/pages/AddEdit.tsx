@@ -20,7 +20,7 @@ export default function AddEdit() {
         (async () => {
             try {
                 const response: Response<any> = await userApi.fetchUserById(userId);
-                setUsers(response.data.user);
+                setUsers(response.data.users);
             } catch (error) {
             }
         })();
@@ -31,7 +31,7 @@ export default function AddEdit() {
             setTimeout(() => {
                 if (isEditMode) {
                     const newData = {
-                        _id: values._id,
+                        id: values._id,
                         email: values.email,
                         phone: values.phone,
                         name: values.name
