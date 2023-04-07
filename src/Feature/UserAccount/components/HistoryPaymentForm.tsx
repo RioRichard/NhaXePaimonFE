@@ -39,7 +39,7 @@ export default function HistoryPaymentForm(props: OrderListProps) {
                             rows.map((row, index) => (
                                 <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell component="th" scope="row"> {index + 1}</TableCell>
-                                    <TableCell align="center">{row?.id}</TableCell>
+                                    <TableCell align="center">{row?._id}</TableCell>
                                     <TableCell align="center">{row?.paymentInfo}</TableCell>
                                     {/*   <TableCell align="center">{row?.route?.bus?.bus_number}</TableCell>
                                     <TableCell align="center">{moment(row?.route?.arrival).format('DD/MM/YYYY')}</TableCell>

@@ -2,10 +2,10 @@ import { PaginationParams } from "../../../model";
 import { Bus } from "../../Bus/types";
 
 export type Routes = {
-    id?: string;
-    bus?: Bus;
-    from?: any;
-    to?: any;
+    _id?: string;
+    bus_id?: Bus;
+    from_Id?: any;
+    to_Id?: any;
     departure?: any;
     arrival?: any;
     driver?: string;
@@ -13,7 +13,6 @@ export type Routes = {
     price?: string;
     status?: string;
     select?: boolean;
-    bus_id?: string;
     from_id?: string;
     to_id?: string;
 };

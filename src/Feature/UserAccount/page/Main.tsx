@@ -45,7 +45,6 @@ export default function Main() {
             })
         );
     }, [listUser?.users]);
-    console.log(currentUser)
     // show message
     React.useEffect(() => {
         if (status === 'error' && error) {

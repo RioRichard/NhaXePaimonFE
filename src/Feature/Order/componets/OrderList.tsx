@@ -15,10 +15,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
 export default function OrderList(props: OrderListProps) {
-    const { rows,onOrderEditClick } = props
+    const { rows, onOrderEditClick } = props
     const handleEditClick = (row: Order) => {
         if (onOrderEditClick) onOrderEditClick?.(row);
     };
+    console.log(rows);
+
     return (
         <TableContainer component={Paper} sx={{ maxHeight: 600, marginTop: "20px" }}>
             <Table sx={{ minWidth: 700 }} size="small">
@@ -26,8 +28,7 @@ export default function OrderList(props: OrderListProps) {
                     <TableRow>
                         <TableCell>#</TableCell>
                         <TableCell>Mã đơn đặt vé</TableCell>
-                        <TableCell>Nơi đi</TableCell>
-                        <TableCell>Nơi đến</TableCell>
+
                         <TableCell>Trạng thái</TableCell>
                         <TableCell>Thông tin thanh toán</TableCell>
                         <TableCell align="center">Tác vụ</TableCell>
@@ -35,11 +36,9 @@ export default function OrderList(props: OrderListProps) {
                 </TableHead>
                 <TableBody>
                     {rows?.map((row, index) => (
-                        <TableRow key={row?.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableRow key={row?._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell>{row.route?.from?.name}</TableCell>
-                            <TableCell>{row.route?.to?.name}</TableCell>
+                            <TableCell>{row._id}</TableCell>
                             <TableCell>{row.status}</TableCell>
                             <TableCell>{row.paymentInfo}</TableCell>
                             <TableCell align="center">

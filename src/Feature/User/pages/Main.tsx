@@ -41,13 +41,13 @@ export default function Main() {
     }, [queryParams]);
     React.useEffect(() => {
         setUsers(
-            listUsers?.users?.map((item: any) => {
+            listUsers?.user?.map((item: any) => {
                 return {
                     ...item,
                 };
             })
         );
-    }, [listUsers?.users]);
+    }, [listUsers?.user]);
    
     // show message
     React.useEffect(() => {
@@ -71,13 +71,13 @@ export default function Main() {
     }, [status, success]);
     // handle edit
     const handleUserEditClick = (users: User) => {
-        navigate(`${location.pathname}/${users.id}`);
+        navigate(`${location.pathname}/${users._id}`);
     };
     //handle delete
     const handleUserDeleteClick = (users: User) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa User "${users.id} "`,
+            title: `Xóa User "${users._id} "`,
             subTitle: ` Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({

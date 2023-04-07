@@ -37,8 +37,12 @@ export default function AdminLoginPage() {
         }
     }, [success]);
 
-    const handleSubmit = (data: LoginPayload) => {
-        dispatch(authActions.adminLogin(data));
+    const handleSubmit = (data: any) => {
+        const newData: any = {
+            username: data.username,
+            password: data.pass
+        }
+        dispatch(authActions.adminLogin(newData));
     };
     return (
         <Box sx={{

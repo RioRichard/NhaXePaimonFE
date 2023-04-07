@@ -70,7 +70,7 @@ export default function Main() {
         onConfirm: () => { }
     });
     const onBaseEditClick = (base: Base) => {
-        navigate(`${location.pathname}/${base.id}`);
+        navigate(`${location.pathname}/${base._id}`);
     };
     const onBaseDeleteClick = (base: Base) => {
         console.log("del");
@@ -122,7 +122,7 @@ export default function Main() {
         let value = e.target.value;
         setBases(
             bases.map((sd) => {
-                if (sd.id === value) {
+                if (sd._id === value) {
                     sd.select = checked;
                 }
                 return sd;

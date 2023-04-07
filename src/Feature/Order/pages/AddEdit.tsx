@@ -29,7 +29,7 @@ export default function AddEdit() {
         (async () => {
             try {
                 const response: Response<any> = await orderApi.fetchOrderById(orderId);
-                setOrder(response.data.orders);
+                setOrder(response.data.order);
             } catch (error) {
                 // navigate(-1);
             }
@@ -48,7 +48,7 @@ export default function AddEdit() {
     const handleSubmit = (values: Order) => {
         console.log("values",values);
         const putData={
-            id:values.id,
+            _id:values._id,
             status:values.status,
             paymentInfo:values.paymentInfo
         }

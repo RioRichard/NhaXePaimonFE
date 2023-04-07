@@ -13,7 +13,7 @@ import Chip from '@mui/material/Chip';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 
 interface BusListProps {
-    rows: Bus[];
+    rows: any[];
 }
 export default function BusList(props: BusListProps) {
     const { rows } = props
@@ -30,11 +30,11 @@ export default function BusList(props: BusListProps) {
                 <TableBody>
                     {rows?.length > 0 ? (
                         rows.map((row, index) => (
-                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     {index + 1}
                                 </TableCell>
-                                <TableCell align="center">{row.id}</TableCell>
+                                <TableCell align="center">{row._id}</TableCell>
                                 <TableCell align="center">
                                     <Chip icon={<AirportShuttleIcon />} label={row?.type} size="small" color="warning" variant="outlined" />
                                 </TableCell>

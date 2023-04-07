@@ -8,6 +8,7 @@ import { ResponseList } from '../../model';
 import { dashboardActions } from './dashboardSlice';
 import routeApi from '../../api/routeApi';
 import userApi from '../../api/userApi';
+import { User } from '../User/types';
 
 
 function* fetchNewOrderList() {
@@ -32,7 +33,7 @@ function* fetchNewRouteList() {
     yield put(dashboardActions.setNewRouteList(data));
 }
 function* fetchNewUserList() {
-    const { data }: ResponseList<Routes> = yield call(userApi.fetchUsers, {
+    const { data }: ResponseList<User> = yield call(userApi.fetchUsers, {
         _page: 1,
         _limit: 100,
     });

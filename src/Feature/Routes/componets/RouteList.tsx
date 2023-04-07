@@ -17,7 +17,8 @@ import moment from 'moment';
 //Giao diện trang chủ hiển thị tất cả Account mà Admin quản lý
 export default function RouteList(props: RoutesListProps) {
     const { rows, onRoutesDeleteClick, onRoutesEditClick } = props;
-
+    console.log(rows);
+    
     const handleEditClick = (row: Routes) => {
         if (onRoutesEditClick) onRoutesEditClick?.(row);
     };
@@ -43,14 +44,14 @@ export default function RouteList(props: RoutesListProps) {
                 <TableBody>
                     {rows?.map((row, index) => {
                         return (
-                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>{index + 1 }</TableCell>
-                                <TableCell>{row.id}</TableCell>
-                                <TableCell>{row?.from?.name}</TableCell>
-                                <TableCell>{row?.to?.name}</TableCell>
+                                <TableCell>{row._id}</TableCell>
+                                <TableCell>{row?.from_Id?.name}</TableCell>
+                                <TableCell>{row?.to_Id?.name}</TableCell>
                                 <TableCell>{moment(row.departure).format('DD/MM/YYYY')}</TableCell>
                                 <TableCell>{moment(row.arrival).format('DD/MM/YYYY')}</TableCell>
-                                <TableCell>{row?.bus?.bus_number}</TableCell>
+                                <TableCell>{row?.bus_id?.bus_number}</TableCell>
                                 <TableCell>{row?.price}</TableCell>
                                 <TableCell align="center">
                                     <Stack direction="row" spacing={2} justifyContent="center">

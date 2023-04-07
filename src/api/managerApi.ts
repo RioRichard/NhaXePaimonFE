@@ -10,13 +10,15 @@ const managerApi = {
         return axiosClient.get(`/managers/${id}`);
     },
     updateManager(data: any): Promise<Response<Manager>> {
-        return axiosClient.patch(`/managers/${data?.data?.id}`, data);
+        return axiosClient.put(`/managers/${data?._id}`, data);
     },
     createManager(data: Manager): Promise<Response<Manager>> {
+        console.log(data);
+        
         return axiosClient.post(`/managers`, data);
     },
     deleteManager(data: Manager): Promise<Response<Manager>> {
-        return axiosClient.delete(`/managers/${data.id}`);
+        return axiosClient.delete(`/managers/${data._id}`);
     },
 };
 

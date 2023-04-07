@@ -120,6 +120,8 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
         })
         setPage(page + 1);
     }
+    console.log(route);
+    
     return (
         <>
             {count === 0 ?
@@ -143,7 +145,7 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                                 <Typography align='left' fontSize={'16px'} fontWeight={'bold'}>Từ ... đến ...</Typography>
                                                 {route?.map((item: any) => (
                                                     // <CheckboxField /* value={true} */ name="route" label="Admin" />
-                                                    <Checkbox disabled={selected} onChange={handleChanges} value={item?.id} key={item?.id} name='d' icon={<Button variant="outlined">{moment(item?.departure).format('DD/MM/YYYY') + ' - ' + moment(item?.arival).format('DD/MM/YYYY')}</Button>} checkedIcon={<Button variant="contained">{moment(item?.departure).format('DD/MM/YYYY') + ' - ' + moment(item?.arival).format('DD/MM/YYYY')}</Button>} />
+                                                    <Checkbox disabled={selected} onChange={handleChanges} value={item?._id} key={item?._id} name='d' icon={<Button variant="outlined">{moment(item?.departure).format('DD/MM/YYYY') + ' - ' + moment(item?.arrival).format('DD/MM/YYYY')}</Button>} checkedIcon={<Button variant="contained">{moment(item?.departure).format('DD/MM/YYYY') + ' - ' + moment(item?.arrival).format('DD/MM/YYYY')}</Button>} />
                                                 ))
                                                 }
                                                 <Typography align='left' fontSize={'16px'}>Nơi lên xe</Typography>
@@ -161,8 +163,8 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                             </Grid>
 
                                             <Grid height={'100px'} item md={3} container columnSpacing={1}>
-                                                {selectedRoute?.bus?.seats?.map((item: any) => (
-                                                    <Checkbox disabled={chosen} onChange={handleSelect} name={item?.name} key={item?.id} value={item?.id} icon={<Button disabled={chosen} style={{ maxWidth: "10px" }} variant="outlined">{item?.name}</Button>} checkedIcon={<Button style={{ maxWidth: "10px" }} variant="contained">{item?.name}</Button>} />
+                                                {selectedRoute?.bus_id?.seats?.map((item: any) => (
+                                                    <Checkbox disabled={chosen} onChange={handleSelect} name={item?.name} key={item?._id} value={item?._id} icon={<Button disabled={chosen} style={{ maxWidth: "10px" }} variant="outlined">{item?.name}</Button>} checkedIcon={<Button style={{ maxWidth: "10px" }} variant="contained">{item?.name}</Button>} />
                                                 ))
                                                 }
                                             </Grid>
@@ -179,11 +181,11 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='right' fontSize={'16px'}>Nơi khởi hành:</Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.from?.address}</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.from_Id?.address}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='right' fontSize={'16px'}>Nơi xuống xe:    </Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.to?.address}</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.to_Id?.address}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='right' fontSize={'16px'}>Giờ khởi hành: </Typography>
@@ -191,11 +193,11 @@ export default function Step3(props: { onSubmit: any, page: any, setPage: any, f
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='left' fontSize={'16px'}>Số xe:    </Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.bus?.bus_number}</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.bus_id?.bus_number}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='left' fontSize={'16px'}>Loại xe:    </Typography>
-                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.bus?.type}</Typography>
+                                                        <Typography align='left' color={'red'} fontSize={'15px'}>{selectedRoute?.bus_id?.type}</Typography>
                                                     </Stack>
                                                     <Stack direction="row" spacing={3}>
                                                         <Typography align='left' fontSize={'16px'}>Số ghế:    </Typography>

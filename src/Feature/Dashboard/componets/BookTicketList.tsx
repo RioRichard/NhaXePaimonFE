@@ -12,7 +12,7 @@ import { Order } from '../../Order/types';
 import Chip from '@mui/material/Chip';
 import BoltIcon from '@mui/icons-material/Bolt';
 interface OrderListProps {
-    rows: Order[];
+    rows: any[];
 }
 export default function BookTicketList(props: OrderListProps) {
     const { rows } = props;
@@ -29,11 +29,11 @@ export default function BookTicketList(props: OrderListProps) {
                 <TableBody>
                     {rows?.length > 0 ? (
                         rows.map((row, index) => (
-                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     {index + 1}
                                 </TableCell>
-                                <TableCell align="center">{row.id}</TableCell>
+                                <TableCell align="center">{row._id}</TableCell>
                                 <TableCell align="center">
                                     <Chip icon={<BoltIcon />} label={row.status} size="small" color="warning" variant="outlined" />
                                 </TableCell>

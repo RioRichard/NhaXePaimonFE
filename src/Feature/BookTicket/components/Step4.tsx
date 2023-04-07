@@ -38,7 +38,7 @@ export default function Step4(props: { page: any, setPage: any, formData: any })
       setTimeout(() => {
         // add
         const newData: any = {
-          seatId: [
+          seats: [
             formData?.seatId
           ],
           routeId: formData?.routeId,
@@ -96,9 +96,9 @@ export default function Step4(props: { page: any, setPage: any, formData: any })
                           <TableRow style={{ height: "100px" }} >
                             <TableCell sx={{ textAlign: "left" }}>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Tuyến xe: {route?.from?.name + " - " + route?.to?.name} </Typography>
+                                Tuyến xe: {route?.from_Id?.name + " - " + route?.to_Id?.name} </Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
-                                Thời gian:  {moment(route?.arival).format('DD/MM/YYYY') + " đến " + moment(route?.departure).format('DD/MM/YYYY')}</Typography>
+                                Thời gian:  {moment(route?.departure).format('DD/MM/YYYY') + " đến " + moment(route?.arival).format('DD/MM/YYYY')}</Typography>
                               <Typography sx={{ color: "black", fontSize: "15px" }}>
                                 Số ghế: {formData?.seatName}</Typography>
                             </TableCell>

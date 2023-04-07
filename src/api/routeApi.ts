@@ -13,11 +13,11 @@ const routeApi = {
         return axiosClient.post('/routes', data);
     },
     deleteRoutes(data: Routes): Promise<Response<Routes>> {
-        return axiosClient.delete(`/routes/${data.id}`);
+        return axiosClient.delete(`/routes/${data._id}`);
     },
     updateRoutes(data: Routes): Promise<Response<Routes>> {
         console.log(data)
-        return axiosClient.put(`/routes/${data?.id}`, data);
+        return axiosClient.put(`/routes/${data?._id}`, data);
     },
 };
 

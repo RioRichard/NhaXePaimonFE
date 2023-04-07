@@ -14,7 +14,9 @@ function* handleLogin(action: PayloadAction<LoginPayload>) {
         yield delay(1000);
         const response: ResponseAuth = yield call(authApi.login, action.payload);
         yield put(authActions.loginSuccess(response));
-        storage.setAccessToken(response.data?.managers);
+        console.log(response);
+        
+        storage.setAccessToken(response.data?.token);
         yield call(history.push, '/');
     } catch (error: any) {
         yield put(authActions.loginFailed(error));

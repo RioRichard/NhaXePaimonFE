@@ -16,30 +16,29 @@ export default function Edit() {
     const dispatch = useDispatch();
     const [user, setUser] = React.useState<User>();
     const currentUser: any = useAppSelector(selectIsUser);
-    const userId = currentUser?.data?.user?.id
+    const userId = currentUser?.data?.user?._id
 
     React.useEffect(() => {
         if (!userId) return;
         (async () => {
             try {
                 const response: Response<any> = await userApi.fetchUserById(userId);
-                setUser(response.data.users);
+                setUser(response.data.user);
             } catch (error) {
             }
         })();
     }, [userId]);
 
-    const handleSubmit = (values: User) => {
+    const handleSubmit = (values: any) => {
+        console.log(values);
+
         return new Promise((resolve) => {
             setTimeout(() => {
-                const newData = {
-                    propChanging: ["email", "phone", "name"],
-                    data: {
-                        id: values.id,
-                        email: values.email,
-                        phone: values.phone,
-                        name: values.name
-                    }
+                const newData: any = {
+                    id: values?._id,
+                    email: values?.email,
+                    phone: values?.phone,
+                    name: values?.name
                 };
                 dispatch(userActions.updateOwnUser(newData));
                 resolve(true);
@@ -50,6 +49,8 @@ export default function Edit() {
     const isEditMode = Boolean(userId);
 
     const initialValues = isEditMode ? user && user : undefined;
+    console.log(initialValues);
+
     return (
         <Stack spacing={4}>
             {(!isEditMode || Boolean(user)) && (

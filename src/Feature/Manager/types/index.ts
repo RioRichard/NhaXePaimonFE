@@ -1,7 +1,7 @@
 import { PaginationParams } from "../../../model";
 
 export type Manager = {
-    id?: string;
+    _id?: string;
     username?: string;
     password?: string;
     name?: string;

@@ -70,12 +70,12 @@ export default function Main() {
         onConfirm: () => { }
     });
     const onRoutesEditClick = (routes: Routes) => {
-        navigate(`${location.pathname}/${routes.id}`);
+        navigate(`${location.pathname}/${routes._id}`);
     };
     const onRoutesDeleteClick = (routes: Routes) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa tuyến "${routes.id} "? `,
+            title: `Xóa tuyến "${routes._id} "? `,
             subTitle: `Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({

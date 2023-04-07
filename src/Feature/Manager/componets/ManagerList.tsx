@@ -36,9 +36,9 @@ export default function ManagerList(props: ManagerListProps) {
                 {
                     rows?.length > 0 ? (
                         rows.map((row, index) => (
-                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>{index + 1}</TableCell>
-                                <TableCell>{row.id}</TableCell>
+                                <TableCell>{row._id}</TableCell>
                                 <TableCell>{row.username}</TableCell>
                                 <TableCell>{row.email}</TableCell>
                                 <TableCell>{row.phone}</TableCell>

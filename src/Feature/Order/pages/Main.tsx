@@ -33,13 +33,13 @@ export default function Main() {
     }, [queryParams]);
     React.useEffect(() => {
         setOrder(
-            listOrder?.orders?.map((item: any) => {
+            listOrder?.order?.map((item: any) => {
                 return {
                     ...item,
                 };
             })
         );
-    }, [listOrder?.orders]);
+    }, [listOrder?.order]);
     console.log(listOrder);
     
     // show message
@@ -63,13 +63,13 @@ export default function Main() {
         }
     }, [status, success]);
     const onOrdeEditClick = (orders: Order) => {
-        navigate(`${location.pathname}/${orders.id}`);
+        navigate(`${location.pathname}/${orders._id}`);
     };
     return (
         <Stack >
             <OrderAction />
             <OrderList
-                rows={listOrder?.orders}
+                rows={listOrder?.order}
                 onOrderEditClick={onOrdeEditClick}
             />
             <Notification notify={notify} setNotify={setNotify} />

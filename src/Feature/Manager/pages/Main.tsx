@@ -71,13 +71,13 @@ export default function Main() {
     }, [status, success]);
     // handle edit
     const handleManagerEditClick = (managers: Manager) => {
-        navigate(`${location.pathname}/${managers.id}`);
+        navigate(`${location.pathname}/${managers._id}`);
     };
     //handle delete
     const handleManagerDeleteClick = (managers: Manager) => {
         setConfirmDialog({
             isOpen: true,
-            title: `Xóa Manager "${managers.id} "`,
+            title: `Xóa Manager "${managers._id} "`,
             subTitle: ` Bạn không thể hoàn tác thao tác này!!!`,
             onConfirm: async () => {
                 setConfirmDialog({

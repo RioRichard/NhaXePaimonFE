@@ -41,7 +41,7 @@ export default function ManagerForm(props: ManagerFormProps) {
 
                         {!isEditMode && <>
                             <InputField name="username" label="Username *" />
-                            <InputField name="pass" label="Password *" />
+                            <InputField name="password" label="Password *" />
                         </>
                         }
                         <InputField name="email" label="Email *" />

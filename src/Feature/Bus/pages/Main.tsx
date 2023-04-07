@@ -70,7 +70,7 @@ export default function Main() {
         onConfirm: () => { }
     });
     const onBusEditClick = (bus: Bus) => {
-        navigate(`${location.pathname}/${bus.id}`);
+        navigate(`${location.pathname}/${bus._id}`);
     };
     const onBusDeleteClick = (bus: Bus) => {
         console.log("del");

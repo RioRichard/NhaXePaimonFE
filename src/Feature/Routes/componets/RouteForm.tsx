@@ -37,7 +37,7 @@ export default function RouteForm(props: RouteFormProps) {
             });
         }
     }
-    console.log(listBase)
+    console.log(initialValues)
     return (
         <FormProvider {...methods} >
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" >
@@ -46,11 +46,11 @@ export default function RouteForm(props: RouteFormProps) {
                         {isEditMode == true && <Typography variant="h2">Sửa thông tin tuyến</Typography>}
                         {isEditMode == false && <Typography variant="h2">Thêm tuyến</Typography>}
                         <br />
-                        <SelectSearchField name="from" label="Chọn điểm đi *" options={listBase} />
-                        <SelectSearchField name="to" label="Chọn điểm đến *" options={listBase} />
+                        <SelectSearchField name="from_Id" label="Chọn điểm đi *" options={listBase} />
+                        <SelectSearchField name="to_Id" label="Chọn điểm đến *" options={listBase} />
                         <SelectoptionValue name="departure" label="Thời gian khởi hành *" options={options} />
                         <SelectoptionValue name="arrival" label="Thời gian đến *" options={options} />
-                        <SelectBusNumberField name="bus" label="Xe *" options={listBus} />
+                        <SelectBusNumberField name="bus_id" label="Xe *" options={listBus} />
                         <InputField name="price" label="Giá *" />
                     </Grid>
                 </Grid>

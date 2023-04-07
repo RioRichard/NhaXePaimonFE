@@ -1,7 +1,7 @@
 import { PaginationParams } from "../../../model";
 
 export type Base = {
-    id?: string;
+    _id?: string;
     name?: string;
     address?: string;
     select?: boolean;

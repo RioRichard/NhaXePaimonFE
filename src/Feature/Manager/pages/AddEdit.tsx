@@ -33,18 +33,22 @@ export default function AddEdit() {
                 if (isEditMode) {
                     // edit
                     const newData = {
-                        propChanging: ["email", "phone", "name"],
-                        data: {
-                            id: values.id,
-                            email: values.email,
-                            phone: values.phone,
-                            name: values.name
-                        }
+                        _id: values._id,
+                        email: values.email,
+                        phone: values.phone,
+                        role:values.role
                     };
                     dispatch(managerActions.updateManager(newData));
                 } else {
                     // add
-                    dispatch(managerActions.createManager(values));
+                    const newData = {
+                        username: values.username,
+                        password: values.password,
+                        email: values.email,
+                        phone: values.phone,
+                        role:values.role
+                    };
+                    dispatch(managerActions.createManager(newData));
                 }
                 resolve(true);
             }, 1000);

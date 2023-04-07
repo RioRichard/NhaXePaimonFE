@@ -22,15 +22,15 @@ export default function HomePage() {
     const newRouteList: any = useAppSelector(selectNewRouteList);
     const newUserList: any = useAppSelector(selectNewUserList);
     const fiveNewBusList: any = newBusList?.buses?.slice(0, 5);
-    const fiveNewOrderList: any = newOrderList?.orders?.slice(0, 5);
+    const fiveNewOrderList: any = newOrderList?.order?.slice(0, 5);
     const fiveNewRouteList: any = newRouteList?.routes?.slice(0, 5);
-    const fiveNewUserList: any = newUserList?.users?.slice(0, 5);
+    const fiveNewUserList: any = newUserList?.user?.slice(0, 5);
     React.useEffect(() => {
         dispatch(dashboardActions.fetchData());
     }, []);
     let countSuccessOrderList = 0
     let countFaileOrderList = 0
-    newOrderList?.orders?.map((item: any) => {
+    newOrderList?.order?.map((item: any) => {
         (item.status == "success") && countSuccessOrderList++
     })
     newOrderList?.orders?.map((item: any) => {
@@ -38,7 +38,6 @@ export default function HomePage() {
     })
     const countNewBusList = newBusList?.buses?.length
     const countNewRouteList = newRouteList?.routes?.length
-    console.log(newUserList)
     return (
         <Stack spacing={4}>
             <Typography variant="h2">Tổng quan</Typography>

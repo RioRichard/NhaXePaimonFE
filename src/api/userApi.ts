@@ -9,14 +9,14 @@ const userApi = {
     fetchUserById(id: string): Promise<Response<User>> {
         return axiosClient.get(`/users/${id}`);
     },
-    updateUser(data: any): Promise<Response<User>> {
-        return axiosClient.patch(`/users/${data.data.id}`, data);
+    updateUser(data: any): Promise<Response<User>> {    
+        return axiosClient.put(`/users/${data?._id}`, data);
     },
     createUser(data: User): Promise<Response<User>> {
         return axiosClient.post(`/users`, data);
     },
     deleteUser(data: User): Promise<Response<User>> {
-        return axiosClient.delete(`/users/${data.id}`);
+        return axiosClient.delete(`/users/${data._id}`);
     },
 };
 

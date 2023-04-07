@@ -37,8 +37,14 @@ export default function LoginPage() {
         }
     }, [success]);
 
-    const handleSubmit = (data: LoginPayload) => {
-        dispatch(authActions.login(data));
+    const handleSubmit = (data: any) => {
+        const newData: any = {
+            username: data.username,
+            password: data.pass
+        }
+
+        
+        dispatch(authActions.login(newData));
     };
     return (
         <Box sx={{

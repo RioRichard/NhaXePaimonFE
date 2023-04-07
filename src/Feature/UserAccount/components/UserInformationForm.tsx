@@ -33,7 +33,7 @@ export default function UserInformationForm(props: infoListProps) {
                     <TableBody>
                         {rows ? (
                             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell align="center">{rows?.id}</TableCell>
+                                <TableCell align="center">{rows?._id}</TableCell>
                                 <TableCell align="center">{rows?.username}</TableCell>
                                 <TableCell align="center">{rows?.name}</TableCell>
                                 <TableCell align="center">{rows?.email}</TableCell>

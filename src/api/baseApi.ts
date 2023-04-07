@@ -13,10 +13,10 @@ const basesApi = {
         return axiosClient.post('/bases', data);
     },
     deleteBase(data: Base): Promise<Response<Base>> {
-        return axiosClient.delete(`/bases/${data.id}`);
+        return axiosClient.delete(`/bases/${data._id}`);
     },
     updateBases(data: Base): Promise<Response<Base>> {
-        return axiosClient.put(`/bases/${data.id}`, data);
+        return axiosClient.put(`/bases/${data._id}`, data);
     },
 };
 

@@ -1,7 +1,7 @@
 import { PaginationParams } from "../../../model";
 
 export type Bus = {
-    id?: string;
+    _id?: string;
     bus_number?: string;
     type?: string;
     seats: Seat[];

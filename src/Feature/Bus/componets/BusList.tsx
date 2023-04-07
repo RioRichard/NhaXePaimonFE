@@ -36,9 +36,9 @@ export default function BusList(props: BusListProps) {
                 <TableBody>
                     {rows?.map((row, index) => {
                         return (
-                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>{index + 1 /* + pageSize * (currentPage - 1) */}</TableCell>
-                                <TableCell>{row.id}</TableCell>
+                                <TableCell>{row._id}</TableCell>
                                 <TableCell>{row.bus_number}</TableCell>
                                 <TableCell>{row.type}</TableCell>
                                 <TableCell align="center">

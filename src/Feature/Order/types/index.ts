@@ -3,7 +3,7 @@ import { Routes } from "../../Routes/types";
 import { Staff } from "../../Staff/types";
 
 export type Order = {
-    id?: string;
+    _id?: string;
     route?: Routes;
     status?: string;
     paymentInfo?: string;

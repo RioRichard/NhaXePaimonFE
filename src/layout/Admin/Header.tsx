@@ -73,7 +73,7 @@ export function Header() {
                     </Box>
                     <Box>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Typography sx={{ mr: 1 }}> {currentAdminUser && currentAdminUser?.data?.manager?.username}</Typography>
+                            <Typography sx={{ mr: 1 }}> {currentAdminUser && currentAdminUser?.data?.managers?.username}</Typography>
                             <IconButton size="small" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit">
                                 <AccountCircle fontSize="small" />
                             </IconButton>

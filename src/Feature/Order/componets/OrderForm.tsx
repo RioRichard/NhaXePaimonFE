@@ -26,7 +26,8 @@ export default function OrderForm(props: OrderFormProps) {
         handleSubmit,
         formState: { isSubmitting }
     } = methods;
-
+    console.log(initialValues);
+    
     return (
         <FormProvider {...methods} >
             <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -34,9 +35,7 @@ export default function OrderForm(props: OrderFormProps) {
                     <Grid item xs={12} >
                         <Typography variant="h2">Thông tin đơn đặt vé</Typography>
                         <br />
-                        <InputField name="id" label="Mã đơn *" disabled />
-                        <InputField name="route?.from?.name" label="Nơi đi *" disabled />
-                        <InputField name="route?.to?.name" label="Nơi đến *" disabled />
+                        <InputField name="_id" label="Mã đơn *" disabled />
                         <InputField name="status" label="Tình trạng *" />
                         <InputField name="paymentInfo" label="Thông tin thanh toán *" />
                     </Grid>

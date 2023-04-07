@@ -63,24 +63,24 @@ export default function AddEdit() {
             setTimeout(() => {
                 if (isEditMode) {
                     // edit
-                    const newData = {
-                        id: routeId,
+                    const newData: any = {
+                        _id: routeId,
                         departure: values.departure?.value,
                         arrival: values.arrival?.value,
-                        bus_id: values.bus?.id,
-                        from_id: values.from?.id,
-                        to_id: values.to?.id,
+                        bus_id: values.bus_id?._id,
+                        from_Id: values.from_Id?._id,
+                        to_Id: values.from_Id?._id,
                         price: values.price,
-                    }                  
+                    }
                     dispatch(routesActions.updateRoutes(newData));
                 } else {
                     // add
-                    const newData = {
+                    const newData:any = {
                         departure: values.departure?.value,
                         arrival: values.arrival?.value,
-                        bus_id: values.bus?.id,
-                        from_id: values.from?.id,
-                        to_id: values.to?.id,
+                        bus_id: values.bus_id?._id,
+                        from_Id: values.from_Id?._id,
+                        to_Id: values.from_Id?._id,
                         price: values.price,
                     }
                     dispatch(routesActions.createRoutes(newData));
@@ -90,8 +90,7 @@ export default function AddEdit() {
         });
     };
     const initialValues = isEditMode ? routes && routes : undefined;
-    if(listBase?.bases && listBus?.buses)
-    {
+    if (listBase?.bases && listBus?.buses) {
         return (
             <Stack spacing={4}>
                 {(!isEditMode || Boolean(routes)) && (
@@ -108,9 +107,9 @@ export default function AddEdit() {
             </Stack>
         );
     }
-    else{
+    else {
         return <>
         </>
     }
-    }
- 
+}
+

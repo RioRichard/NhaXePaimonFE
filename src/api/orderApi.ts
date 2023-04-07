@@ -15,10 +15,10 @@ const orderApi = {
         return axiosClient.post('/orders', data);
     },
     deleteOrder(data: Order): Promise<Response<Order>> {
-        return axiosClient.delete(`/orders/${data.id}`);
+        return axiosClient.delete(`/orders/${data._id}`);
     },
     updateOrder(data: Order): Promise<Response<Order>> {
-        return axiosClient.put(`/orders/${data.id}`, data);
+        return axiosClient.put(`/orders/${data._id}`, data);
     },
 };
 

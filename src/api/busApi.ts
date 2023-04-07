@@ -13,10 +13,10 @@ const busesApi = {
         return axiosClient.post('/buses', data);
     },
     deleteBus(data: Bus): Promise<Response<Bus>> {
-        return axiosClient.delete(`/buses/${data.id}`);
+        return axiosClient.delete(`/buses/${data._id}`);
     },
     updateBus(data: Bus): Promise<Response<Bus>> {
-        return axiosClient.put(`/buses/${data.id}`, data);
+        return axiosClient.put(`/buses/${data._id}`, data);
     },
 };
 

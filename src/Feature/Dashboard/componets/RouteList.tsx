@@ -12,7 +12,7 @@ import { Routes } from '../../Routes/types';
 import Chip from '@mui/material/Chip';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 interface RouteListProps {
-    rows: Routes[];
+    rows: any[];
 }
 export default function RouteList(props: RouteListProps) {
     const { rows } = props
@@ -31,16 +31,16 @@ export default function RouteList(props: RouteListProps) {
                 <TableBody>
                     {rows?.length > 0 ? (
                         rows.map((row, index) => (
-                            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     {index + 1}
                                 </TableCell>
-                                <TableCell align="center">{row.id}</TableCell>
+                                <TableCell align="center">{row._id}</TableCell>
                                 <TableCell align="center">
-                                    <Chip icon={<LocationOnIcon />} label={row?.from?.name} size="small" color="warning" variant="outlined" />
+                                    <Chip icon={<LocationOnIcon />} label={row?.from_Id?.name} size="small" color="warning" variant="outlined" />
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Chip icon={<LocationOnIcon />} label={row?.from?.name} size="small" color="warning" variant="outlined" />
+                                    <Chip icon={<LocationOnIcon />} label={row?.to_Id?.name} size="small" color="warning" variant="outlined" />
                                 </TableCell>
                             </TableRow>
                         ))
